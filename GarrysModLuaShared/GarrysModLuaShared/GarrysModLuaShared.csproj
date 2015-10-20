@@ -37,6 +37,7 @@
     <Compile Include="lua_Hook.cs" />
     <Compile Include="lua_Reader.cs" />
     <Compile Include="lua_Writer.cs" />
+    <Compile Include="MyCSharpLibrary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TableIndex.cs" />
     <Compile Include="Type.cs" />

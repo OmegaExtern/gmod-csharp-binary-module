@@ -10,6 +10,7 @@ namespace GarrysModLuaShared
         [DllExport(CallingConvention = CallingConvention.Cdecl)]
         public static int gmod13_open(IntPtr luaState)
         {
+            RegisterCFunction(luaState, nameof(MyCSharpLibrary), nameof(MyCSharpLibrary.MyCSharpFunction), MyCSharpLibrary.MyCSharpFunction);
             return 0;
         }
 
