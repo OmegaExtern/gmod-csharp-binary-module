@@ -61,6 +61,127 @@ namespace GarrysModLuaShared
             }
         }
 
+        public static bool isangle(IntPtr luaState, object variable)
+        {
+            lock (SyncRoot)
+            {
+                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(isangle));
+                Push(luaState, variable);
+                lua_pcall(luaState, 1, 1, 0);
+                return lua_toboolean(luaState, -1) == 1;
+            }
+        }
+
+        public static bool isbool(IntPtr luaState, object variable)
+        {
+            lock (SyncRoot)
+            {
+                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(isbool));
+                Push(luaState, variable);
+                lua_pcall(luaState, 1, 1, 0);
+                return lua_toboolean(luaState, -1) == 1;
+            }
+        }
+
+        public static bool IsColor(IntPtr luaState, object variable)
+        {
+            lock (SyncRoot)
+            {
+                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(IsColor));
+                Push(luaState, variable);
+                lua_pcall(luaState, 1, 1, 0);
+                return lua_toboolean(luaState, -1) == 1;
+            }
+        }
+
+        public static bool isentity(IntPtr luaState, object variable)
+        {
+            lock (SyncRoot)
+            {
+                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(isentity));
+                Push(luaState, variable);
+                lua_pcall(luaState, 1, 1, 0);
+                return lua_toboolean(luaState, -1) == 1;
+            }
+        }
+
+        public static bool isfunction(IntPtr luaState, object variable)
+        {
+            lock (SyncRoot)
+            {
+                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(isfunction));
+                Push(luaState, variable);
+                lua_pcall(luaState, 1, 1, 0);
+                return lua_toboolean(luaState, -1) == 1;
+            }
+        }
+
+        public static bool isnumber(IntPtr luaState, object variable)
+        {
+            lock (SyncRoot)
+            {
+                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(isnumber));
+                Push(luaState, variable);
+                lua_pcall(luaState, 1, 1, 0);
+                return lua_toboolean(luaState, -1) == 1;
+            }
+        }
+
+        public static bool ispanel(IntPtr luaState, object variable)
+        {
+            lock (SyncRoot)
+            {
+                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(ispanel));
+                Push(luaState, variable);
+                lua_pcall(luaState, 1, 1, 0);
+                return lua_toboolean(luaState, -1) == 1;
+            }
+        }
+
+        public static bool isstring(IntPtr luaState, object variable)
+        {
+            lock (SyncRoot)
+            {
+                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(isstring));
+                Push(luaState, variable);
+                lua_pcall(luaState, 1, 1, 0);
+                return lua_toboolean(luaState, -1) == 1;
+            }
+        }
+
+        public static bool istable(IntPtr luaState, object variable)
+        {
+            lock (SyncRoot)
+            {
+                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(istable));
+                Push(luaState, variable);
+                lua_pcall(luaState, 1, 1, 0);
+                return lua_toboolean(luaState, -1) == 1;
+            }
+        }
+
+        public static bool IsValid(IntPtr luaState, object toBeValidated)
+        {
+            lock (SyncRoot)
+            {
+                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(IsValid));
+                Push(luaState, toBeValidated);
+                lua_pcall(luaState, 1, 1, 0);
+                return lua_toboolean(luaState, -1) == 1;
+            }
+        }
+
+        public static bool isvector(IntPtr luaState, object variable)
+        {
+            lock (SyncRoot)
+            {
+                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(isvector));
+                Push(luaState, variable);
+                lua_pcall(luaState, 1, 1, 0);
+                return lua_toboolean(luaState, -1) == 1;
+            }
+        }
+
         public static double Lerp(IntPtr luaState, double t, double from, double to)
         {
             lock (SyncRoot)
