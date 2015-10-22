@@ -64,5 +64,27 @@ namespace GarrysModLuaShared
                 lua_pcall(luaState, 2, 0, 0);
             }
         }
+
+#if CLIENT
+        public static uint ScrH(IntPtr luaState)
+        {
+            lock (SyncRoot)
+            {
+                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(ScrH));
+                lua_pcall(luaState, 0, 1, 0);
+                return (uint)lua_tointeger(luaState, -1);
+            }
+        }
+
+        public static uint ScrW(IntPtr luaState)
+        {
+            lock (SyncRoot)
+            {
+                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(ScrW));
+                lua_pcall(luaState, 0, 1, 0);
+                return (uint)lua_tointeger(luaState, -1);
+            }
+        }
+#endif
     }
 }
