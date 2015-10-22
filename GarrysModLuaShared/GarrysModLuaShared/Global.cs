@@ -22,7 +22,7 @@ namespace GarrysModLuaShared
         {
             lock (SyncRoot)
             {
-                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(CompileFile));
+                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(CompileString));
                 lua_pushstring(luaState, code);
                 lua_pushstring(luaState, identifier);
                 lua_pushboolean(luaState, handleError ? 1 : 0);
