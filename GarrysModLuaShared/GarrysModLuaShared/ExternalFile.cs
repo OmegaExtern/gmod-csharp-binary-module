@@ -46,6 +46,27 @@ namespace GarrysModLuaShared
             return 0;
         }
 
+        public static int IsDir(IntPtr luaState)
+        {
+            if (lua_gettop(luaState) != 1)
+            {
+                return 0;
+            }
+            string path = CheckManagedString(luaState, 1); // First argument should be of type string.
+            bool isDirectory;
+            try
+            {
+                FileAttributes fileAttributes = File.GetAttributes(path);
+                isDirectory = fileAttributes.HasFlag(FileAttributes.Directory);
+            }
+            catch
+            {
+                return 0;
+            }
+            lua_pushboolean(luaState, isDirectory ? 1 : 0);
+            return 1;
+        }
+
         public static int Read(IntPtr luaState)
         {
             if (lua_gettop(luaState) != 1)
