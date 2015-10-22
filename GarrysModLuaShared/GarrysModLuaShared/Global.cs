@@ -61,6 +61,19 @@ namespace GarrysModLuaShared
             }
         }
 
+        public static double Lerp(IntPtr luaState, double t, double from, double to)
+        {
+            lock (SyncRoot)
+            {
+                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(Lerp));
+                lua_pushnumber(luaState, t);
+                lua_pushnumber(luaState, from);
+                lua_pushnumber(luaState, to);
+                lua_pcall(luaState, 3, 1, 0);
+                return lua_tonumber(luaState, -1);
+            }
+        }
+
         public static void Msg(IntPtr luaState, params object[] args)
         {
             lock (SyncRoot)
