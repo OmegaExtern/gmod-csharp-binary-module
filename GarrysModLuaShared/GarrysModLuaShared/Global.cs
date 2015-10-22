@@ -31,6 +31,16 @@ namespace GarrysModLuaShared
             }
         }
 
+        public static void include(IntPtr luaState, string fileName)
+        {
+            lock (SyncRoot)
+            {
+                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(include));
+                lua_pushstring(luaState, fileName);
+                lua_pcall(luaState, 1, 0, 0);
+            }
+        }
+
         public static void print(IntPtr luaState, params object[] args)
         {
             lock (SyncRoot)
