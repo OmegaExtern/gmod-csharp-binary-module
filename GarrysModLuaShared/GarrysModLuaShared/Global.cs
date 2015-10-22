@@ -7,6 +7,30 @@ namespace GarrysModLuaShared
     {
         static readonly object SyncRoot = new object();
 
+        public static lua_CFunction CompileFile(IntPtr luaState, string path)
+        {
+            lock (SyncRoot)
+            {
+                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(CompileFile));
+                lua_pushstring(luaState, path);
+                lua_pcall(luaState, 1, 1, 0);
+                return lua_tocfunction(luaState, -1);
+            }
+        }
+
+        public static lua_CFunction CompileString(IntPtr luaState, string code, string identifier, bool handleError = true)
+        {
+            lock (SyncRoot)
+            {
+                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(CompileFile));
+                lua_pushstring(luaState, code);
+                lua_pushstring(luaState, identifier);
+                lua_pushboolean(luaState, handleError ? 1 : 0);
+                lua_pcall(luaState, 3, 1, 0);
+                return lua_tocfunction(luaState, -1);
+            }
+        }
+
         public static void print(IntPtr luaState, params object[] args)
         {
             lock (SyncRoot)
