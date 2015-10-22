@@ -41,6 +41,33 @@ namespace GarrysModLuaShared
             }
         }
 
+        public static void Msg(IntPtr luaState, params object[] args)
+        {
+            lock (SyncRoot)
+            {
+                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(Msg));
+                foreach (object o in args)
+                {
+                    Push(luaState, o);
+                }
+                lua_pcall(luaState, args.Length, 0, 0);
+            }
+        }
+
+        public static void MsgN(IntPtr luaState, params object[] args)
+        {
+            lock (SyncRoot)
+            {
+                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(MsgN));
+                foreach (object o in args)
+                {
+                    Push(luaState, o);
+                }
+                Push(luaState, "\n");
+                lua_pcall(luaState, 1 + args.Length, 0, 0);
+            }
+        }
+
         public static void print(IntPtr luaState, params object[] args)
         {
             lock (SyncRoot)
