@@ -31,6 +31,26 @@ namespace GarrysModLuaShared
             }
         }
 
+        public static double CurTime(IntPtr luaState)
+        {
+            lock (SyncRoot)
+            {
+                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(CurTime));
+                lua_pcall(luaState, 0, 1, 0);
+                return lua_tonumber(luaState, -1);
+            }
+        }
+
+        public static double FrameTime(IntPtr luaState)
+        {
+            lock (SyncRoot)
+            {
+                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(FrameTime));
+                lua_pcall(luaState, 0, 1, 0);
+                return lua_tonumber(luaState, -1);
+            }
+        }
+
         public static void include(IntPtr luaState, string fileName)
         {
             lock (SyncRoot)
@@ -78,6 +98,26 @@ namespace GarrysModLuaShared
                     lua_pushstring(luaState, o.ToString());
                 }
                 lua_pcall(luaState, args.Length, 0, 0);
+            }
+        }
+
+        public static double RealFrameTime(IntPtr luaState)
+        {
+            lock (SyncRoot)
+            {
+                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(RealFrameTime));
+                lua_pcall(luaState, 0, 1, 0);
+                return lua_tonumber(luaState, -1);
+            }
+        }
+
+        public static double RealTime(IntPtr luaState)
+        {
+            lock (SyncRoot)
+            {
+                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(RealTime));
+                lua_pcall(luaState, 0, 1, 0);
+                return lua_tonumber(luaState, -1);
             }
         }
 
@@ -147,5 +187,15 @@ namespace GarrysModLuaShared
             }
         }
 #endif
+
+        public static double SysTime(IntPtr luaState)
+        {
+            lock (SyncRoot)
+            {
+                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(SysTime));
+                lua_pcall(luaState, 0, 1, 0);
+                return lua_tonumber(luaState, -1);
+            }
+        }
     }
 }
