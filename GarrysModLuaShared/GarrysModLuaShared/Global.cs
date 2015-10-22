@@ -29,5 +29,19 @@ namespace GarrysModLuaShared
                 lua_pcall(luaState, 1, 0, 0);
             }
         }
+
+        public static void RunConsoleCommand(IntPtr luaState, string command, params string[] arguments)
+        {
+            lock (SyncRoot)
+            {
+                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(RunConsoleCommand));
+                lua_pushstring(luaState, command);
+                foreach (string argument in arguments)
+                {
+                    lua_pushstring(luaState, argument);
+                }
+                lua_pcall(luaState, 1 + arguments.Length, 0, 0);
+            }
+        }
     }
 }
