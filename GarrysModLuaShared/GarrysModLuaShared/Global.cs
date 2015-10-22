@@ -101,6 +101,17 @@ namespace GarrysModLuaShared
             }
         }
 
+        public static bool ProtectedCall(IntPtr luaState, lua_CFunction function)
+        {
+            lock (SyncRoot)
+            {
+                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(ProtectedCall));
+                lua_pushcclosure(luaState, function, 0);
+                lua_pcall(luaState, 1, 1, 0);
+                return lua_toboolean(luaState, -1) == 1;
+            }
+        }
+
         public static double RealFrameTime(IntPtr luaState)
         {
             lock (SyncRoot)
