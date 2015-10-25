@@ -1,3 +1,5 @@
+//#define CLIENT // Uncomment this line if you are developing a clientside (gmcl) binary module /!!\
+//#define SERVER // Uncomment this line if you are developing a serverside (gmsv) binary module /!!\
 using System;
 using System.Runtime.InteropServices;
 using RGiesecke.DllExport;

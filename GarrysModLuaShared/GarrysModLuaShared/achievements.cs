@@ -1,5 +1,4 @@
-﻿#define CLIENT // Define this if you are developing a clientside binary module; otherwise define SERVER. This simply unlocks clientside (or serverside) functionality.
-#if CLIENT
+﻿#if CLIENT
 using System;
 using static GarrysModLuaShared.Lua;
 
