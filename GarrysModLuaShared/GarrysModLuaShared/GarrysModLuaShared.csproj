@@ -38,6 +38,7 @@
     <Compile Include="lua_Hook.cs" />
     <Compile Include="lua_Reader.cs" />
     <Compile Include="lua_Writer.cs" />
+    <Compile Include="Process.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TableIndex.cs" />
     <Compile Include="Type.cs" />
@@ -47,6 +48,7 @@
       <HintPath>..\packages\UnmanagedExports.1.2.7\lib\net\RGiesecke.DllExport.Metadata.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
