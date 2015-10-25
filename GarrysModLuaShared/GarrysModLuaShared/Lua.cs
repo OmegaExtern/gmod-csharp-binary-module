@@ -5,6 +5,8 @@ namespace GarrysModLuaShared
 {
     static class Lua
     {
+        internal static readonly object SyncRoot = new object();
+
         [DllImport(ExternDll.LuaShared)]
         public static extern void luaL_addlstring(luaL_Buffer buffer, string s, IntPtr l);
 
@@ -173,9 +175,9 @@ namespace GarrysModLuaShared
         public static extern unsafe int lua_cpcall(IntPtr luaState, lua_CFunction func, void* ud);
 
         [DllImport(ExternDll.LuaShared)]
-        public static extern void lua_createtable(IntPtr luaState, int narr, int nrec);
+        public static extern void lua_createtable(IntPtr luaState, int narr = 0, int nrec = 0);
 
-        public static void lua_newtable(IntPtr luaState) => lua_createtable(luaState, 0, 0);
+        public static void lua_newtable(IntPtr luaState) => lua_createtable(luaState);
 
         [DllImport(ExternDll.LuaShared)]
         public static extern unsafe int lua_dump(IntPtr luaState, lua_Writer writer, void* data);
@@ -272,7 +274,7 @@ namespace GarrysModLuaShared
         public static extern IntPtr lua_objlen(IntPtr luaState, int index);
 
         [DllImport(ExternDll.LuaShared)]
-        public static extern int lua_pcall(IntPtr luaState, int nargs, int nresults, int msgh);
+        public static extern int lua_pcall(IntPtr luaState, int nargs = 0, int nresults = 0, int msgh = 0);
 
         [DllImport(ExternDll.LuaShared)]
         public static extern void lua_pushboolean(IntPtr luaState, int b);
@@ -369,31 +371,31 @@ namespace GarrysModLuaShared
         public static extern int lua_status(IntPtr luaState);
 
         [DllImport(ExternDll.LuaShared)]
-        public static extern int lua_toboolean(IntPtr luaState, int index);
+        public static extern int lua_toboolean(IntPtr luaState, int index = -1);
 
         [DllImport(ExternDll.LuaShared)]
-        public static extern lua_CFunction lua_tocfunction(IntPtr luaState, int index);
+        public static extern lua_CFunction lua_tocfunction(IntPtr luaState, int index = -1);
 
         [DllImport(ExternDll.LuaShared)]
-        public static extern int lua_tointeger(IntPtr luaState, int index);
+        public static extern int lua_tointeger(IntPtr luaState, int index = -1);
 
         [DllImport(ExternDll.LuaShared)]
         public static extern IntPtr lua_tolstring(IntPtr luaState, int index, IntPtr len);
 
         [DllImport(ExternDll.LuaShared)]
-        public static extern IntPtr lua_tostring(IntPtr luaState, int index);
+        public static extern IntPtr lua_tostring(IntPtr luaState, int index = -1);
 
         [DllImport(ExternDll.LuaShared)]
-        public static extern double lua_tonumber(IntPtr luaState, int index);
+        public static extern double lua_tonumber(IntPtr luaState, int index = -1);
 
         [DllImport(ExternDll.LuaShared)]
-        public static extern unsafe void* lua_topointer(IntPtr luaState, int index);
+        public static extern unsafe void* lua_topointer(IntPtr luaState, int index = -1);
 
         [DllImport(ExternDll.LuaShared)]
-        public static extern IntPtr lua_tothread(IntPtr luaState, int index);
+        public static extern IntPtr lua_tothread(IntPtr luaState, int index = -1);
 
         [DllImport(ExternDll.LuaShared)]
-        public static extern unsafe void* lua_touserdata(IntPtr luaState, int index);
+        public static extern unsafe void* lua_touserdata(IntPtr luaState, int index = -1);
 
         [DllImport(ExternDll.LuaShared)]
         public static extern int lua_type(IntPtr luaState, int index);
@@ -458,7 +460,7 @@ namespace GarrysModLuaShared
 
         public static string CheckManagedString(IntPtr luaState, int index) => Marshal.PtrToStringAnsi(luaL_checklstring(luaState, index, IntPtr.Zero));
 
-        public static string ToManagedString(IntPtr luaState, int index) => Marshal.PtrToStringAnsi(lua_tolstring(luaState, index, IntPtr.Zero));
+        public static string ToManagedString(IntPtr luaState, int index = -1) => Marshal.PtrToStringAnsi(lua_tolstring(luaState, index, IntPtr.Zero));
 
         public static void RegisterCFunction(IntPtr luaState, string tableName, string funcName, lua_CFunction function)
         {

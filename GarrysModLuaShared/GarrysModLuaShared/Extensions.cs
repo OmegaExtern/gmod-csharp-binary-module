@@ -115,7 +115,7 @@ namespace GarrysModLuaShared
 
         public static unsafe int lua_cpcall(this IntPtr luaState, lua_CFunction func, void* ud) => Lua.lua_cpcall(luaState, func, ud);
 
-        public static void lua_createtable(this IntPtr luaState, int narr, int nrec) => Lua.lua_createtable(luaState, narr, nrec);
+        public static void lua_createtable(this IntPtr luaState, int narr = 0, int nrec = 0) => Lua.lua_createtable(luaState, narr, nrec);
 
         public static void lua_newtable(this IntPtr luaState) => Lua.lua_newtable(luaState);
 
@@ -183,7 +183,7 @@ namespace GarrysModLuaShared
 
         public static IntPtr lua_objlen(this IntPtr luaState, int index) => Lua.lua_objlen(luaState, index);
 
-        public static int lua_pcall(this IntPtr luaState, int nargs, int nresults, int msgh) => Lua.lua_pcall(luaState, nargs, nresults, msgh);
+        public static int lua_pcall(this IntPtr luaState, int nargs = 0, int nresults = 0, int msgh = 0) => Lua.lua_pcall(luaState, nargs, nresults, msgh);
 
         public static void lua_pushboolean(this IntPtr luaState, int b) => Lua.lua_pushboolean(luaState, b);
 
@@ -249,23 +249,23 @@ namespace GarrysModLuaShared
 
         public static int lua_status(this IntPtr luaState) => Lua.lua_status(luaState);
 
-        public static int lua_toboolean(this IntPtr luaState, int index) => Lua.lua_toboolean(luaState, index);
+        public static int lua_toboolean(this IntPtr luaState, int index = -1) => Lua.lua_toboolean(luaState, index);
 
-        public static lua_CFunction lua_tocfunction(this IntPtr luaState, int index) => Lua.lua_tocfunction(luaState, index);
+        public static lua_CFunction lua_tocfunction(this IntPtr luaState, int index = -1) => Lua.lua_tocfunction(luaState, index);
 
-        public static int lua_tointeger(this IntPtr luaState, int index) => Lua.lua_tointeger(luaState, index);
+        public static int lua_tointeger(this IntPtr luaState, int index = -1) => Lua.lua_tointeger(luaState, index);
 
         public static IntPtr lua_tolstring(this IntPtr luaState, int index, IntPtr len) => Lua.lua_tolstring(luaState, index, len);
 
-        public static IntPtr lua_tostring(this IntPtr luaState, int index) => Lua.lua_tostring(luaState, index);
+        public static IntPtr lua_tostring(this IntPtr luaState, int index = -1) => Lua.lua_tostring(luaState, index);
 
-        public static double lua_tonumber(this IntPtr luaState, int index) => Lua.lua_tonumber(luaState, index);
+        public static double lua_tonumber(this IntPtr luaState, int index = -1) => Lua.lua_tonumber(luaState, index);
 
-        public static unsafe void* lua_topointer(this IntPtr luaState, int index) => Lua.lua_topointer(luaState, index);
+        public static unsafe void* lua_topointer(this IntPtr luaState, int index = -1) => Lua.lua_topointer(luaState, index);
 
-        public static IntPtr lua_tothread(this IntPtr luaState, int index) => Lua.lua_tothread(luaState, index);
+        public static IntPtr lua_tothread(this IntPtr luaState, int index = -1) => Lua.lua_tothread(luaState, index);
 
-        public static unsafe void* lua_touserdata(this IntPtr luaState, int index) => Lua.lua_touserdata(luaState, index);
+        public static unsafe void* lua_touserdata(this IntPtr luaState, int index = -1) => Lua.lua_touserdata(luaState, index);
 
         public static int lua_type(this IntPtr luaState, int index) => Lua.lua_type(luaState, index);
 
@@ -287,7 +287,7 @@ namespace GarrysModLuaShared
 
         public static string CheckManagedString(this IntPtr luaState, int index) => Lua.CheckManagedString(luaState, index);
 
-        public static string ToManagedString(this IntPtr luaState, int index) => Lua.ToManagedString(luaState, index);
+        public static string ToManagedString(this IntPtr luaState, int index = -1) => Lua.ToManagedString(luaState, index);
 
         public static void RegisterCFunction(this IntPtr luaState, string tableName, string funcName, lua_CFunction function) => Lua.RegisterCFunction(luaState, tableName, funcName, function);
 

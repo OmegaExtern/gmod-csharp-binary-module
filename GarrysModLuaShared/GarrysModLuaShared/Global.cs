@@ -5,16 +5,14 @@ namespace GarrysModLuaShared
 {
     static class Global
     {
-        static readonly object SyncRoot = new object();
-
         public static lua_CFunction CompileFile(IntPtr luaState, string path)
         {
             lock (SyncRoot)
             {
-                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(CompileFile));
+                lua_getglobal(luaState, nameof(CompileFile));
                 lua_pushstring(luaState, path);
-                lua_pcall(luaState, 1, 1, 0);
-                return lua_tocfunction(luaState, -1);
+                lua_pcall(luaState, 1, 1);
+                return lua_tocfunction(luaState);
             }
         }
 
@@ -22,12 +20,12 @@ namespace GarrysModLuaShared
         {
             lock (SyncRoot)
             {
-                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(CompileString));
+                lua_getglobal(luaState, nameof(CompileString));
                 lua_pushstring(luaState, code);
                 lua_pushstring(luaState, identifier);
                 lua_pushboolean(luaState, handleError ? 1 : 0);
-                lua_pcall(luaState, 3, 1, 0);
-                return lua_tocfunction(luaState, -1);
+                lua_pcall(luaState, 3, 1);
+                return lua_tocfunction(luaState);
             }
         }
 
@@ -35,9 +33,9 @@ namespace GarrysModLuaShared
         {
             lock (SyncRoot)
             {
-                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(CurTime));
-                lua_pcall(luaState, 0, 1, 0);
-                return lua_tonumber(luaState, -1);
+                lua_getglobal(luaState, nameof(CurTime));
+                lua_pcall(luaState, 0, 1);
+                return lua_tonumber(luaState);
             }
         }
 
@@ -45,9 +43,9 @@ namespace GarrysModLuaShared
         {
             lock (SyncRoot)
             {
-                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(FrameTime));
-                lua_pcall(luaState, 0, 1, 0);
-                return lua_tonumber(luaState, -1);
+                lua_getglobal(luaState, nameof(FrameTime));
+                lua_pcall(luaState, 0, 1);
+                return lua_tonumber(luaState);
             }
         }
 
@@ -55,9 +53,9 @@ namespace GarrysModLuaShared
         {
             lock (SyncRoot)
             {
-                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(include));
+                lua_getglobal(luaState, nameof(include));
                 lua_pushstring(luaState, fileName);
-                lua_pcall(luaState, 1, 0, 0);
+                lua_pcall(luaState, 1);
             }
         }
 
@@ -65,10 +63,10 @@ namespace GarrysModLuaShared
         {
             lock (SyncRoot)
             {
-                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(isangle));
+                lua_getglobal(luaState, nameof(isangle));
                 Push(luaState, variable);
-                lua_pcall(luaState, 1, 1, 0);
-                return lua_toboolean(luaState, -1) == 1;
+                lua_pcall(luaState, 1, 1);
+                return lua_toboolean(luaState) == 1;
             }
         }
 
@@ -76,10 +74,10 @@ namespace GarrysModLuaShared
         {
             lock (SyncRoot)
             {
-                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(isbool));
+                lua_getglobal(luaState, nameof(isbool));
                 Push(luaState, variable);
-                lua_pcall(luaState, 1, 1, 0);
-                return lua_toboolean(luaState, -1) == 1;
+                lua_pcall(luaState, 1, 1);
+                return lua_toboolean(luaState) == 1;
             }
         }
 
@@ -87,10 +85,10 @@ namespace GarrysModLuaShared
         {
             lock (SyncRoot)
             {
-                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(IsColor));
+                lua_getglobal(luaState, nameof(IsColor));
                 Push(luaState, variable);
-                lua_pcall(luaState, 1, 1, 0);
-                return lua_toboolean(luaState, -1) == 1;
+                lua_pcall(luaState, 1, 1);
+                return lua_toboolean(luaState) == 1;
             }
         }
 
@@ -98,10 +96,10 @@ namespace GarrysModLuaShared
         {
             lock (SyncRoot)
             {
-                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(isentity));
+                lua_getglobal(luaState, nameof(isentity));
                 Push(luaState, variable);
-                lua_pcall(luaState, 1, 1, 0);
-                return lua_toboolean(luaState, -1) == 1;
+                lua_pcall(luaState, 1, 1);
+                return lua_toboolean(luaState) == 1;
             }
         }
 
@@ -109,10 +107,10 @@ namespace GarrysModLuaShared
         {
             lock (SyncRoot)
             {
-                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(isfunction));
+                lua_getglobal(luaState, nameof(isfunction));
                 Push(luaState, variable);
-                lua_pcall(luaState, 1, 1, 0);
-                return lua_toboolean(luaState, -1) == 1;
+                lua_pcall(luaState, 1, 1);
+                return lua_toboolean(luaState) == 1;
             }
         }
 
@@ -120,10 +118,10 @@ namespace GarrysModLuaShared
         {
             lock (SyncRoot)
             {
-                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(isnumber));
+                lua_getglobal(luaState, nameof(isnumber));
                 Push(luaState, variable);
-                lua_pcall(luaState, 1, 1, 0);
-                return lua_toboolean(luaState, -1) == 1;
+                lua_pcall(luaState, 1, 1);
+                return lua_toboolean(luaState) == 1;
             }
         }
 
@@ -131,10 +129,10 @@ namespace GarrysModLuaShared
         {
             lock (SyncRoot)
             {
-                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(ispanel));
+                lua_getglobal(luaState, nameof(ispanel));
                 Push(luaState, variable);
-                lua_pcall(luaState, 1, 1, 0);
-                return lua_toboolean(luaState, -1) == 1;
+                lua_pcall(luaState, 1, 1);
+                return lua_toboolean(luaState) == 1;
             }
         }
 
@@ -142,10 +140,10 @@ namespace GarrysModLuaShared
         {
             lock (SyncRoot)
             {
-                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(isstring));
+                lua_getglobal(luaState, nameof(isstring));
                 Push(luaState, variable);
-                lua_pcall(luaState, 1, 1, 0);
-                return lua_toboolean(luaState, -1) == 1;
+                lua_pcall(luaState, 1, 1);
+                return lua_toboolean(luaState) == 1;
             }
         }
 
@@ -153,10 +151,10 @@ namespace GarrysModLuaShared
         {
             lock (SyncRoot)
             {
-                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(istable));
+                lua_getglobal(luaState, nameof(istable));
                 Push(luaState, variable);
-                lua_pcall(luaState, 1, 1, 0);
-                return lua_toboolean(luaState, -1) == 1;
+                lua_pcall(luaState, 1, 1);
+                return lua_toboolean(luaState) == 1;
             }
         }
 
@@ -164,10 +162,10 @@ namespace GarrysModLuaShared
         {
             lock (SyncRoot)
             {
-                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(IsValid));
+                lua_getglobal(luaState, nameof(IsValid));
                 Push(luaState, toBeValidated);
-                lua_pcall(luaState, 1, 1, 0);
-                return lua_toboolean(luaState, -1) == 1;
+                lua_pcall(luaState, 1, 1);
+                return lua_toboolean(luaState) == 1;
             }
         }
 
@@ -175,10 +173,10 @@ namespace GarrysModLuaShared
         {
             lock (SyncRoot)
             {
-                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(isvector));
+                lua_getglobal(luaState, nameof(isvector));
                 Push(luaState, variable);
-                lua_pcall(luaState, 1, 1, 0);
-                return lua_toboolean(luaState, -1) == 1;
+                lua_pcall(luaState, 1, 1);
+                return lua_toboolean(luaState) == 1;
             }
         }
 
@@ -186,12 +184,12 @@ namespace GarrysModLuaShared
         {
             lock (SyncRoot)
             {
-                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(Lerp));
+                lua_getglobal(luaState, nameof(Lerp));
                 lua_pushnumber(luaState, t);
                 lua_pushnumber(luaState, from);
                 lua_pushnumber(luaState, to);
-                lua_pcall(luaState, 3, 1, 0);
-                return lua_tonumber(luaState, -1);
+                lua_pcall(luaState, 3, 1);
+                return lua_tonumber(luaState);
             }
         }
 
@@ -199,12 +197,12 @@ namespace GarrysModLuaShared
         {
             lock (SyncRoot)
             {
-                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(Msg));
+                lua_getglobal(luaState, nameof(Msg));
                 foreach (object o in args)
                 {
                     Push(luaState, o);
                 }
-                lua_pcall(luaState, args.Length, 0, 0);
+                lua_pcall(luaState, args.Length);
             }
         }
 
@@ -212,13 +210,13 @@ namespace GarrysModLuaShared
         {
             lock (SyncRoot)
             {
-                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(MsgN));
+                lua_getglobal(luaState, nameof(MsgN));
                 foreach (object o in args)
                 {
                     Push(luaState, o);
                 }
                 Push(luaState, "\n");
-                lua_pcall(luaState, 1 + args.Length, 0, 0);
+                lua_pcall(luaState, 1 + args.Length);
             }
         }
 
@@ -226,12 +224,12 @@ namespace GarrysModLuaShared
         {
             lock (SyncRoot)
             {
-                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(print));
+                lua_getglobal(luaState, nameof(print));
                 foreach (object o in args)
                 {
                     lua_pushstring(luaState, o.ToString());
                 }
-                lua_pcall(luaState, args.Length, 0, 0);
+                lua_pcall(luaState, args.Length);
             }
         }
 
@@ -239,10 +237,10 @@ namespace GarrysModLuaShared
         {
             lock (SyncRoot)
             {
-                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(ProtectedCall));
+                lua_getglobal(luaState, nameof(ProtectedCall));
                 lua_pushcclosure(luaState, function, 0);
-                lua_pcall(luaState, 1, 1, 0);
-                return lua_toboolean(luaState, -1) == 1;
+                lua_pcall(luaState, 1, 1);
+                return lua_toboolean(luaState) == 1;
             }
         }
 
@@ -250,9 +248,9 @@ namespace GarrysModLuaShared
         {
             lock (SyncRoot)
             {
-                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(RealFrameTime));
-                lua_pcall(luaState, 0, 1, 0);
-                return lua_tonumber(luaState, -1);
+                lua_getglobal(luaState, nameof(RealFrameTime));
+                lua_pcall(luaState, 0, 1);
+                return lua_tonumber(luaState);
             }
         }
 
@@ -260,9 +258,9 @@ namespace GarrysModLuaShared
         {
             lock (SyncRoot)
             {
-                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(RealTime));
-                lua_pcall(luaState, 0, 1, 0);
-                return lua_tonumber(luaState, -1);
+                lua_getglobal(luaState, nameof(RealTime));
+                lua_pcall(luaState, 0, 1);
+                return lua_tonumber(luaState);
             }
         }
 
@@ -270,9 +268,9 @@ namespace GarrysModLuaShared
         {
             lock (SyncRoot)
             {
-                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(require));
+                lua_getglobal(luaState, nameof(require));
                 lua_pushstring(luaState, name);
-                lua_pcall(luaState, 1, 0, 0);
+                lua_pcall(luaState, 1);
             }
         }
 
@@ -280,13 +278,13 @@ namespace GarrysModLuaShared
         {
             lock (SyncRoot)
             {
-                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(RunConsoleCommand));
+                lua_getglobal(luaState, nameof(RunConsoleCommand));
                 lua_pushstring(luaState, command);
                 foreach (string argument in arguments)
                 {
                     lua_pushstring(luaState, argument);
                 }
-                lua_pcall(luaState, 1 + arguments.Length, 0, 0);
+                lua_pcall(luaState, 1 + arguments.Length);
             }
         }
 
@@ -294,9 +292,9 @@ namespace GarrysModLuaShared
         {
             lock (SyncRoot)
             {
-                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(RunString));
+                lua_getglobal(luaState, nameof(RunString));
                 lua_pushstring(luaState, code);
-                lua_pcall(luaState, 1, 0, 0);
+                lua_pcall(luaState, 1);
             }
         }
 
@@ -304,10 +302,10 @@ namespace GarrysModLuaShared
         {
             lock (SyncRoot)
             {
-                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(RunStringEx));
+                lua_getglobal(luaState, nameof(RunStringEx));
                 lua_pushstring(luaState, code);
                 lua_pushstring(luaState, identifier);
-                lua_pcall(luaState, 2, 0, 0);
+                lua_pcall(luaState, 2);
             }
         }
 
@@ -316,7 +314,7 @@ namespace GarrysModLuaShared
         {
             lock (SyncRoot)
             {
-                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(ScrH));
+                lua_getglobal(luaState, nameof(ScrH));
                 lua_pcall(luaState, 0, 1, 0);
                 return (uint)lua_tointeger(luaState, -1);
             }
@@ -326,7 +324,7 @@ namespace GarrysModLuaShared
         {
             lock (SyncRoot)
             {
-                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(ScrW));
+                lua_getglobal(luaState, nameof(ScrW));
                 lua_pcall(luaState, 0, 1, 0);
                 return (uint)lua_tointeger(luaState, -1);
             }
@@ -337,9 +335,9 @@ namespace GarrysModLuaShared
         {
             lock (SyncRoot)
             {
-                lua_getfield(luaState, (int)TableIndex.SpecialGlob, nameof(SysTime));
-                lua_pcall(luaState, 0, 1, 0);
-                return lua_tonumber(luaState, -1);
+                lua_getglobal(luaState, nameof(SysTime));
+                lua_pcall(luaState, 0, 1);
+                return lua_tonumber(luaState);
             }
         }
     }

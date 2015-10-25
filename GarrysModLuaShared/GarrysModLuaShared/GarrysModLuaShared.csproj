@@ -24,6 +24,7 @@
     <LangVersion>6</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="achievements.cs" />
     <Compile Include="DllMain.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="ExternDll.cs" />
