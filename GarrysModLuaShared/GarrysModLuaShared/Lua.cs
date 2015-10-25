@@ -41,6 +41,8 @@ namespace GarrysModLuaShared
         [DllImport(ExternDll.LuaShared)]
         public static extern void luaL_checktype(IntPtr luaState, int narg, int t);
 
+        public static void luaL_checktype(IntPtr luaState, int narg, Type type) => luaL_checktype(luaState, narg, (int)type);
+
         [DllImport(ExternDll.LuaShared)]
         public static extern unsafe void* luaL_checkudata(IntPtr luaState, int narg, string tname);
 
@@ -173,6 +175,8 @@ namespace GarrysModLuaShared
         [DllImport(ExternDll.LuaShared)]
         public static extern void lua_createtable(IntPtr luaState, int narr, int nrec);
 
+        public static void lua_newtable(IntPtr luaState) => lua_createtable(luaState, 0, 0);
+
         [DllImport(ExternDll.LuaShared)]
         public static extern unsafe int lua_dump(IntPtr luaState, lua_Writer writer, void* data);
 
@@ -193,6 +197,10 @@ namespace GarrysModLuaShared
 
         [DllImport(ExternDll.LuaShared)]
         public static extern void lua_getfield(IntPtr luaState, int index, string k);
+
+        public static void lua_getfield(IntPtr luaState, TableIndex index, string k) => lua_getfield(luaState, (int)index, k);
+
+        public static void lua_getglobal(IntPtr luaState, string k) => lua_getfield(luaState, (int)TableIndex.SpecialGlob, k);
 
         [DllImport(ExternDll.LuaShared)]
         public static extern lua_Hook lua_gethook(IntPtr luaState);
@@ -269,6 +277,8 @@ namespace GarrysModLuaShared
         [DllImport(ExternDll.LuaShared)]
         public static extern void lua_pushboolean(IntPtr luaState, int b);
 
+        public static void lua_pushboolean(IntPtr luaState, bool b) => lua_pushboolean(luaState, b ? 1 : 0);
+
         [DllImport(ExternDll.LuaShared)]
         public static extern void lua_pushcclosure(IntPtr luaState, lua_CFunction fn, int n);
 
@@ -335,6 +345,8 @@ namespace GarrysModLuaShared
         [DllImport(ExternDll.LuaShared)]
         public static extern void lua_setfield(IntPtr luaState, int index, string k);
 
+        public static void lua_setglobal(IntPtr luaState, string k) => lua_setfield(luaState, (int)TableIndex.SpecialGlob, k);
+
         [DllImport(ExternDll.LuaShared)]
         public static extern int lua_sethook(IntPtr luaState, lua_Hook f, int mask, int count);
 
@@ -386,6 +398,8 @@ namespace GarrysModLuaShared
         [DllImport(ExternDll.LuaShared)]
         public static extern int lua_type(IntPtr luaState, int index);
 
+        public static bool lua_type(IntPtr luaState, int index, Type type) => lua_type(luaState, index) == (int)type;
+
         [DllImport(ExternDll.LuaShared)]
         public static extern string lua_typename(IntPtr luaState, int tp);
 
@@ -401,9 +415,7 @@ namespace GarrysModLuaShared
         [DllImport(ExternDll.LuaShared)]
         public static extern int lua_yield(IntPtr luaState, int nresults);
 
-        public static bool IsType(IntPtr luaState, int index, Type type) => lua_type(luaState, index) == (int)type;
-
-        public static void Pop(IntPtr luaState, int num = 1) => lua_settop(luaState, -(num) - 1);
+        public static void lua_pop(IntPtr luaState, int num = 1) => lua_settop(luaState, -(num) - 1);
 
         public static void Push(IntPtr luaState, object value)
         {
@@ -451,17 +463,17 @@ namespace GarrysModLuaShared
         public static void RegisterCFunction(IntPtr luaState, string tableName, string funcName, lua_CFunction function)
         {
             lua_getfield(luaState, (int)TableIndex.SpecialGlob, tableName);
-            if (!IsType(luaState, -1, Type.Table))
+            if (!lua_type(luaState, -1, Type.Table))
             {
                 lua_createtable(luaState, 0, 1);
-                lua_setfield(luaState, (int)TableIndex.SpecialGlob, tableName);
-                Pop(luaState);
-                lua_getfield(luaState, (int)TableIndex.SpecialGlob, tableName);
+                lua_setglobal(luaState, tableName);
+                lua_pop(luaState);
+                lua_getglobal(luaState, tableName);
             }
             lua_pushstring(luaState, funcName);
             lua_pushcclosure(luaState, function, 0);
             lua_settable(luaState, -3);
-            Pop(luaState);
+            lua_pop(luaState);
         }
     }
 }
