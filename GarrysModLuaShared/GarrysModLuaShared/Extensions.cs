@@ -29,6 +29,8 @@ namespace GarrysModLuaShared
 
         public static void luaL_checktype(this IntPtr luaState, int narg, int t) => Lua.luaL_checktype(luaState, narg, t);
 
+        public static void luaL_checktype(this IntPtr luaState, int narg, Type type) => Lua.luaL_checktype(luaState, narg, (int)type);
+
         public static unsafe void* luaL_checkudata(this IntPtr luaState, int narg, string tname) => Lua.luaL_checkudata(luaState, narg, tname);
 
         public static int luaL_error(this IntPtr luaState, string fmt, params object[] args) => Lua.luaL_error(luaState, fmt, args);
@@ -115,6 +117,8 @@ namespace GarrysModLuaShared
 
         public static void lua_createtable(this IntPtr luaState, int narr, int nrec) => Lua.lua_createtable(luaState, narr, nrec);
 
+        public static void lua_newtable(this IntPtr luaState) => Lua.lua_newtable(luaState);
+
         public static unsafe int lua_dump(this IntPtr luaState, lua_Writer writer, void* data) => Lua.lua_dump(luaState, writer, data);
 
         public static int lua_equal(this IntPtr luaState, int index1, int index2) => Lua.lua_equal(luaState, index1, index2);
@@ -128,6 +132,10 @@ namespace GarrysModLuaShared
         public static void lua_getfenv(this IntPtr luaState, int index) => Lua.lua_getfenv(luaState, index);
 
         public static void lua_getfield(this IntPtr luaState, int index, string k) => Lua.lua_getfield(luaState, index, k);
+
+        public static void lua_getfield(this IntPtr luaState, TableIndex index, string k) => Lua.lua_getfield(luaState, (int)index, k);
+
+        public static void lua_getglobal(this IntPtr luaState, string k) => Lua.lua_getfield(luaState, (int)TableIndex.SpecialGlob, k);
 
         public static lua_Hook lua_gethook(this IntPtr luaState) => Lua.lua_gethook(luaState);
 
@@ -179,6 +187,8 @@ namespace GarrysModLuaShared
 
         public static void lua_pushboolean(this IntPtr luaState, int b) => Lua.lua_pushboolean(luaState, b);
 
+        public static void lua_pushboolean(this IntPtr luaState, bool b) => Lua.lua_pushboolean(luaState, b ? 1 : 0);
+
         public static void lua_pushcclosure(this IntPtr luaState, lua_CFunction fn, int n) => Lua.lua_pushcclosure(luaState, fn, n);
 
         public static string lua_pushfstring(this IntPtr luaState, string fmt, params object[] args) => Lua.lua_pushfstring(luaState, fmt, args);
@@ -223,6 +233,8 @@ namespace GarrysModLuaShared
 
         public static void lua_setfield(this IntPtr luaState, int index, string k) => Lua.lua_setfield(luaState, index, k);
 
+        public static void lua_setglobal(IntPtr luaState, string k) => Lua.lua_setglobal(luaState, k);
+
         public static int lua_sethook(this IntPtr luaState, lua_Hook f, int mask, int count) => Lua.lua_sethook(luaState, f, mask, count);
 
         public static string lua_setlocal(this IntPtr luaState, lua_Debug ar, int n) => Lua.lua_setlocal(luaState, ar, n);
@@ -257,6 +269,8 @@ namespace GarrysModLuaShared
 
         public static int lua_type(this IntPtr luaState, int index) => Lua.lua_type(luaState, index);
 
+        public static bool lua_type(this IntPtr luaState, int index, Type type) => Lua.lua_type(luaState, index, type);
+
         public static string lua_typename(this IntPtr luaState, int tp) => Lua.lua_typename(luaState, tp);
 
         public static unsafe void* lua_upvalueid(this IntPtr luaState, int funcindex, int n) => Lua.lua_upvalueid(luaState, funcindex, n);
@@ -267,9 +281,7 @@ namespace GarrysModLuaShared
 
         public static int lua_yield(this IntPtr luaState, int nresults) => Lua.lua_yield(luaState, nresults);
 
-        public static bool IsType(this IntPtr luaState, int index, Type type) => Lua.IsType(luaState, index, type);
-
-        public static void Pop(this IntPtr luaState, int num = 1) => Lua.Pop(luaState, num);
+        public static void lua_pop(this IntPtr luaState, int num = 1) => Lua.lua_pop(luaState, num);
 
         public static void Push(this IntPtr luaState, object value) => Lua.Push(luaState, value);
 
@@ -278,5 +290,7 @@ namespace GarrysModLuaShared
         public static string ToManagedString(this IntPtr luaState, int index) => Lua.ToManagedString(luaState, index);
 
         public static void RegisterCFunction(this IntPtr luaState, string tableName, string funcName, lua_CFunction function) => Lua.RegisterCFunction(luaState, tableName, funcName, function);
+
+        public static bool Is(this Type type, Type otherType) => type == otherType;
     }
 }
