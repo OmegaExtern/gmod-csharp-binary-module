@@ -1,5 +1,6 @@
 ﻿#if CLIENT
 using System;
+using GarrysModLuaShared.Enums;
 using GarrysModLuaShared.Properties;
 using static GarrysModLuaShared.Lua;
 
@@ -65,7 +66,7 @@ namespace GarrysModLuaShared
         /// <summary>Simulates a key press for the given key.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="key">The key.</param>
-        public static void InternalKeyCodePressed(IntPtr luaState, Enums.KEY key)
+        public static void InternalKeyCodePressed(IntPtr luaState, KEY key)
         {
             lock (SyncRoot)
             {
@@ -79,7 +80,7 @@ namespace GarrysModLuaShared
         /// <summary>Simulates a key release for the given key.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="key">The key.</param>
-        public static void InternalKeyCodeReleased(IntPtr luaState, Enums.KEY key)
+        public static void InternalKeyCodeReleased(IntPtr luaState, KEY key)
         {
             lock (SyncRoot)
             {
@@ -93,7 +94,7 @@ namespace GarrysModLuaShared
         /// <summary>Simulates a key type typing to the specified key.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="key">The key.</param>
-        public static void InternalKeyCodeTyped(IntPtr luaState, Enums.KEY key)
+        public static void InternalKeyCodeTyped(IntPtr luaState, KEY key)
         {
             lock (SyncRoot)
             {
@@ -121,7 +122,7 @@ namespace GarrysModLuaShared
         /// <summary>Simulates a double mouse key press for the given mouse key.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="key">The key.</param>
-        public static void InternalMouseDoublePressed(IntPtr luaState, Enums.MOUSE key)
+        public static void InternalMouseDoublePressed(IntPtr luaState, MOUSE key)
         {
             lock (SyncRoot)
             {
@@ -135,7 +136,7 @@ namespace GarrysModLuaShared
         /// <summary>Simulates a mouse key press for the given mouse key.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="key">The key.</param>
-        public static void InternalMousePressed(IntPtr luaState, Enums.MOUSE key)
+        public static void InternalMousePressed(IntPtr luaState, MOUSE key)
         {
             lock (SyncRoot)
             {
@@ -149,7 +150,7 @@ namespace GarrysModLuaShared
         /// <summary>Simulates a mouse key release for the given mouse key.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="key">The key.</param>
-        public static void InternalMouseReleased(IntPtr luaState, Enums.MOUSE key)
+        public static void InternalMouseReleased(IntPtr luaState, MOUSE key)
         {
             lock (SyncRoot)
             {
