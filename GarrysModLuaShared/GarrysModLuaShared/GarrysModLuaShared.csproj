@@ -111,6 +111,7 @@
     <Compile Include="Global.cs" />
     <Compile Include="gui.cs" />
     <Compile Include="input.cs" />
+    <Compile Include="language.cs" />
     <Compile Include="Lua.cs" />
     <Compile Include="LuaConfig.cs" />
     <Compile Include="luaL_Buffer.cs" />
