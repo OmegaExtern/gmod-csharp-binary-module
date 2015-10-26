@@ -4,7 +4,7 @@ using static GarrysModLuaShared.Lua;
 
 namespace GarrysModLuaShared
 {
-    /// <summary>Used to interface with the built in game events system.</summary>
+    /// <summary>The menu library.</summary>
     static class menu
     {
         /// <summary>Used by "Demo to Video" to record the frame.</summary>
