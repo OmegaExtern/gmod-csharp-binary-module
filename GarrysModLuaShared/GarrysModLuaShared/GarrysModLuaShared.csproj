@@ -25,6 +25,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="achievements.cs" />
+    <Compile Include="bit.cs" />
     <Compile Include="DllMain.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="ExternDll.cs" />
