@@ -16,7 +16,7 @@ namespace GarrysModLuaShared
                 lua_getglobal(luaState, nameof(gameevent));
                 lua_getfield(luaState, -1, nameof(Listen));
                 lua_pushstring(luaState, eventName);
-                lua_pcall(luaState);
+                lua_pcall(luaState, 1);
             }
         }
     }
