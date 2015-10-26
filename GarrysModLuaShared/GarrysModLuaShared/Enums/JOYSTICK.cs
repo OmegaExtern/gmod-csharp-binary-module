@@ -1,0 +1,14 @@
+namespace GarrysModLuaShared.Enums
+{
+    public enum JOYSTICK
+    {
+        JOYSTICK_FIRST = 114,
+        JOYSTICK_FIRST_AXIS_BUTTON = 150,
+        JOYSTICK_FIRST_BUTTON = 114,
+        JOYSTICK_FIRST_POV_BUTTON = 146,
+        JOYSTICK_LAST = 161,
+        JOYSTICK_LAST_AXIS_BUTTON = 161,
+        JOYSTICK_LAST_BUTTON = 145,
+        JOYSTICK_LAST_POV_BUTTON = 149
+    }
+}

@@ -1,0 +1,16 @@
+namespace GarrysModLuaShared.Enums
+{
+    public enum IMAGE_FORMAT
+    {
+        IMAGE_FORMAT_DEFAULT = -1,
+        IMAGE_FORMAT_RGBA8888 = 0,
+        IMAGE_FORMAT_ABGR8888 = 1,
+        IMAGE_FORMAT_RGB888 = 2,
+        IMAGE_FORMAT_BGR888 = 3,
+        IMAGE_FORMAT_RGB565 = 4,
+        IMAGE_FORMAT_ARGB8888 = 11,
+        IMAGE_FORMAT_BGRA8888 = 12,
+        IMAGE_FORMAT_RGBA16161616 = 25,
+        IMAGE_FORMAT_RGBA16161616F = 24
+    }
+}
