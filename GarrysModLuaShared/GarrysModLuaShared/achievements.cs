@@ -45,10 +45,10 @@ namespace GarrysModLuaShared
             }
         }
 
-        /// <summary>Retrieves progress of given achievement.</summary>
+        /// <summary>Retrieves progress of the given achievement.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="achievementId">The ID of achievement to retrieve progress of. Note: IDs start from 0, not 1.</param>
-        /// <returns>Progress of given achievement.</returns>
+        /// <returns>Progress of the given achievement.</returns>
         public static double GetCount(IntPtr luaState, double achievementId)
         {
             lock (SyncRoot)
@@ -61,10 +61,10 @@ namespace GarrysModLuaShared
             }
         }
 
-        /// <summary>Retrieves description of given achievement.</summary>
+        /// <summary>Retrieves description of the given achievement.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="achievementId">The ID of achievement to retrieve description of. Note: IDs start from 0, not 1.</param>
-        /// <returns>Description of given achievement.</returns>
+        /// <returns>Description of the given achievement.</returns>
         public static string GetDesc(IntPtr luaState, double achievementId)
         {
             lock (SyncRoot)
@@ -77,10 +77,10 @@ namespace GarrysModLuaShared
             }
         }
 
-        /// <summary>Retrieves goal of given achievement.</summary>
+        /// <summary>Retrieves goal of the given achievement.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="achievementId">The ID of achievement to retrieve goal of. Note: IDs start from 0, not 1.</param>
-        /// <returns>Goal of given achievement.</returns>
+        /// <returns>Goal of the given achievement.</returns>
         public static double GetGoal(IntPtr luaState, double achievementId)
         {
             lock (SyncRoot)
@@ -93,10 +93,10 @@ namespace GarrysModLuaShared
             }
         }
 
-        /// <summary>Retrieves name of given achievement.</summary>
+        /// <summary>Retrieves name of the given achievement.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="achievementId">The ID of achievement to retrieve name of. Note: IDs start from 0, not 1.</param>
-        /// <returns>Name of given achievement.</returns>
+        /// <returns>Name of the given achievement.</returns>
         public static string GetName(IntPtr luaState, double achievementId)
         {
             lock (SyncRoot)

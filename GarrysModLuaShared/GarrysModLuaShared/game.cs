@@ -63,7 +63,7 @@ namespace GarrysModLuaShared
         /// <summary>Returns the ammo type ID for given ammo type name. See <see cref="GetAmmoName"/> for reverse.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="name">Name of the ammo type to look up ID of.</param>
-        /// <returns>The ammo type ID of given ammo type name, or -1 if not found.</returns>
+        /// <returns>The ammo type ID of the given ammo type name, or -1 if not found.</returns>
         public static double GetAmmoID(IntPtr luaState, string name)
         {
             lock (SyncRoot)
@@ -76,7 +76,7 @@ namespace GarrysModLuaShared
             }
         }
 
-        /// <summary>Returns the real maximum amount of ammo of given ammo ID.<para/>Note: Currently all ammo types have overridden maximum value of reserve ammo set to 9999.</summary>
+        /// <summary>Returns the real maximum amount of ammo of the given ammo ID.<para/>Note: Currently all ammo types have overridden maximum value of reserve ammo set to 9999.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="id">Ammo type ID.</param>
         /// <returns>The maximum amount of reserve ammo a player can hold of this ammo type.</returns>
@@ -95,7 +95,7 @@ namespace GarrysModLuaShared
         /// <summary>Returns the ammo name for given ammo type ID. See <see cref="GetAmmoID"/> for reverse.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="id">Ammo ID to retrieve the name of. Starts from 1.</param>
-        /// <returns>The name of given ammo type ID or nil if ammo type ID is invalid.</returns>
+        /// <returns>The name of the given ammo type ID or nil if ammo type ID is invalid.</returns>
         public static string GetAmmoName(IntPtr luaState, double id)
         {
             lock (SyncRoot)
