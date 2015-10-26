@@ -38,6 +38,9 @@ namespace GarrysModLuaShared
 
         // TODO: net.ReadAngle (returns Angle structure).
 
+        /// <summary>Reads a bit from the received net message.<para/>Warning! You must read information in same order as you write it.</summary>
+        /// <param name="luaState">Pointer to lua_State struct.</param>
+        /// <returns>0 or 1.</returns>
         public static double ReadBit(IntPtr luaState)
         {
             lock (SyncRoot)
@@ -49,6 +52,9 @@ namespace GarrysModLuaShared
             }
         }
 
+        /// <summary>Reads a boolean from the received net message.<para/>Warning! You must read information in same order as you write it.</summary>
+        /// <param name="luaState">Pointer to lua_State struct.</param>
+        /// <returns>false or true.</returns>
         public static bool ReadBool(IntPtr luaState)
         {
             lock (SyncRoot)
@@ -62,6 +68,10 @@ namespace GarrysModLuaShared
 
         // TODO: net.ReadColor (returns Color structure).
 
+        /// <summary>Reads pure binary data from the message.<para/>Warning! You must read information in same order as you write it.</summary>
+        /// <param name="luaState">Pointer to lua_State struct.</param>
+        /// <param name="length">The length of the data to be read, in bytes.<para/>When this is 0, <see cref="ReadData"/> does not return an empty string as you would expect, but random junk instead.</param>
+        /// <returns>The binary data read.</returns>
         public static string ReadData(IntPtr luaState, double length)
         {
             lock (SyncRoot)
@@ -74,6 +84,9 @@ namespace GarrysModLuaShared
             }
         }
 
+        /// <summary>Reads a double-precision number from the received net message.<para/>Warning! You must read information in same order as you write it.</summary>
+        /// <param name="luaState">Pointer to lua_State struct.</param>
+        /// <returns>The double-precision number.</returns>
         public static double ReadDouble(IntPtr luaState)
         {
             lock (SyncRoot)
@@ -87,17 +100,23 @@ namespace GarrysModLuaShared
 
         // TODO: net.ReadEntity (returns Entity type).
 
-        public static double ReadFloat(IntPtr luaState)
+        /// <summary>Reads a floating-point number from the received net message.<para/>Warning! You must read information in same order as you write it.</summary>
+        /// <param name="luaState">Pointer to lua_State struct.</param>
+        /// <returns>The floating-point number.</returns>
+        public static float ReadFloat(IntPtr luaState)
         {
             lock (SyncRoot)
             {
                 lua_getglobal(luaState, nameof(net));
                 lua_getfield(luaState, -1, nameof(ReadFloat));
                 lua_pcall(luaState, 0, 1);
-                return lua_tonumber(luaState);
+                return (float)lua_tonumber(luaState);
             }
         }
 
+        /// <summary>Returns the "header" of the message which contains a short which can be converted to the corresponding message name via <see cref="util.NetworkIDToString"/>.</summary>
+        /// <param name="luaState">Pointer to lua_State struct.</param>
+        /// <returns>The header number.</returns>
         public static double ReadHeader(IntPtr luaState)
         {
             lock (SyncRoot)
@@ -109,6 +128,10 @@ namespace GarrysModLuaShared
             }
         }
 
+        /// <summary>Reads an integer from the received net message.<para/>Warning! You must read information in same order as you write it.</summary>
+        /// <param name="luaState">Pointer to lua_State struct.</param>
+        /// <param name="bitCount">The amount of bits to be read.</param>
+        /// <returns>The read integer number.</returns>
         public static int ReadInt(IntPtr luaState, double bitCount = 32.0D)
         {
             lock (SyncRoot)
@@ -123,6 +146,9 @@ namespace GarrysModLuaShared
 
         // TODO: net.ReadNormal (returns Vector structure).
 
+        /// <summary>Reads a null terminated string from the net stream. The size of the string is 8 bits plus 8 bits for every ASCII character in the string.<para/>Warning! You must read information in same order as you write it.</summary>
+        /// <param name="luaState">Pointer to lua_State struct.</param>
+        /// <returns>The read string.</returns>
         public static string ReadString(IntPtr luaState)
         {
             lock (SyncRoot)
@@ -138,6 +164,10 @@ namespace GarrysModLuaShared
 
         // TODO: net.ReadType (returns any type).
 
+        /// <summary>Reads an unsigned integer with the specified number of bits from the received net message.<para/>Warning! You must read information in same order as you write it.</summary>
+        /// <param name="luaState">Pointer to lua_State struct.</param>
+        /// <param name="bitCount">The size of the integer to be read, in bits.</param>
+        /// <returns>The unsigned integer read.</returns>
         public static uint ReadUInt(IntPtr luaState, double bitCount = 32.0D)
         {
             lock (SyncRoot)
@@ -164,7 +194,9 @@ namespace GarrysModLuaShared
         // TODO: net.SendPVS (takes a Vector as argument).
         //#endif
 
-        //#if CLIENT
+#if CLIENT
+        /// <summary>Sends the current message to the server.</summary>
+        /// <param name="luaState">Pointer to lua_State struct.</param>
         public static void SendToServer(IntPtr luaState)
         {
             lock (SyncRoot)
@@ -174,8 +206,13 @@ namespace GarrysModLuaShared
                 lua_pcall(luaState);
             }
         }
-        //#endif
+#endif
 
+        /// <summary>Begins a new net message.<para/>Don't forget to pool the <paramref name="messageName"/> with <see cref="util.AddNetworkString"/>!</summary>
+        /// <param name="luaState">Pointer to lua_State struct.</param>
+        /// <param name="messageName">The name of the message to send.</param>
+        /// <param name="unreliable">If set to true, the message is not guaranteed to reach its destination.</param>
+        /// <returns>True if the message has been started.</returns>
         public static bool Start(IntPtr luaState, string messageName, bool unreliable = false)
         {
             lock (SyncRoot)
@@ -191,6 +228,9 @@ namespace GarrysModLuaShared
 
         // TODO: net.WriteAngle (takes Angle structure as argument).
 
+        /// <summary>Appends a boolean (as 0 or 1) to the current net message.</summary>
+        /// <param name="luaState">Pointer to lua_State struct.</param>
+        /// <param name="boolean">Bit status (false = 0, true = 1) to be sent.</param>
         public static void WriteBit(IntPtr luaState, bool boolean)
         {
             lock (SyncRoot)
@@ -204,6 +244,10 @@ namespace GarrysModLuaShared
 
         // TODO: net.WriteColor (takes Color structure as argument).
 
+        /// <summary>Writes a chunk of binary data to the message.</summary>
+        /// <param name="luaState">Pointer to lua_State struct.</param>
+        /// <param name="binaryData">The binary data to be sent.</param>
+        /// <param name="length">The length of the binary data to be sent, in bytes.</param>
         public static void WriteData(IntPtr luaState, string binaryData, double length)
         {
             lock (SyncRoot)
@@ -216,6 +260,9 @@ namespace GarrysModLuaShared
             }
         }
 
+        /// <summary>Appends a double-precision number to the current net message.</summary>
+        /// <param name="luaState">Pointer to lua_State struct.</param>
+        /// <param name="double">The double to be sent.</param>
         public static void WriteDouble(IntPtr luaState, double @double)
         {
             lock (SyncRoot)
@@ -229,7 +276,10 @@ namespace GarrysModLuaShared
 
         // TODO: net.WriteEntity (takes Entity type as argument).
 
-        public static void WriteFloat(IntPtr luaState, double @float)
+        /// <summary>Appends a float (number with decimals) to the current net message.</summary>
+        /// <param name="luaState">Pointer to lua_State struct.</param>
+        /// <param name="float">The float to be sent.</param>
+        public static void WriteFloat(IntPtr luaState, float @float)
         {
             lock (SyncRoot)
             {
@@ -240,6 +290,10 @@ namespace GarrysModLuaShared
             }
         }
 
+        /// <summary>Appends an integer (number without decimals) to the current net message.</summary>
+        /// <param name="luaState">Pointer to lua_State struct.</param>
+        /// <param name="integer">The integer to be sent.</param>
+        /// <param name="bitCount">The amount of bits the number consists of. (signed)<para/>This must be 32 or less. If you are unsure what to set, just set it to 32.<para/>To determine just how many bits exactly you're going to need for your integer, you first need to understand what those bits actually are. A bit can have two possible states: 0 and 1. For every bit you add, you get an exponentially increasing amount of possible combinations. 2 bits allow for 2^2 = 4 possible combinations (namely 00, 01, 10 and 11), 3 bits allow for 2^3 = 8 possible combinations, 4 bits allow for 2^4 = 16 possible combinations and so on. Since we start counting from 0, a 4-bit integer would thus be able to represent any integer number between 0 and 15.<para/>Do note that Garry's Mod is using the first bit for purposes other than storing your integer's value. Just figure out how many bits you'd normally need, then increase that number by one (so if you want to send an integer that may assume any number between 0 and 15, you don't use a 4 as your bitCount but rather a 5).<para/>Consult <see cref="http://www.exploringbinary.com/a-table-of-nonnegative-powers-of-two/">this table</see> for a quick reference on how many bits you need for a given value.</param>
         public static void WriteInt(IntPtr luaState, int integer, double bitCount = 32.0D)
         {
             lock (SyncRoot)
@@ -254,6 +308,9 @@ namespace GarrysModLuaShared
 
         // TODO: net.WriteNormal (takes Vector structure as argument).
 
+        /// <summary>Appends a string to the current net message. The size of the string is 8 bits plus 8 bits for every ASCII character in the string. The maximum allowed length of a single written string is 1024 characters.</summary>
+        /// <param name="luaState">Pointer to lua_State struct.</param>
+        /// <param name="string">The string to be sent.</param>
         public static void WriteString(IntPtr luaState, string @string)
         {
             lock (SyncRoot)
@@ -269,6 +326,10 @@ namespace GarrysModLuaShared
 
         // TODO: net.WriteType (takes any type as argument).
 
+        /// <summary>Appends an unsigned integer with the specified number of bits to the current net message.</summary>
+        /// <param name="luaState">Pointer to lua_State struct.</param>
+        /// <param name="unsignedInteger">The unsigned integer to be sent.</param>
+        /// <param name="numberOfBits">The size of the integer to be sent, in bits. Acceptable values range from 1 to 32. 1 = bit, 4 = nibble, 8 = byte, 16 = short, 32 = long.</param>
         public static void WriteUInt(IntPtr luaState, uint unsignedInteger, double numberOfBits = 32.0D)
         {
             lock (SyncRoot)
