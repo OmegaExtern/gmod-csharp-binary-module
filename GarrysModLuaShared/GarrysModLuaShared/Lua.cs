@@ -456,6 +456,7 @@ namespace GarrysModLuaShared
             {
                 lua_pushcclosure(luaState, function, 0);
             }
+            lua_pushnil(luaState); // Pushing nil for now. TODO: After implementing tables.
         }
 
         public static string CheckManagedString(IntPtr luaState, int index) => Marshal.PtrToStringAnsi(luaL_checklstring(luaState, index, IntPtr.Zero));
