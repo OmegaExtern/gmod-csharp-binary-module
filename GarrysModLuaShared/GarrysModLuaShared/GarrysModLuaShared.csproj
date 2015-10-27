@@ -140,6 +140,7 @@
     <Compile Include="system.cs" />
     <Compile Include="TableIndex.cs" />
     <Compile Include="team.cs" />
+    <Compile Include="timer.cs" />
     <Compile Include="Type.cs" />
   </ItemGroup>
   <ItemGroup>
