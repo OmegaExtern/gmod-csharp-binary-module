@@ -366,6 +366,8 @@ namespace GarrysModLuaShared
             {
                 lua_getglobal(luaState, nameof(surface));
                 lua_getfield(luaState, -1, nameof(SetTexture));
+                lua_pushnumber(luaState, textureId);
+                lua_pcall(luaState, 1);
             }
         }
     }
