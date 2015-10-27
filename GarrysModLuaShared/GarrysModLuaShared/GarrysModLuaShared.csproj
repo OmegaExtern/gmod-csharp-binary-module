@@ -137,6 +137,7 @@
     <Compile Include="resource.cs" />
     <Compile Include="string.cs" />
     <Compile Include="surface.cs" />
+    <Compile Include="system.cs" />
     <Compile Include="TableIndex.cs" />
     <Compile Include="Type.cs" />
   </ItemGroup>
