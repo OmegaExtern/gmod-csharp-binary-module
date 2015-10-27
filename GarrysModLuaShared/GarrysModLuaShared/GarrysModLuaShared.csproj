@@ -142,6 +142,7 @@
     <Compile Include="team.cs" />
     <Compile Include="timer.cs" />
     <Compile Include="Type.cs" />
+    <Compile Include="util.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="RGiesecke.DllExport.Metadata, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8f52d83c1a22df51, processorArchitecture=MSIL">
