@@ -127,6 +127,7 @@
     <Compile Include="net.cs" />
     <Compile Include="notification.cs" />
     <Compile Include="os.cs" />
+    <Compile Include="physenv.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
