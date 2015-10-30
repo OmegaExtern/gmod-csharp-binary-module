@@ -36,7 +36,7 @@ namespace GarrysModLuaShared
             {
                 lua_getglobal(luaState, nameof(notification));
                 lua_getfield(luaState, -1, nameof(AddProgress));
-                Push(luaState, uniqueId);
+                lua_pushobject(luaState, uniqueId);
                 lua_pushstring(luaState, text);
                 lua_pcall(luaState, 2);
             }
@@ -51,7 +51,7 @@ namespace GarrysModLuaShared
             {
                 lua_getglobal(luaState, nameof(notification));
                 lua_getfield(luaState, -1, nameof(Kill));
-                Push(luaState, uniqueId);
+                lua_pushobject(luaState, uniqueId);
                 lua_pcall(luaState, 1);
             }
         }

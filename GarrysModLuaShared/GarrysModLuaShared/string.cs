@@ -164,7 +164,7 @@ namespace GarrysModLuaShared
                 int length = 0;
                 for (int i = 0; i < formatParameters.Length; ++i)
                 {
-                    Push(luaState, formatParameters[i]);
+                    lua_pushobject(luaState, formatParameters[i]);
                     length++;
                 }
                 lua_pcall(luaState, 1 + length, 1);

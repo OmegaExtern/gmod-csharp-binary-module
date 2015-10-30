@@ -425,7 +425,7 @@ namespace GarrysModLuaShared
                 lua_getfield(luaState, -1, nameof(SetPData));
                 lua_pushstring(luaState, steamId);
                 lua_pushstring(luaState, name);
-                Push(luaState, value);
+                lua_pushobject(luaState, value);
                 lua_pcall(luaState, 3);
             }
         }
@@ -546,7 +546,7 @@ namespace GarrysModLuaShared
             {
                 lua_getglobal(luaState, nameof(util));
                 lua_getfield(luaState, -1, nameof(TypeToString));
-                Push(luaState, input);
+                lua_pushobject(luaState, input);
                 lua_pcall(luaState, 1, 1);
                 return ToManagedString(luaState);
             }

@@ -19,7 +19,7 @@ namespace GarrysModLuaShared
             {
                 lua_getglobal(luaState, nameof(timer));
                 lua_getfield(luaState, -1, nameof(Adjust));
-                Push(luaState, identifier);
+                lua_pushobject(luaState, identifier);
                 lua_pushnumber(luaState, delay);
                 lua_pushnumber(luaState, repetitions);
                 lua_pushcclosure(luaState, function, 0);
@@ -40,7 +40,7 @@ namespace GarrysModLuaShared
             {
                 lua_getglobal(luaState, nameof(timer));
                 lua_getfield(luaState, -1, nameof(Create));
-                Push(luaState, identifier);
+                lua_pushobject(luaState, identifier);
                 lua_pushnumber(luaState, delay);
                 lua_pushnumber(luaState, repetitions);
                 lua_pushcclosure(luaState, function, 0);
@@ -58,7 +58,7 @@ namespace GarrysModLuaShared
             {
                 lua_getglobal(luaState, nameof(timer));
                 lua_getfield(luaState, -1, nameof(Exists));
-                Push(luaState, identifier);
+                lua_pushobject(luaState, identifier);
                 lua_pcall(luaState, 1, 1);
                 return lua_toboolean(luaState) == 1;
             }
@@ -74,7 +74,7 @@ namespace GarrysModLuaShared
             {
                 lua_getglobal(luaState, nameof(timer));
                 lua_getfield(luaState, -1, nameof(Pause));
-                Push(luaState, identifier);
+                lua_pushobject(luaState, identifier);
                 lua_pcall(luaState, 1, 1);
                 return lua_toboolean(luaState) == 1;
             }
@@ -89,7 +89,7 @@ namespace GarrysModLuaShared
             {
                 lua_getglobal(luaState, nameof(timer));
                 lua_getfield(luaState, -1, nameof(Remove));
-                Push(luaState, identifier);
+                lua_pushobject(luaState, identifier);
                 lua_pcall(luaState, 1);
             }
         }
@@ -104,7 +104,7 @@ namespace GarrysModLuaShared
             {
                 lua_getglobal(luaState, nameof(timer));
                 lua_getfield(luaState, -1, nameof(RepsLeft));
-                Push(luaState, identifier);
+                lua_pushobject(luaState, identifier);
                 lua_pcall(luaState, 1, 1);
                 return (uint)lua_tonumber(luaState);
             }
@@ -136,7 +136,7 @@ namespace GarrysModLuaShared
             {
                 lua_getglobal(luaState, nameof(timer));
                 lua_getfield(luaState, -1, nameof(Start));
-                Push(luaState, identifier);
+                lua_pushobject(luaState, identifier);
                 lua_pcall(luaState, 1, 1);
                 return lua_toboolean(luaState) == 1;
             }
@@ -152,7 +152,7 @@ namespace GarrysModLuaShared
             {
                 lua_getglobal(luaState, nameof(timer));
                 lua_getfield(luaState, -1, nameof(Stop));
-                Push(luaState, identifier);
+                lua_pushobject(luaState, identifier);
                 lua_pcall(luaState, 1, 1);
                 return lua_toboolean(luaState) == 1;
             }
@@ -168,7 +168,7 @@ namespace GarrysModLuaShared
             {
                 lua_getglobal(luaState, nameof(timer));
                 lua_getfield(luaState, -1, nameof(TimeLeft));
-                Push(luaState, identifier);
+                lua_pushobject(luaState, identifier);
                 lua_pcall(luaState, 1, 1);
                 return lua_tonumber(luaState);
             }
@@ -184,7 +184,7 @@ namespace GarrysModLuaShared
             {
                 lua_getglobal(luaState, nameof(timer));
                 lua_getfield(luaState, -1, nameof(Toggle));
-                Push(luaState, identifier);
+                lua_pushobject(luaState, identifier);
                 lua_pcall(luaState, 1, 1);
                 return lua_toboolean(luaState) == 1;
             }
@@ -200,7 +200,7 @@ namespace GarrysModLuaShared
             {
                 lua_getglobal(luaState, nameof(timer));
                 lua_getfield(luaState, -1, nameof(UnPause));
-                Push(luaState, identifier);
+                lua_pushobject(luaState, identifier);
                 lua_pcall(luaState, 1, 1);
                 return lua_toboolean(luaState) == 1;
             }

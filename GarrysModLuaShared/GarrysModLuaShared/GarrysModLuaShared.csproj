@@ -14,7 +14,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;Change_this_to_CLIENT_or_SERVER</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>none</DebugType>
     <PlatformTarget>x86</PlatformTarget>
@@ -24,6 +24,45 @@
     <LangVersion>6</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Classes\Angle.cs" />
+    <Compile Include="Classes\bf_read.cs" />
+    <Compile Include="Classes\CEffectData.cs" />
+    <Compile Include="Classes\CLuaEmitter.cs" />
+    <Compile Include="Classes\CLuaLocomotion.cs" />
+    <Compile Include="Classes\CLuaParticle.cs" />
+    <Compile Include="Classes\CMoveData.cs" />
+    <Compile Include="Classes\CNavArea.cs" />
+    <Compile Include="Classes\CNavLadder.cs" />
+    <Compile Include="Classes\ConVar.cs" />
+    <Compile Include="Classes\CRecipientFilter.cs" />
+    <Compile Include="Classes\CSEnt.cs" />
+    <Compile Include="Classes\CSoundPatch.cs" />
+    <Compile Include="Classes\CTakeDamageInfo.cs" />
+    <Compile Include="Classes\CUserCmd.cs" />
+    <Compile Include="Classes\Entity.cs" />
+    <Compile Include="Classes\File.cs" />
+    <Compile Include="Classes\IGModAudioChannel.cs" />
+    <Compile Include="Classes\IMaterial.cs" />
+    <Compile Include="Classes\IMesh.cs" />
+    <Compile Include="Classes\IRestore.cs" />
+    <Compile Include="Classes\ISave.cs" />
+    <Compile Include="Classes\ITexture.cs" />
+    <Compile Include="Classes\IVideoWriter.cs" />
+    <Compile Include="Classes\MarkupObject.cs" />
+    <Compile Include="Classes\NextBot.cs" />
+    <Compile Include="Classes\NPC.cs" />
+    <Compile Include="Classes\Panel.cs" />
+    <Compile Include="Classes\PathFollower.cs" />
+    <Compile Include="Classes\PhysObj.cs" />
+    <Compile Include="Classes\Player.cs" />
+    <Compile Include="Classes\Schedule.cs" />
+    <Compile Include="Classes\Stack.cs" />
+    <Compile Include="Classes\Task.cs" />
+    <Compile Include="Classes\TOOL.cs" />
+    <Compile Include="Classes\Vector.cs" />
+    <Compile Include="Classes\Vehicle.cs" />
+    <Compile Include="Classes\VMatrix.cs" />
+    <Compile Include="Classes\Weapon.cs" />
     <Compile Include="DllMain.cs" />
     <Compile Include="achievements.cs" />
     <Compile Include="bit.cs" />
@@ -116,6 +155,8 @@
     <Compile Include="LuaConfig.cs" />
     <Compile Include="luaL_Buffer.cs" />
     <Compile Include="luaL_Reg.cs" />
+    <Compile Include="LuaObject.cs" />
+    <Compile Include="LuaTable.cs" />
     <Compile Include="lua_Alloc.cs" />
     <Compile Include="lua_CFunction.cs" />
     <Compile Include="lua_Debug.cs" />
@@ -134,8 +175,56 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Random.cs" />
     <Compile Include="resource.cs" />
     <Compile Include="string.cs" />
+    <Compile Include="Structs\AmmoData.cs" />
+    <Compile Include="Structs\AngPos.cs" />
+    <Compile Include="Structs\AnimationData.cs" />
+    <Compile Include="Structs\AttachmentData.cs" />
+    <Compile Include="Structs\BodyGroupData.cs" />
+    <Compile Include="Structs\BoneManipulationData.cs" />
+    <Compile Include="Structs\Bullet.cs" />
+    <Compile Include="Structs\CamData.cs" />
+    <Compile Include="Structs\CollisionData.cs" />
+    <Compile Include="Structs\Color.cs" />
+    <Compile Include="Structs\ColorModifyData.cs" />
+    <Compile Include="Structs\CreationMenus.cs" />
+    <Compile Include="Structs\DateData.cs" />
+    <Compile Include="Structs\DebugInfo.cs" />
+    <Compile Include="Structs\DynamicLight.cs" />
+    <Compile Include="Structs\EmitSoundInfo.cs" />
+    <Compile Include="Structs\EntityCopyData.cs" />
+    <Compile Include="Structs\FontData.cs" />
+    <Compile Include="Structs\HTTPRequest.cs" />
+    <Compile Include="Structs\HullTrace.cs" />
+    <Compile Include="Structs\LocalLight.cs" />
+    <Compile Include="Structs\MatProxyData.cs" />
+    <Compile Include="Structs\MeshVertex.cs" />
+    <Compile Include="Structs\OperatingParams.cs" />
+    <Compile Include="Structs\PhysEnvPerformanceSettings.cs" />
+    <Compile Include="Structs\PhysicsObjectSave.cs" />
+    <Compile Include="Structs\PhysProperties.cs" />
+    <Compile Include="Structs\PolygonVertex.cs" />
+    <Compile Include="Structs\RenderCamData.cs" />
+    <Compile Include="Structs\RenderCaptureData.cs" />
+    <Compile Include="Structs\ServerQueryData.cs" />
+    <Compile Include="Structs\SoundData.cs" />
+    <Compile Include="Structs\SunInfo.cs" />
+    <Compile Include="Structs\TeamData.cs" />
+    <Compile Include="Structs\TextData.cs" />
+    <Compile Include="Structs\TextureData.cs" />
+    <Compile Include="Structs\ToScreenData.cs" />
+    <Compile Include="Structs\Trace.cs" />
+    <Compile Include="Structs\TraceResult.cs" />
+    <Compile Include="Structs\Undo.cs" />
+    <Compile Include="Structs\VehicleParams.cs" />
+    <Compile Include="Structs\VehicleParamsAxle.cs" />
+    <Compile Include="Structs\VehicleParamsBody.cs" />
+    <Compile Include="Structs\VehicleParamsEngine.cs" />
+    <Compile Include="Structs\VehicleParamsSteering.cs" />
+    <Compile Include="Structs\VideoData.cs" />
+    <Compile Include="Structs\ViewData.cs" />
     <Compile Include="surface.cs" />
     <Compile Include="system.cs" />
     <Compile Include="TableIndex.cs" />
@@ -145,6 +234,7 @@
     <Compile Include="util.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="RGiesecke.DllExport.Metadata, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8f52d83c1a22df51, processorArchitecture=MSIL">
       <HintPath>..\packages\UnmanagedExports.1.2.7\lib\net\RGiesecke.DllExport.Metadata.dll</HintPath>
       <Private>False</Private>

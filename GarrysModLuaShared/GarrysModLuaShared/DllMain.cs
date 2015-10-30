@@ -1,8 +1,15 @@
-//#define CLIENT // Uncomment this line if you are developing a clientside (gmcl) binary module /!!\
-//#define SERVER // Uncomment this line if you are developing a serverside (gmsv) binary module /!!\
+//
+// IMPORTANT NOTE /!!\
+//   If you are developing a clientside (gmcl) binary module, go to properties of the project, click on "Build" tab and set "Conditional compilation symbols" to "CLIENT" (without double-quotes, case-sensitive!).
+//   If you are developing a serverside (gmsv) binary module, then write "SERVER" (without double-quotes, case-sensitive!) in "Conditional compilation symbols" textbox.
+//
+
 using System;
 using System.Runtime.InteropServices;
+using GarrysModLuaShared.Classes;
+using GarrysModLuaShared.Structs;
 using RGiesecke.DllExport;
+using static GarrysModLuaShared.Global;
 using static GarrysModLuaShared.Lua;
 
 namespace GarrysModLuaShared
@@ -12,6 +19,12 @@ namespace GarrysModLuaShared
         [DllExport(CallingConvention = CallingConvention.Cdecl)]
         public static int gmod13_open(IntPtr luaState)
         {
+            Init(luaState);
+
+            //
+            // Do your stuff  -  below.
+            //
+
             return 0;
         }
 

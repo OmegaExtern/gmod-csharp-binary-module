@@ -124,7 +124,7 @@ namespace GarrysModLuaShared
                 lua_getglobal(luaState, nameof(team));
                 lua_getfield(luaState, -1, nameof(SetClass));
                 lua_pushnumber(luaState, teamIndex);
-                Push(luaState, classId);
+                lua_pushobject(luaState, classId);
                 lua_pcall(luaState, 2);
             }
         }
@@ -158,7 +158,7 @@ namespace GarrysModLuaShared
                 lua_getglobal(luaState, nameof(team));
                 lua_getfield(luaState, -1, nameof(SetSpawnPoint));
                 lua_pushnumber(luaState, teamIndex);
-                Push(luaState, classes);
+                lua_pushobject(luaState, classes);
                 lua_pcall(luaState, 2);
             }
         }

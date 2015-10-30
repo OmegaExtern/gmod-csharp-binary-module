@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using GarrysModLuaShared.Classes;
 
 namespace GarrysModLuaShared
 {
@@ -29,7 +30,7 @@ namespace GarrysModLuaShared
 
         public static void luaL_checktype(this IntPtr luaState, int narg, int t) => Lua.luaL_checktype(luaState, narg, t);
 
-        public static void luaL_checktype(this IntPtr luaState, int narg, Type type) => Lua.luaL_checktype(luaState, narg, (int)type);
+        public static void luaL_checktype(this IntPtr luaState, int narg, Type type) => Lua.luaL_checktype(luaState, narg, type);
 
         public static unsafe void* luaL_checkudata(this IntPtr luaState, int narg, string tname) => Lua.luaL_checkudata(luaState, narg, tname);
 
@@ -133,9 +134,9 @@ namespace GarrysModLuaShared
 
         public static void lua_getfield(this IntPtr luaState, int index, string k) => Lua.lua_getfield(luaState, index, k);
 
-        public static void lua_getfield(this IntPtr luaState, TableIndex index, string k) => Lua.lua_getfield(luaState, (int)index, k);
+        public static void lua_getfield(this IntPtr luaState, TableIndex index, string k) => Lua.lua_getfield(luaState, index, k);
 
-        public static void lua_getglobal(this IntPtr luaState, string k) => Lua.lua_getfield(luaState, (int)TableIndex.SpecialGlob, k);
+        public static void lua_getglobal(this IntPtr luaState, string k) => Lua.lua_getglobal(luaState, k);
 
         public static lua_Hook lua_gethook(this IntPtr luaState) => Lua.lua_gethook(luaState);
 
@@ -187,7 +188,7 @@ namespace GarrysModLuaShared
 
         public static void lua_pushboolean(this IntPtr luaState, int b) => Lua.lua_pushboolean(luaState, b);
 
-        public static void lua_pushboolean(this IntPtr luaState, bool b) => Lua.lua_pushboolean(luaState, b ? 1 : 0);
+        public static void lua_pushboolean(this IntPtr luaState, bool b) => Lua.lua_pushboolean(luaState, b);
 
         public static void lua_pushcclosure(this IntPtr luaState, lua_CFunction fn, int n) => Lua.lua_pushcclosure(luaState, fn, n);
 
@@ -283,7 +284,9 @@ namespace GarrysModLuaShared
 
         public static void lua_pop(this IntPtr luaState, int num = 1) => Lua.lua_pop(luaState, num);
 
-        public static void Push(this IntPtr luaState, object value) => Lua.Push(luaState, value);
+        public static void lua_pushobject(this IntPtr luaState, object value) => Lua.lua_pushobject(luaState, value);
+
+        public static int AbsIndex(this IntPtr luaState, int index) => Lua.AbsIndex(luaState, index);
 
         public static string CheckManagedString(this IntPtr luaState, int index) => Lua.CheckManagedString(luaState, index);
 
@@ -291,6 +294,90 @@ namespace GarrysModLuaShared
 
         public static void RegisterCFunction(this IntPtr luaState, string tableName, string funcName, lua_CFunction function) => Lua.RegisterCFunction(luaState, tableName, funcName, function);
 
+        public static bool IsFalse(this int value) => value == 0;
+
+        public static bool IsTrue(this int value) => value == 1;
+
         public static bool Is(this Type type, Type otherType) => type == otherType;
+
+        public static void Init(this IntPtr luaState) => Lua.Init(luaState);
+
+        public static Angle ToAngle(this LuaObject luaObject) => new Angle(luaObject.GetIndex());
+
+        public static bf_read Tobf_read(this LuaObject luaObject) => new bf_read(luaObject.GetIndex());
+
+        public static CEffectData ToCEffectData(this LuaObject luaObject) => new CEffectData(luaObject.GetIndex());
+
+        public static CLuaEmitter ToCLuaEmitter(this LuaObject luaObject) => new CLuaEmitter(luaObject.GetIndex());
+
+        public static CLuaLocomotion ToCLuaLocomotion(this LuaObject luaObject) => new CLuaLocomotion(luaObject.GetIndex());
+
+        public static CLuaParticle ToCLuaParticle(this LuaObject luaObject) => new CLuaParticle(luaObject.GetIndex());
+
+        public static CMoveData ToCMoveData(this LuaObject luaObject) => new CMoveData(luaObject.GetIndex());
+
+        public static CNavArea ToCNavArea(this LuaObject luaObject) => new CNavArea(luaObject.GetIndex());
+
+        public static CNavLadder ToCNavLadder(this LuaObject luaObject) => new CNavLadder(luaObject.GetIndex());
+
+        public static CRecipientFilter ToCRecipientFilter(this LuaObject luaObject) => new CRecipientFilter(luaObject.GetIndex());
+
+        public static CSEnt ToCSEnt(this LuaObject luaObject) => new CSEnt(luaObject.GetIndex());
+
+        public static CSoundPatch ToCSoundPatch(this LuaObject luaObject) => new CSoundPatch(luaObject.GetIndex());
+
+        public static CTakeDamageInfo ToCTakeDamageInfo(this LuaObject luaObject) => new CTakeDamageInfo(luaObject.GetIndex());
+
+        public static CUserCmd ToCUserCmd(this LuaObject luaObject) => new CUserCmd(luaObject.GetIndex());
+
+        public static ConVar ToConVar(this LuaObject luaObject) => new ConVar(luaObject.GetIndex());
+
+        public static Entity ToEntity(this LuaObject luaObject) => new Entity(luaObject.GetIndex());
+
+        public static File ToFile(this LuaObject luaObject) => new File(luaObject.GetIndex());
+
+        public static IGModAudioChannel ToIGModAudioChannel(this LuaObject luaObject) => new IGModAudioChannel(luaObject.GetIndex());
+
+        public static IMaterial ToIMaterial(this LuaObject luaObject) => new IMaterial(luaObject.GetIndex());
+
+        public static IMesh ToIMesh(this LuaObject luaObject) => new IMesh(luaObject.GetIndex());
+
+        public static IRestore ToIRestore(this LuaObject luaObject) => new IRestore(luaObject.GetIndex());
+
+        public static ISave ToISave(this LuaObject luaObject) => new ISave(luaObject.GetIndex());
+
+        public static ITexture ToITexture(this LuaObject luaObject) => new ITexture(luaObject.GetIndex());
+
+        public static IVideoWriter ToIVideoWriter(this LuaObject luaObject) => new IVideoWriter(luaObject.GetIndex());
+
+        public static MarkupObject ToMarkupObject(this LuaObject luaObject) => new MarkupObject(luaObject.GetIndex());
+
+        public static NPC ToNPC(this LuaObject luaObject) => new NPC(luaObject.GetIndex());
+
+        public static NextBot ToNextBot(this LuaObject luaObject) => new NextBot(luaObject.GetIndex());
+
+        public static Panel ToPanel(this LuaObject luaObject) => new Panel(luaObject.GetIndex());
+
+        public static PathFollower ToPathFollower(this LuaObject luaObject) => new PathFollower(luaObject.GetIndex());
+
+        public static PhysObj ToPhysObj(this LuaObject luaObject) => new PhysObj(luaObject.GetIndex());
+
+        public static Player ToPlayer(this LuaObject luaObject) => new Player(luaObject.GetIndex());
+
+        public static Schedule ToSchedule(this LuaObject luaObject) => new Schedule(luaObject.GetIndex());
+
+        public static Stack ToStack(this LuaObject luaObject) => new Stack(luaObject.GetIndex());
+
+        public static TOOL ToTOOL(this LuaObject luaObject) => new TOOL(luaObject.GetIndex());
+
+        public static Task ToTask(this LuaObject luaObject) => new Task(luaObject.GetIndex());
+
+        public static VMatrix ToVMatrix(this LuaObject luaObject) => new VMatrix(luaObject.GetIndex());
+
+        public static Vector ToVector(this LuaObject luaObject) => new Vector(luaObject.GetIndex());
+
+        public static Vehicle ToVehicle(this LuaObject luaObject) => new Vehicle(luaObject.GetIndex());
+
+        public static Weapon ToWeapon(this LuaObject luaObject) => new Weapon(luaObject.GetIndex());
     }
 }

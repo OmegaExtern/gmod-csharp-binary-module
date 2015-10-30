@@ -32,7 +32,7 @@ namespace GarrysModLuaShared
                 lua_getglobal(luaState, nameof(cookie));
                 lua_getfield(luaState, -1, nameof(GetNumber));
                 lua_pushstring(luaState, name);
-                Push(luaState, @default);
+                lua_pushobject(luaState, @default);
                 lua_pcall(luaState, 2, 1);
                 return lua_tonumber(luaState);
             }
@@ -50,7 +50,7 @@ namespace GarrysModLuaShared
                 lua_getglobal(luaState, nameof(cookie));
                 lua_getfield(luaState, -1, nameof(GetString));
                 lua_pushstring(luaState, name);
-                Push(luaState, @default);
+                lua_pushobject(luaState, @default);
                 lua_pcall(luaState, 2, 1);
                 return ToManagedString(luaState);
             }
