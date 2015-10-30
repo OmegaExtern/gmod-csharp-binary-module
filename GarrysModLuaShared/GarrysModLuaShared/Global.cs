@@ -205,6 +205,8 @@ namespace GarrysModLuaShared
 
         public static Player LocalPlayer() => new Player(LuaTable._G.InvokeObject(nameof(LocalPlayer)).GetIndex());
 
+        public static VMatrix Matrix(LuaTable data) => new VMatrix(data);
+
         public static void Msg(IntPtr luaState, params object[] args)
         {
             lock (SyncRoot)

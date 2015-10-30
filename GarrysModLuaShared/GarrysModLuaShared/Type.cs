@@ -31,7 +31,7 @@
         Texture,
         UserMsg,
         ConVar,
-        IMesh,
+        Mesh,
         Matrix,
         Sound,
         PixelVisHandle,

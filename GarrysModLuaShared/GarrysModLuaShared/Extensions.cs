@@ -304,7 +304,9 @@ namespace GarrysModLuaShared
 
         public static Angle ToAngle(this LuaObject luaObject) => new Angle(luaObject.GetIndex());
 
+#if CLIENT
         public static bf_read Tobf_read(this LuaObject luaObject) => new bf_read(luaObject.GetIndex());
+#endif
 
         public static CEffectData ToCEffectData(this LuaObject luaObject) => new CEffectData(luaObject.GetIndex());
 
@@ -369,6 +371,8 @@ namespace GarrysModLuaShared
         public static Stack ToStack(this LuaObject luaObject) => new Stack(luaObject.GetIndex());
 
         public static TOOL ToTOOL(this LuaObject luaObject) => new TOOL(luaObject.GetIndex());
+
+        public static LuaTable ToTable(this LuaObject luaObject) => new LuaTable(luaObject.GetIndex());
 
         public static Task ToTask(this LuaObject luaObject) => new Task(luaObject.GetIndex());
 

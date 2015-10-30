@@ -462,6 +462,16 @@ namespace GarrysModLuaShared
                 lua_pushnumber(luaState, (uint)value);
                 return;
             }
+            if (value is long)
+            {
+                lua_pushnumber(luaState, (long)value);
+                return;
+            }
+            if (value is ulong)
+            {
+                lua_pushnumber(luaState, (ulong)value);
+                return;
+            }
             if (value is float)
             {
                 lua_pushnumber(luaState, (float)value);
@@ -472,7 +482,7 @@ namespace GarrysModLuaShared
                 lua_pushnumber(luaState, (double)value);
                 return;
             }
-            if (value is string)
+            if (value is string || value is char)
             {
                 lua_pushstring(luaState, value.ToString());
                 return;

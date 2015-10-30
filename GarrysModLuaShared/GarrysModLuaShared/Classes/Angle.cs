@@ -28,12 +28,11 @@ namespace GarrysModLuaShared.Classes
         {
             get
             {
-                return GetFieldNumber(nameof(pitch));
+                return _p = _pitch = GetFieldNumber(nameof(pitch));
             }
             set
             {
-                _p = _pitch = value;
-                SetField(nameof(pitch), value);
+                SetField(nameof(pitch), _p = _pitch = value);
             }
         }
 
@@ -42,12 +41,11 @@ namespace GarrysModLuaShared.Classes
         {
             get
             {
-                return GetFieldNumber(nameof(yaw));
+                return _y = _yaw = GetFieldNumber(nameof(yaw));
             }
             set
             {
-                _y = _yaw = value;
-                SetField(nameof(yaw), value);
+                SetField(nameof(yaw), _y = _yaw = value);
             }
         }
 
@@ -56,12 +54,11 @@ namespace GarrysModLuaShared.Classes
         {
             get
             {
-                return GetFieldNumber(nameof(roll));
+                return _r = _roll = GetFieldNumber(nameof(roll));
             }
             set
             {
-                _r = _roll = value;
-                SetField(nameof(roll), value);
+                SetField(nameof(roll), _r = _roll = value);
             }
         }
 
@@ -70,12 +67,11 @@ namespace GarrysModLuaShared.Classes
         {
             get
             {
-                return GetFieldNumber(nameof(p));
+                return _pitch = _p = GetFieldNumber(nameof(p));
             }
             set
             {
-                _pitch = _p = value;
-                SetField(nameof(p), value);
+                SetField(nameof(p), _pitch = _p = value);
             }
         }
 
@@ -84,12 +80,11 @@ namespace GarrysModLuaShared.Classes
         {
             get
             {
-                return GetFieldNumber(nameof(y));
+                return _yaw = _y = GetFieldNumber(nameof(y));
             }
             set
             {
-                _yaw = _y = value;
-                SetField(nameof(y), value);
+                SetField(nameof(y), _yaw = _y = value);
             }
         }
 
@@ -98,12 +93,11 @@ namespace GarrysModLuaShared.Classes
         {
             get
             {
-                return GetFieldNumber(nameof(r));
+                return _roll = _r = GetFieldNumber(nameof(r));
             }
             set
             {
-                _roll = _r = value;
-                SetField(nameof(r), value);
+                SetField(nameof(r), _roll = _r = value);
             }
         }
 
@@ -179,6 +173,39 @@ namespace GarrysModLuaShared.Classes
             }
         }
 
+        public double this[char index]
+        {
+            get
+            {
+                switch (index.ToString().ToLowerInvariant())
+                {
+                    case nameof(p):
+                        return pitch;
+                    case nameof(y):
+                        return yaw;
+                    case nameof(r):
+                        return roll;
+                    default:
+                        return default(double);
+                }
+            }
+            set
+            {
+                switch (index.ToString().ToLowerInvariant())
+                {
+                    case nameof(p):
+                        pitch = value;
+                        return;
+                    case nameof(y):
+                        yaw = value;
+                        return;
+                    case nameof(r):
+                        roll = value;
+                        return;
+                }
+            }
+        }
+
         /// <summary>Returns a normal vector facing in the direction that the angle points.</summary>
         /// <returns>The forward direction of the angle.</returns>
         public Vector Forward() => CallObject(nameof(Forward)).ToVector();
@@ -220,51 +247,51 @@ namespace GarrysModLuaShared.Classes
 
         public static Angle operator -(Angle a) => new Angle(-(a.pitch), -(a.yaw), -(a.roll));
 
+        public static Angle operator ~(Angle a) => new Angle(~((long)a.pitch), ~((long)a.yaw), ~((long)a.roll));
+
         public static Angle operator ++(Angle a) => new Angle(a.pitch + 1, a.yaw + 1, a.roll + 1);
 
         public static Angle operator --(Angle a) => new Angle(a.pitch - 1, a.yaw - 1, a.roll - 1);
 
-        public static Angle operator +(Angle a, Angle b) => new Angle(a.pitch + b.pitch, a.yaw + b.yaw, a.roll + b.roll);
+        public static implicit operator Angle(int value) => new Angle(value, value, value);
 
-        public static Angle operator -(Angle a, Angle b) => new Angle(a.pitch - b.pitch, a.yaw - b.yaw, a.roll - b.roll);
+        public static implicit operator Angle(long value) => new Angle(value, value, value);
+
+        public static implicit operator Angle(double value) => new Angle(value, value, value);
 
         public static Angle operator *(Angle a, Angle b) => new Angle(a.pitch * b.pitch, a.yaw * b.yaw, a.roll * b.roll);
-
-        public static Angle operator /(Angle a, Angle b) => new Angle(a.pitch / b.pitch, a.yaw / b.yaw, a.roll / b.roll);
-
-        public static Angle operator %(Angle a, Angle b) => new Angle(a.pitch % b.pitch, a.yaw % b.yaw, a.roll % b.roll);
-
-        public static Angle operator +(Angle a, double b) => new Angle(a.pitch + b, a.yaw + b, a.roll + b);
-
-        public static Angle operator +(double b, Angle a) => new Angle(b + a.pitch, b + a.yaw, b + a.roll);
-
-        public static Angle operator -(Angle a, double b) => new Angle(a.pitch - b, a.yaw - b, a.roll - b);
-
-        public static Angle operator -(double b, Angle a) => new Angle(b - a.pitch, b - a.yaw, b - a.roll);
 
         public static Angle operator *(Angle a, double b) => new Angle(a.pitch * b, a.yaw * b, a.roll * b);
 
         public static Angle operator *(double b, Angle a) => new Angle(b * a.pitch, b * a.yaw, b * a.roll);
 
+        public static Angle operator /(Angle a, Angle b) => new Angle(a.pitch / b.pitch, a.yaw / b.yaw, a.roll / b.roll);
+
         public static Angle operator /(Angle a, double b) => new Angle(a.pitch / b, a.yaw / b, a.roll / b);
 
         public static Angle operator /(double b, Angle a) => new Angle(b / a.pitch, b / a.yaw, b / a.roll);
+
+        public static Angle operator %(Angle a, Angle b) => new Angle(a.pitch % b.pitch, a.yaw % b.yaw, a.roll % b.roll);
 
         public static Angle operator %(Angle a, double b) => new Angle(a.pitch % b, a.yaw % b, a.roll % b);
 
         public static Angle operator %(double b, Angle a) => new Angle(b % a.pitch, b % a.yaw, b % a.roll);
 
-        public static bool operator ==(Angle a, Angle b) => a != null && b != null && Math.Abs(a.pitch - b.pitch) < double.Epsilon && Math.Abs(a.yaw - b.yaw) < double.Epsilon && Math.Abs(a.roll - b.roll) < double.Epsilon;
+        public static Angle operator +(Angle a, Angle b) => new Angle(a.pitch + b.pitch, a.yaw + b.yaw, a.roll + b.roll);
 
-        public static bool operator ==(Angle a, double b) => a != null && Math.Abs(a.pitch - b) < double.Epsilon && Math.Abs(a.yaw - b) < double.Epsilon && Math.Abs(a.roll - b) < double.Epsilon;
+        public static Angle operator +(Angle a, double b) => new Angle(a.pitch + b, a.yaw + b, a.roll + b);
 
-        public static bool operator ==(double b, Angle a) => a != null && Math.Abs(b - a.pitch) < double.Epsilon && Math.Abs(b - a.yaw) < double.Epsilon && Math.Abs(b - a.roll) < double.Epsilon;
+        public static Angle operator +(double b, Angle a) => new Angle(b + a.pitch, b + a.yaw, b + a.roll);
 
-        public static bool operator !=(Angle a, Angle b) => !(a == b);
+        public static Angle operator -(Angle a, Angle b) => new Angle(a.pitch - b.pitch, a.yaw - b.yaw, a.roll - b.roll);
 
-        public static bool operator !=(Angle a, double b) => !(a == b);
+        public static Angle operator -(Angle a, double b) => new Angle(a.pitch - b, a.yaw - b, a.roll - b);
 
-        public static bool operator !=(double b, Angle a) => !(b == a);
+        public static Angle operator -(double b, Angle a) => new Angle(b - a.pitch, b - a.yaw, b - a.roll);
+
+        public static Angle operator <<(Angle a, int b) => new Angle((long)a.pitch << b, (long)a.yaw << b, (long)a.roll << b);
+
+        public static Angle operator >>(Angle a, int b) => new Angle((long)a.pitch >> b, (long)a.yaw >> b, (long)a.roll >> b);
 
         public static bool operator <(Angle a, Angle b) => a != null && b != null && a.pitch < b.pitch && a.yaw < b.yaw && a.roll < b.roll;
 
@@ -289,6 +316,36 @@ namespace GarrysModLuaShared.Classes
         public static bool operator >=(Angle a, double b) => a != null && a.pitch >= b && a.yaw >= b && a.roll >= b;
 
         public static bool operator >=(double b, Angle a) => a != null && b >= a.pitch && b >= a.yaw && b >= a.roll;
+
+        public static bool operator ==(Angle a, Angle b) => a != null && b != null && Math.Abs(a.pitch - b.pitch) < double.Epsilon && Math.Abs(a.yaw - b.yaw) < double.Epsilon && Math.Abs(a.roll - b.roll) < double.Epsilon;
+
+        public static bool operator ==(Angle a, double b) => a != null && Math.Abs(a.pitch - b) < double.Epsilon && Math.Abs(a.yaw - b) < double.Epsilon && Math.Abs(a.roll - b) < double.Epsilon;
+
+        public static bool operator ==(double b, Angle a) => a != null && Math.Abs(b - a.pitch) < double.Epsilon && Math.Abs(b - a.yaw) < double.Epsilon && Math.Abs(b - a.roll) < double.Epsilon;
+
+        public static bool operator !=(Angle a, Angle b) => !(a == b);
+
+        public static bool operator !=(Angle a, double b) => !(a == b);
+
+        public static bool operator !=(double b, Angle a) => !(b == a);
+
+        public static Angle operator &(Angle a, Angle b) => new Angle((long)a.pitch & (long)b.pitch, (long)a.yaw & (long)b.yaw, (long)a.roll & (long)b.roll);
+
+        public static Angle operator &(Angle a, long b) => new Angle((long)a.pitch & b, (long)a.yaw & b, (long)a.roll & b);
+
+        public static Angle operator &(long b, Angle a) => new Angle(b & (long)a.pitch, b & (long)a.yaw, b & (long)a.roll);
+
+        public static Angle operator ^(Angle a, Angle b) => new Angle((long)a.pitch ^ (long)b.pitch, (long)a.yaw ^ (long)b.yaw, (long)a.roll ^ (long)b.roll);
+
+        public static Angle operator ^(Angle a, long b) => new Angle((long)a.pitch ^ b, (long)a.yaw ^ b, (long)a.roll ^ b);
+
+        public static Angle operator ^(long b, Angle a) => new Angle(b ^ (long)a.pitch, b ^ (long)a.yaw, b ^ (long)a.roll);
+
+        public static Angle operator |(Angle a, Angle b) => new Angle((long)a.pitch | (long)b.pitch, (long)a.yaw | (long)b.yaw, (long)a.roll | (long)b.roll);
+
+        public static Angle operator |(Angle a, long b) => new Angle((long)a.pitch | b, (long)a.yaw | b, (long)a.roll | b);
+
+        public static Angle operator |(long b, Angle a) => new Angle(b | (long)a.pitch, b | (long)a.yaw, b | (long)a.roll);
 
         public bool Equals(Angle other)
         {
