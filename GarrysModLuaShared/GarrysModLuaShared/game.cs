@@ -12,7 +12,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="decalName">The name of the decal.</param>
         /// <param name="materialName">The material to be used for the decal. May also be a list of material names, in which case a random material from that list will be chosen every time the decal is placed.</param>
-        public static void AddDecal(IntPtr luaState, string decalName, string materialName)
+        public static void AddDecal(LuaState luaState, string decalName, string materialName)
         {
             lock (SyncRoot)
             {
@@ -28,7 +28,7 @@ namespace GarrysModLuaShared
         /// <summary>Loads a particle file.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="particleFileName">The path of the file to add. Must be (file).pcf.</param>
-        public static void AddParticles(IntPtr luaState, string particleFileName)
+        public static void AddParticles(LuaState luaState, string particleFileName)
         {
             lock (SyncRoot)
             {
@@ -48,7 +48,7 @@ namespace GarrysModLuaShared
         /// <summary>Runs a console command. Make sure to add a newline ("\n") at the end of the command.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="stringCommand">String containing the command and arguments to be ran.</param>
-        public static void ConsoleCommand(IntPtr luaState, string stringCommand)
+        public static void ConsoleCommand(LuaState luaState, string stringCommand)
         {
             lock (SyncRoot)
             {
@@ -64,7 +64,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="name">Name of the ammo type to look up ID of.</param>
         /// <returns>The ammo type ID of the given ammo type name, or -1 if not found.</returns>
-        public static double GetAmmoID(IntPtr luaState, string name)
+        public static double GetAmmoID(LuaState luaState, string name)
         {
             lock (SyncRoot)
             {
@@ -80,7 +80,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="id">Ammo type ID.</param>
         /// <returns>The maximum amount of reserve ammo a player can hold of this ammo type.</returns>
-        public static double GetAmmoMax(IntPtr luaState, double id)
+        public static double GetAmmoMax(LuaState luaState, double id)
         {
             lock (SyncRoot)
             {
@@ -96,7 +96,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="id">Ammo ID to retrieve the name of. Starts from 1.</param>
         /// <returns>The name of the given ammo type ID or nil if ammo type ID is invalid.</returns>
-        public static string GetAmmoName(IntPtr luaState, double id)
+        public static string GetAmmoName(LuaState luaState, double id)
         {
             lock (SyncRoot)
             {
@@ -111,7 +111,7 @@ namespace GarrysModLuaShared
         /// <summary>Returns the name of the current map, without a file extension.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <returns>The name of the current map, without a file extension.</returns>
-        public static string GetMap(IntPtr luaState)
+        public static string GetMap(LuaState luaState)
         {
             lock (SyncRoot)
             {
@@ -126,7 +126,7 @@ namespace GarrysModLuaShared
         /// <summary>Returns the next map that would be loaded according to the file that is set by the mapcyclefile convar.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <returns>Next map.</returns>
-        public static string GetMapNext(IntPtr luaState)
+        public static string GetMapNext(LuaState luaState)
         {
             lock (SyncRoot)
             {
@@ -141,7 +141,7 @@ namespace GarrysModLuaShared
         /// <summary>Returns the VBSP version of the current map.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <returns>Map version.</returns>
-        public static double GetMapVersion(IntPtr luaState)
+        public static double GetMapVersion(LuaState luaState)
         {
             lock (SyncRoot)
             {
@@ -155,7 +155,7 @@ namespace GarrysModLuaShared
         /// <summary>Returns the difficulty level of the game.<para/>TIP: You can use this function in your scripted NPCs or Nextbots to make them harder, however, it is a good idea to lock powerful attacks behind the highest difficulty instead of just increasing the health.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <returns>The difficulty level, Easy( 1 ), Normal( 2 ), Hard( 3 ).</returns>
-        public static double GetSkillLevel(IntPtr luaState)
+        public static double GetSkillLevel(LuaState luaState)
         {
             lock (SyncRoot)
             {
@@ -169,7 +169,7 @@ namespace GarrysModLuaShared
         /// <summary>Returns the timescale of the game.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <returns>Timescale.</returns>
-        public static double GetTimeScale(IntPtr luaState)
+        public static double GetTimeScale(LuaState luaState)
         {
             lock (SyncRoot)
             {
@@ -185,7 +185,7 @@ namespace GarrysModLuaShared
         /// <summary>Returns whenever the server or the server we are connected to is a dedicated server.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <returns>True if connected to dedicated server; otherwise false.</returns>
-        public static bool IsDedicated(IntPtr luaState)
+        public static bool IsDedicated(LuaState luaState)
         {
             lock (SyncRoot)
             {
@@ -199,7 +199,7 @@ namespace GarrysModLuaShared
 #if SERVER
         /// <summary>Loads the next map according to the file that is set by the mapcyclefile convar.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
-        public static void LoadNextMap(IntPtr luaState)
+        public static void LoadNextMap(LuaState luaState)
         {
             lock (SyncRoot)
             {
@@ -212,7 +212,7 @@ namespace GarrysModLuaShared
         /// <summary>Returns the map load type of the current map.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <returns>The load type. Possible values are: "newgame", "loadgame", "transition", "background".</returns>
-        public static string MapLoadType(IntPtr luaState)
+        public static string MapLoadType(LuaState luaState)
         {
             lock (SyncRoot)
             {
@@ -227,7 +227,7 @@ namespace GarrysModLuaShared
         /// <summary>Returns the maximum number of players for this server.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <returns>Max players.</returns>
-        public static double MaxPlayers(IntPtr luaState)
+        public static double MaxPlayers(LuaState luaState)
         {
             lock (SyncRoot)
             {
@@ -240,7 +240,7 @@ namespace GarrysModLuaShared
 
         /// <summary>Removes all the clientside ragdolls.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
-        public static void RemoveRagdolls(IntPtr luaState)
+        public static void RemoveRagdolls(LuaState luaState)
         {
             lock (SyncRoot)
             {
@@ -254,7 +254,7 @@ namespace GarrysModLuaShared
         /// <summary>Sets the difficulty level of the game, can be retrieved with game.GetSkillLevel.<para/>This will automatically change whenever the "skill" convar is modified serverside.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="level">The difficulty level, Easy( 1 ), Normal( 2 ), Hard( 3 ).</param>
-        public static void SetSkillLevel(IntPtr luaState, double level)
+        public static void SetSkillLevel(LuaState luaState, double level)
         {
             lock (SyncRoot)
             {
@@ -268,7 +268,7 @@ namespace GarrysModLuaShared
         /// <summary>Sets the time scale of the game.<para/>This function is supposed to remove the need of using the host_timescale convar, which is cheat protected.<para/>To slow down or speed up the movement of a specific player, use <see cref="Player.SetLaggedMovementValue"/> instead.<para/>NOTE: Like host_timescale, this method does not affect sounds, if you wish to change that, look into EntityEmitSound hook.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="timeScale">The new timescale, minimum value is 0.001 and maximum is 5.</param>
-        public static void SetTimeScale(IntPtr luaState, double timeScale)
+        public static void SetTimeScale(LuaState luaState, double timeScale)
         {
             lock (SyncRoot)
             {
@@ -283,7 +283,7 @@ namespace GarrysModLuaShared
         /// <summary>Returns whenever the current session is a single player game.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <returns>Is single player?</returns>
-        public static bool SinglePlayer(IntPtr luaState)
+        public static bool SinglePlayer(LuaState luaState)
         {
             lock (SyncRoot)
             {

@@ -9,7 +9,7 @@ namespace GarrysModLuaShared
     {
         /// <summary>Tells the client that balloon has popped. This counts towards the Balloon Popper achievement.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
-        public static void BalloonPopped(IntPtr luaState)
+        public static void BalloonPopped(LuaState luaState)
         {
             lock (SyncRoot)
             {
@@ -22,7 +22,7 @@ namespace GarrysModLuaShared
         /// <summary>Returns the amount of achievements in Garry's Mod.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <returns>The amount of achievements available.</returns>
-        public static double Count(IntPtr luaState)
+        public static double Count(LuaState luaState)
         {
             lock (SyncRoot)
             {
@@ -35,7 +35,7 @@ namespace GarrysModLuaShared
 
         /// <summary>Adds one to the count of balls eaten. Once this count reaches 200, the 'Ball Eater' achievement is unlocked.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
-        public static void EatBall(IntPtr luaState)
+        public static void EatBall(LuaState luaState)
         {
             lock (SyncRoot)
             {
@@ -49,7 +49,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="achievementId">The ID of achievement to retrieve progress of. Note: IDs start from 0, not 1.</param>
         /// <returns>Progress of the given achievement.</returns>
-        public static double GetCount(IntPtr luaState, double achievementId)
+        public static double GetCount(LuaState luaState, double achievementId)
         {
             lock (SyncRoot)
             {
@@ -65,7 +65,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="achievementId">The ID of achievement to retrieve description of. Note: IDs start from 0, not 1.</param>
         /// <returns>Description of the given achievement.</returns>
-        public static string GetDesc(IntPtr luaState, double achievementId)
+        public static string GetDesc(LuaState luaState, double achievementId)
         {
             lock (SyncRoot)
             {
@@ -81,7 +81,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="achievementId">The ID of achievement to retrieve goal of. Note: IDs start from 0, not 1.</param>
         /// <returns>Goal of the given achievement.</returns>
-        public static double GetGoal(IntPtr luaState, double achievementId)
+        public static double GetGoal(LuaState luaState, double achievementId)
         {
             lock (SyncRoot)
             {
@@ -97,7 +97,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="achievementId">The ID of achievement to retrieve name of. Note: IDs start from 0, not 1.</param>
         /// <returns>Name of the given achievement.</returns>
-        public static string GetName(IntPtr luaState, double achievementId)
+        public static string GetName(LuaState luaState, double achievementId)
         {
             lock (SyncRoot)
             {
@@ -111,7 +111,7 @@ namespace GarrysModLuaShared
 
         /// <summary>Increases "War Zone" achievement progress by 1.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
-        public static void IncBaddies(IntPtr luaState)
+        public static void IncBaddies(LuaState luaState)
         {
             lock (SyncRoot)
             {
@@ -123,7 +123,7 @@ namespace GarrysModLuaShared
 
         /// <summary>Increases "Innocent Bystander" achievement progress by 1.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
-        public static void IncBystander(IntPtr luaState)
+        public static void IncBystander(LuaState luaState)
         {
             lock (SyncRoot)
             {
@@ -135,7 +135,7 @@ namespace GarrysModLuaShared
 
         /// <summary>Increases "Bad Friend" achievement progress by 1.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
-        public static void IncGoodies(IntPtr luaState)
+        public static void IncGoodies(LuaState luaState)
         {
             lock (SyncRoot)
             {
@@ -149,7 +149,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="achievementId">Internal Achievement ID number.</param>
         /// <returns>Returns true if the given <paramref name="achievementId"/> is achieved; otherwise false.</returns>
-        public static bool IsAchieved(IntPtr luaState, double achievementId)
+        public static bool IsAchieved(LuaState luaState, double achievementId)
         {
             lock (SyncRoot)
             {
@@ -163,7 +163,7 @@ namespace GarrysModLuaShared
 
         /// <summary>This function is used by the engine to track achievement progress for 'Destroyer'.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
-        public static void Remover(IntPtr luaState)
+        public static void Remover(LuaState luaState)
         {
             lock (SyncRoot)
             {
@@ -175,7 +175,7 @@ namespace GarrysModLuaShared
 
         /// <summary>Tracks achievement progress for 'Procreator'.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
-        public static void SpawnedNPC(IntPtr luaState)
+        public static void SpawnedNPC(LuaState luaState)
         {
             lock (SyncRoot)
             {
@@ -187,7 +187,7 @@ namespace GarrysModLuaShared
 
         /// <summary>Tells the client that a prop has been spawned by the user, used to track achievement progress for 'Creator'.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
-        public static void SpawnedProp(IntPtr luaState)
+        public static void SpawnedProp(LuaState luaState)
         {
             lock (SyncRoot)
             {
@@ -199,7 +199,7 @@ namespace GarrysModLuaShared
 
         /// <summary>Tells the client that a ragdoll has been spawned. Used to track achievement progress for 'Dollhouse'.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
-        public static void SpawnedRagdoll(IntPtr luaState)
+        public static void SpawnedRagdoll(LuaState luaState)
         {
             lock (SyncRoot)
             {
@@ -211,7 +211,7 @@ namespace GarrysModLuaShared
 
         /// <summary>An automatically called function that adds one to a count of how many times the spawnmenu has been opened. It's purpose is to track progress of 'Menu User' achievement.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
-        public static void SpawnMenuOpen(IntPtr luaState)
+        public static void SpawnMenuOpen(LuaState luaState)
         {
             lock (SyncRoot)
             {

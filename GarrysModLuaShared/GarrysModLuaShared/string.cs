@@ -12,7 +12,7 @@ namespace GarrysModLuaShared
         /// <param name="startPos">The first character of the string to get the byte of.</param>
         /// <param name="endPos">The last character of the string to get the byte of.</param>
         /// <returns>Numerical bytes.</returns>
-        public static byte[] @byte(IntPtr luaState, string inputString, uint startPos = 1U, uint endPos = 1U)
+        public static byte[] @byte(LuaState luaState, string inputString, uint startPos = 1U, uint endPos = 1U)
         {
             lock (SyncRoot)
             {
@@ -48,7 +48,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="bytes">The bytes to create the string from.</param>
         /// <returns>String built from given bytes.</returns>
-        public static string @char(IntPtr luaState, params byte[] bytes)
+        public static string @char(LuaState luaState, params byte[] bytes)
         {
             lock (SyncRoot)
             {
@@ -69,7 +69,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="inputNumber">The input number to commafy.</param>
         /// <returns>Pretty string.</returns>
-        public static string Comma(IntPtr luaState, double inputNumber)
+        public static string Comma(LuaState luaState, double inputNumber)
         {
             lock (SyncRoot)
             {
@@ -88,7 +88,7 @@ namespace GarrysModLuaShared
         /// <param name="inputString">The string whose end is to be checked.</param>
         /// <param name="endString">The string to be matched with the end of the first.</param>
         /// <returns>True if the <paramref name="inputString"/> ends with <paramref name="endString"/>, or when <paramref name="endString"/> is empty; otherwise false.</returns>
-        public static bool EndsWith(IntPtr luaState, string inputString, string endString)
+        public static bool EndsWith(LuaState luaState, string inputString, string endString)
         {
             lock (SyncRoot)
             {
@@ -110,7 +110,7 @@ namespace GarrysModLuaShared
         /// <param name="startPos">The position to start the search from, can be negative start position will be relative to the end position.</param>
         /// <param name="noPatterns">Set to true to disable patterns.</param>
         /// <returns>First result is the starting position of the found text. Second result is the ending position of found text.</returns>
-        public static Tuple<int, int> find(IntPtr luaState, string hayStack, string needle, int startPos = 1, bool noPatterns = false)
+        public static Tuple<int, int> find(LuaState luaState, string hayStack, string needle, int startPos = 1, bool noPatterns = false)
         {
             lock (SyncRoot)
             {
@@ -133,7 +133,7 @@ namespace GarrysModLuaShared
         /// <param name="needle">The string to find, can contain patterns if enabled.</param>
         /// <param name="startPos">The position to start the search from, can be negative start position will be relative to the end position.</param>
         /// <param name="noPatterns">Set to true to disable patterns.</param>
-        public static void find(IntPtr luaState, out int start, out int end, string hayStack, string needle, int startPos = 1, bool noPatterns = false)
+        public static void find(LuaState luaState, out int start, out int end, string hayStack, string needle, int startPos = 1, bool noPatterns = false)
         {
             lock (SyncRoot)
             {
@@ -154,7 +154,7 @@ namespace GarrysModLuaShared
         /// <param name="inputString">The string to be formatted.<para/>Follows <see cref="http://www.cplusplus.com/reference/cstdio/printf/">this format</see>.</param>
         /// <param name="formatParameters">Values to be formatted into the string.</param>
         /// <returns>Formatted string.</returns>
-        public static string format(IntPtr luaState, string inputString, params object[] formatParameters)
+        public static string format(LuaState luaState, string inputString, params object[] formatParameters)
         {
             lock (SyncRoot)
             {
@@ -177,7 +177,7 @@ namespace GarrysModLuaShared
         /// <param name="float">The time in seconds to format.</param>
         /// <param name="format">An optional formatting to use. If no format it specified, a table will be returned instead.</param>
         /// <returns>Returns the time as a formatted string only if a <paramref name="format"/> was specified.<para/>Returns a table only if no <paramref name="format"/> was specified. The table will contain these fields:<para/>number ms - milliseconds<para/>number s - seconds<para/>number m - minutes<para/>number h - hours</returns>
-        public static string FormattedTime(IntPtr luaState, double @float, string format)
+        public static string FormattedTime(LuaState luaState, double @float, string format)
         {
             lock (SyncRoot)
             {
@@ -203,7 +203,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="fileName">String e.g. file-path to get the file extensions from.</param>
         /// <returns>File extension.</returns>
-        public static string GetExtensionFromFilename(IntPtr luaState, string fileName)
+        public static string GetExtensionFromFilename(LuaState luaState, string fileName)
         {
             lock (SyncRoot)
             {
@@ -219,7 +219,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="fileName">The string e.g. file-path to get the file-name from.</param>
         /// <returns>The file name.</returns>
-        public static string GetFileFromFilename(IntPtr luaState, string fileName)
+        public static string GetFileFromFilename(LuaState luaState, string fileName)
         {
             lock (SyncRoot)
             {
@@ -235,7 +235,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="fileName">String to get path from.</param>
         /// <returns>The path (with trailing slash).</returns>
-        public static string GetPathFromFilename(IntPtr luaState, string fileName)
+        public static string GetPathFromFilename(LuaState luaState, string fileName)
         {
             lock (SyncRoot)
             {
@@ -256,7 +256,7 @@ namespace GarrysModLuaShared
         /// <param name="replacement">In case of a string the matches sequence will be replaced with it.<para/>In case of a table, the matched sequence will be used as key and the table will tested for the key, if a value exists it will be used as replacement.<para/>In case of a function all matches will be passed as parameters to the function, the return value(s) of the function will then be used as replacement.</param>
         /// <param name="maxReplaces">Maximum number of replacements to be made.</param>
         /// <returns>First result is replaced string. Second result is number of replaces.</returns>
-        public static Tuple<string, uint> gsub(IntPtr luaState, string input, string pattern, string replacement, uint maxReplaces = default(uint))
+        public static Tuple<string, uint> gsub(LuaState luaState, string input, string pattern, string replacement, uint maxReplaces = default(uint))
         {
             lock (SyncRoot)
             {
@@ -286,7 +286,7 @@ namespace GarrysModLuaShared
         /// <param name="pattern">The pattern that defines what should be matched and eventually be replaced.</param>
         /// <param name="replacement">In case of a string the matches sequence will be replaced with it.<para/>In case of a table, the matched sequence will be used as key and the table will tested for the key, if a value exists it will be used as replacement.<para/>In case of a function all matches will be passed as parameters to the function, the return value(s) of the function will then be used as replacement.</param>
         /// <param name="maxReplaces">Maximum number of replacements to be made.</param>
-        public static void gsub(IntPtr luaState, out string replaceResult, out uint replaceCount, string input, string pattern, string replacement, uint maxReplaces = default(uint))
+        public static void gsub(LuaState luaState, out string replaceResult, out uint replaceCount, string input, string pattern, string replacement, uint maxReplaces = default(uint))
         {
             lock (SyncRoot)
             {
@@ -315,7 +315,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="inputString">The string that should be escaped.</param>
         /// <returns>The escaped string.</returns>
-        public static string JavascriptSafe(IntPtr luaState, string inputString)
+        public static string JavascriptSafe(LuaState luaState, string inputString)
         {
             lock (SyncRoot)
             {
@@ -332,7 +332,7 @@ namespace GarrysModLuaShared
         /// <param name="inputString">The string to extract from.</param>
         /// <param name="num">Amount of chars relative to the beginning (starting from 1).</param>
         /// <returns>Returns a string containing a specified number of characters from the left side of a string.</returns>
-        public static string Left(IntPtr luaState, string inputString, uint num)
+        public static string Left(LuaState luaState, string inputString, uint num)
         {
             lock (SyncRoot)
             {
@@ -349,7 +349,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="inputString">The string to find the length of.</param>
         /// <returns>Length of the <paramref name="inputString"/>.</returns>
-        public static uint len(IntPtr luaState, string inputString)
+        public static uint len(LuaState luaState, string inputString)
         {
             lock (SyncRoot)
             {
@@ -365,7 +365,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="inputString">The string to convert.</param>
         /// <returns>A string representing the value of a <paramref name="inputString"/> converted to lower-case.</returns>
-        public static string lower(IntPtr luaState, string inputString)
+        public static string lower(LuaState luaState, string inputString)
         {
             lock (SyncRoot)
             {
@@ -383,7 +383,7 @@ namespace GarrysModLuaShared
         /// <param name="pattern">The pattern that defines what should be matched.</param>
         /// <param name="startPosition">The start index to start the matching from, can be negative to start the match from a position relative to the end.</param>
         /// <returns>Matched text.</returns>
-        public static string match(IntPtr luaState, string inputString, string pattern, int startPosition)
+        public static string match(LuaState luaState, string inputString, string pattern, int startPosition)
         {
             lock (SyncRoot)
             {
@@ -401,7 +401,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="bytes">The number to convert into bytes.</param>
         /// <returns>Nice string.</returns>
-        public static string NiceSize(IntPtr luaState, uint bytes)
+        public static string NiceSize(LuaState luaState, uint bytes)
         {
             lock (SyncRoot)
             {
@@ -417,7 +417,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="seconds">The number to convert into string.</param>
         /// <returns>Nice string.</returns>
-        public static string NiceTime(IntPtr luaState, uint seconds)
+        public static string NiceTime(LuaState luaState, uint seconds)
         {
             lock (SyncRoot)
             {
@@ -433,7 +433,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="inputString">The string to be sanitized.</param>
         /// <returns>The string that has been sanitized for inclusion in Lua patterns.</returns>
-        public static string PatternSafe(IntPtr luaState, string inputString)
+        public static string PatternSafe(LuaState luaState, string inputString)
         {
             lock (SyncRoot)
             {
@@ -450,7 +450,7 @@ namespace GarrysModLuaShared
         /// <param name="inputString">The string to repeat.</param>
         /// <param name="repetitions">How many times to repeat.</param>
         /// <returns>Repeated <paramref name="inputString"/>.</returns>
-        public static string rep(IntPtr luaState, string inputString, uint repetitions)
+        public static string rep(LuaState luaState, string inputString, uint repetitions)
         {
             lock (SyncRoot)
             {
@@ -469,7 +469,7 @@ namespace GarrysModLuaShared
         /// <param name="find">What we are seeking to replace.</param>
         /// <param name="replace">What to replace find with.</param>
         /// <returns>Replaced <paramref name="input"/>.</returns>
-        public static string Replace(IntPtr luaState, string input, string find, string replace)
+        public static string Replace(LuaState luaState, string input, string find, string replace)
         {
             lock (SyncRoot)
             {
@@ -487,7 +487,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="inputString">The string to be reversed.</param>
         /// <returns>Reversed <paramref name="input"/>.</returns>
-        public static string reverse(IntPtr luaState, string inputString)
+        public static string reverse(LuaState luaState, string inputString)
         {
             lock (SyncRoot)
             {
@@ -504,7 +504,7 @@ namespace GarrysModLuaShared
         /// <param name="inputString">The string to extract from.</param>
         /// <param name="num">Amount of chars relative to the end (starting from 1).</param>
         /// <returns>Returns a string containing a specified number of characters from the right side of a string.</returns>
-        public static string Right(IntPtr luaState, string inputString, uint num)
+        public static string Right(LuaState luaState, string inputString, uint num)
         {
             lock (SyncRoot)
             {
@@ -523,7 +523,7 @@ namespace GarrysModLuaShared
         /// <param name="index">The character index, 1 is the first from left.</param>
         /// <param name="replacement">String to replace with.</param>
         /// <returns>Modified string.</returns>
-        public static string SetChar(IntPtr luaState, string inputString, uint index, char replacement)
+        public static string SetChar(LuaState luaState, string inputString, uint index, char replacement)
         {
             lock (SyncRoot)
             {
@@ -544,7 +544,7 @@ namespace GarrysModLuaShared
         /// <param name="inputString">String to check.</param>
         /// <param name="startString">String to check with.</param>
         /// <returns>True if <paramref name="inputString"/> starts with the <paramref name="startString"/>, or <paramref name="startString"/> is empty; otherwise false.</returns>
-        public static bool StartWith(IntPtr luaState, string inputString, string startString)
+        public static bool StartWith(LuaState luaState, string inputString, string startString)
         {
             lock (SyncRoot)
             {
@@ -561,7 +561,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="fileName">The path to change.</param>
         /// <returns>Modified string.</returns>
-        public static string StripExtension(IntPtr luaState, string fileName)
+        public static string StripExtension(LuaState luaState, string fileName)
         {
             lock (SyncRoot)
             {
@@ -579,7 +579,7 @@ namespace GarrysModLuaShared
         /// <param name="startPos">The position of the first character that will be included in the sub-string.</param>
         /// <param name="endPos">The position of the last character to be included in the sub-string.</param>
         /// <returns>The substring.</returns>
-        public static string sub(IntPtr luaState, string inputString, uint startPos, uint endPos = default(uint))
+        public static string sub(LuaState luaState, string inputString, uint startPos, uint endPos = default(uint))
         {
             lock (SyncRoot)
             {
@@ -606,7 +606,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="time">Time in seconds.</param>
         /// <returns>Formatted <paramref name="time"/>.</returns>
-        public static string ToMinutesSeconds(IntPtr luaState, uint time)
+        public static string ToMinutesSeconds(LuaState luaState, uint time)
         {
             lock (SyncRoot)
             {
@@ -622,7 +622,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="time">Time in seconds.</param>
         /// <returns>Formatted <paramref name="time"/>.</returns>
-        public static string ToMinutesSecondsMilliseconds(IntPtr luaState, double time)
+        public static string ToMinutesSecondsMilliseconds(LuaState luaState, double time)
         {
             lock (SyncRoot)
             {
@@ -641,7 +641,7 @@ namespace GarrysModLuaShared
         /// <param name="inputString">The string to trim.</param>
         /// <param name="match">String to match.</param>
         /// <returns>Trimmed string.</returns>
-        public static string Trim(IntPtr luaState, string inputString, string match = " ")
+        public static string Trim(LuaState luaState, string inputString, string match = " ")
         {
             lock (SyncRoot)
             {
@@ -659,7 +659,7 @@ namespace GarrysModLuaShared
         /// <param name="inputString">String to trim.</param>
         /// <param name="match">Character to remove.</param>
         /// <returns>Trimmed string.</returns>
-        public static string TrimLeft(IntPtr luaState, string inputString, string match = " ")
+        public static string TrimLeft(LuaState luaState, string inputString, string match = " ")
         {
             lock (SyncRoot)
             {
@@ -677,7 +677,7 @@ namespace GarrysModLuaShared
         /// <param name="inputString">String to remove from.</param>
         /// <param name="match">Character to remove.</param>
         /// <returns>Trimmed string.</returns>
-        public static string TrimRight(IntPtr luaState, string inputString, string match = " ")
+        public static string TrimRight(LuaState luaState, string inputString, string match = " ")
         {
             lock (SyncRoot)
             {
@@ -694,7 +694,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="inputString">The string to convert.</param>
         /// <returns>A string representing the value of a string converted to upper-case.</returns>
-        public static string upper(IntPtr luaState, string inputString)
+        public static string upper(LuaState luaState, string inputString)
         {
             lock (SyncRoot)
             {

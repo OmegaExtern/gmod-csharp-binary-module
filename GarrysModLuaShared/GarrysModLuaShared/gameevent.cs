@@ -9,7 +9,7 @@ namespace GarrysModLuaShared
         /// <summary>Add a game event listener.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="eventName">The event to listen to, travels through hooks with eventName as event.<para/>List of valid events can be found <see cref="http://wiki.garrysmod.com/page/Game_Events"/>.</param>
-        public static void Listen(IntPtr luaState, string eventName)
+        public static void Listen(LuaState luaState, string eventName)
         {
             lock (SyncRoot)
             {

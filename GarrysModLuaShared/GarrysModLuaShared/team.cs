@@ -11,7 +11,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="teamIndex">Index of the team.</param>
         /// <param name="increment">Amount to increase the team's score by.</param>
-        public static void AddScore(IntPtr luaState, uint teamIndex, uint increment)
+        public static void AddScore(LuaState luaState, uint teamIndex, uint increment)
         {
             lock (SyncRoot)
             {
@@ -26,7 +26,7 @@ namespace GarrysModLuaShared
         /// <summary>Returns the team index of the team with the least players. Falls back to <see cref="TEAM.TEAM_UNASSIGNED"/>.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <returns>Team index.</returns>
-        public static uint BestAutoJoinTeam(IntPtr luaState)
+        public static uint BestAutoJoinTeam(LuaState luaState)
         {
             lock (SyncRoot)
             {
@@ -47,7 +47,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="teamIndex">The team index.</param>
         /// <returns>The name of the team.</returns>
-        public static string GetName(IntPtr luaState, uint teamIndex)
+        public static string GetName(LuaState luaState, uint teamIndex)
         {
             lock (SyncRoot)
             {
@@ -65,7 +65,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="teamIndex">The team index.</param>
         /// <returns>The score of the team.</returns>
-        public static int GetScore(IntPtr luaState, uint teamIndex)
+        public static int GetScore(LuaState luaState, uint teamIndex)
         {
             lock (SyncRoot)
             {
@@ -85,7 +85,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="teamIndex">The index of the team.</param>
         /// <returns>True if the team is joinable; otherwise false.</returns>
-        public static bool Joinable(IntPtr luaState, uint teamIndex)
+        public static bool Joinable(LuaState luaState, uint teamIndex)
         {
             lock (SyncRoot)
             {
@@ -101,7 +101,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="teamIndex">The team index.</param>
         /// <returns>The amount of players in a team.</returns>
-        public static uint NumPlayers(IntPtr luaState, uint teamIndex)
+        public static uint NumPlayers(LuaState luaState, uint teamIndex)
         {
             lock (SyncRoot)
             {
@@ -117,7 +117,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="teamIndex">Index of the team.</param>
         /// <param name="classId">A class ID or table of class IDs.</param>
-        public static void SetClass(IntPtr luaState, uint teamIndex, object classId) // TODO: Add table overload after implementing tables.
+        public static void SetClass(LuaState luaState, uint teamIndex, object classId) // TODO: Add table overload after implementing tables.
         {
             lock (SyncRoot)
             {
@@ -135,7 +135,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="teamIndex">Index of the team.</param>
         /// <param name="score">The team's new score.</param>
-        public static void SetScore(IntPtr luaState, uint teamIndex, int score)
+        public static void SetScore(LuaState luaState, uint teamIndex, int score)
         {
             lock (SyncRoot)
             {
@@ -151,7 +151,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="teamIndex">Index of the team.</param>
         /// <param name="classes">A spawnpoint classname or table of spawnpoint classnames.</param>
-        public static void SetSpawnPoint(IntPtr luaState, uint teamIndex, object classes) // TODO: Add table overload after implementing tables.
+        public static void SetSpawnPoint(LuaState luaState, uint teamIndex, object classes) // TODO: Add table overload after implementing tables.
         {
             lock (SyncRoot)
             {
@@ -169,7 +169,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="teamIndex">The team index.</param>
         /// <returns>The sum of deaths of all players of the team.</returns>
-        public static uint TotalDeaths(IntPtr luaState, uint teamIndex)
+        public static uint TotalDeaths(LuaState luaState, uint teamIndex)
         {
             lock (SyncRoot)
             {
@@ -185,7 +185,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="teamIndex">The team index.</param>
         /// <returns>The sum of frags of all players of the team.</returns>
-        public static uint TotalFrags(IntPtr luaState, uint teamIndex)
+        public static uint TotalFrags(LuaState luaState, uint teamIndex)
         {
             lock (SyncRoot)
             {
@@ -201,7 +201,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="teamIndex">Index of the team.</param>
         /// <returns>True if the given team index is valid; otherwise false.</returns>
-        public static bool Valid(IntPtr luaState, uint teamIndex)
+        public static bool Valid(LuaState luaState, uint teamIndex)
         {
             lock (SyncRoot)
             {

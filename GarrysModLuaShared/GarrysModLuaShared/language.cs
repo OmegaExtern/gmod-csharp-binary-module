@@ -11,7 +11,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="placeholder">The key for this phrase.</param>
         /// <param name="fullText">The phrase that should be displayed whenever this key is used.</param>
-        public static void Add(IntPtr luaState, string placeholder, string fullText)
+        public static void Add(LuaState luaState, string placeholder, string fullText)
         {
             lock (SyncRoot)
             {
@@ -27,7 +27,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="phrase">The untranslated phrase.</param>
         /// <returns>The translated version of inputted <paramref name="phrase"/>.</returns>
-        public static string GetPhrase(IntPtr luaState, string phrase)
+        public static string GetPhrase(LuaState luaState, string phrase)
         {
             lock (SyncRoot)
             {

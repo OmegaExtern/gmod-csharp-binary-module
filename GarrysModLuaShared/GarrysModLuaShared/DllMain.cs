@@ -17,7 +17,7 @@ namespace GarrysModLuaShared
     static class DllMain
     {
         [DllExport(CallingConvention = CallingConvention.Cdecl)]
-        public static int gmod13_open(IntPtr luaState)
+        public static int gmod13_open(LuaState luaState)
         {
             Init(luaState);
 
@@ -29,6 +29,6 @@ namespace GarrysModLuaShared
         }
 
         [DllExport(CallingConvention = CallingConvention.Cdecl)]
-        public static int gmod13_close(IntPtr luaState) => 0;
+        public static int gmod13_close(LuaState luaState) => 0;
     }
 }

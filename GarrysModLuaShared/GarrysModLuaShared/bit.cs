@@ -11,7 +11,7 @@ namespace GarrysModLuaShared
         /// <param name="value">The value to be manipulated.</param>
         /// <param name="shiftCount">Amount of bits to shift.</param>
         /// <returns>Shifted value.</returns>
-        public static double arshift(IntPtr luaState, double value, double shiftCount)
+        public static double arshift(LuaState luaState, double value, double shiftCount)
         {
             lock (SyncRoot)
             {
@@ -29,7 +29,7 @@ namespace GarrysModLuaShared
         /// <param name="value">The value to be manipulated.</param>
         /// <param name="otherValues">Values to bit and with. Optional.</param>
         /// <returns>Bitwise And.</returns>
-        public static double band(IntPtr luaState, double value, params double[] otherValues)
+        public static double band(LuaState luaState, double value, params double[] otherValues)
         {
             lock (SyncRoot)
             {
@@ -51,7 +51,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="value">The value to be inverted.</param>
         /// <returns>Bitwise Not.</returns>
-        public static double bnot(IntPtr luaState, double value)
+        public static double bnot(LuaState luaState, double value)
         {
             lock (SyncRoot)
             {
@@ -68,7 +68,7 @@ namespace GarrysModLuaShared
         /// <param name="value">The first value.</param>
         /// <param name="otherValues">Extra values to be evaluated. Optional.</param>
         /// <returns>The bitwise OR result between all numbers.</returns>
-        public static double bor(IntPtr luaState, double value, params double[] otherValues)
+        public static double bor(LuaState luaState, double value, params double[] otherValues)
         {
             lock (SyncRoot)
             {
@@ -90,7 +90,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="value">The value to be byte swapped.</param>
         /// <returns>Number with swapped byte order of the given <paramref name="value"/>.</returns>
-        public static double bswap(IntPtr luaState, double value)
+        public static double bswap(LuaState luaState, double value)
         {
             lock (SyncRoot)
             {
@@ -107,7 +107,7 @@ namespace GarrysModLuaShared
         /// <param name="value">The value to be manipulated.</param>
         /// <param name="otherValues">Values to bit xor with. Optional.</param>
         /// <returns>Bitwise XOR.</returns>
-        public static double bxor(IntPtr luaState, double value, params double[] otherValues)
+        public static double bxor(LuaState luaState, double value, params double[] otherValues)
         {
             lock (SyncRoot)
             {
@@ -130,7 +130,7 @@ namespace GarrysModLuaShared
         /// <param name="value">The value to be manipulated.</param>
         /// <param name="shiftCount">Amount of bits to shift left by.</param>
         /// <returns>Shifted value.</returns>
-        public static double lshift(IntPtr luaState, double value, double shiftCount)
+        public static double lshift(LuaState luaState, double value, double shiftCount)
         {
             lock (SyncRoot)
             {
@@ -148,7 +148,7 @@ namespace GarrysModLuaShared
         /// <param name="value">The value to be manipulated.</param>
         /// <param name="shiftCount">Amount of bits to rotate left by.</param>
         /// <returns>Shifted value.</returns>
-        public static double rol(IntPtr luaState, double value, double shiftCount)
+        public static double rol(LuaState luaState, double value, double shiftCount)
         {
             lock (SyncRoot)
             {
@@ -166,7 +166,7 @@ namespace GarrysModLuaShared
         /// <param name="value">The value to be manipulated.</param>
         /// <param name="shiftCount">Amount of bits to rotate right by.</param>
         /// <returns>Shifted value.</returns>
-        public static double ror(IntPtr luaState, double value, double shiftCount)
+        public static double ror(LuaState luaState, double value, double shiftCount)
         {
             lock (SyncRoot)
             {
@@ -184,7 +184,7 @@ namespace GarrysModLuaShared
         /// <param name="value">The value to be manipulated.</param>
         /// <param name="shiftCount">Amount of bits to shift right by.</param>
         /// <returns>Shifted value.</returns>
-        public static double rshift(IntPtr luaState, double value, double shiftCount)
+        public static double rshift(LuaState luaState, double value, double shiftCount)
         {
             lock (SyncRoot)
             {
@@ -201,7 +201,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="value">The value to be normalized.</param>
         /// <returns>Normalized value.</returns>
-        public static double tobit(IntPtr luaState, double value)
+        public static double tobit(LuaState luaState, double value)
         {
             lock (SyncRoot)
             {
@@ -218,7 +218,7 @@ namespace GarrysModLuaShared
         /// <param name="value">The value to be converted.</param>
         /// <param name="digits">The number of digits. Optional.</param>
         /// <returns>Hexadecimal string.</returns>
-        public static string tohex(IntPtr luaState, double value, double digits = 8)
+        public static string tohex(LuaState luaState, double value, double digits = 8)
         {
             lock (SyncRoot)
             {

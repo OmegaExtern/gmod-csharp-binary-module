@@ -156,6 +156,7 @@
     <Compile Include="luaL_Buffer.cs" />
     <Compile Include="luaL_Reg.cs" />
     <Compile Include="LuaObject.cs" />
+    <Compile Include="LuaState.cs" />
     <Compile Include="LuaTable.cs" />
     <Compile Include="lua_Alloc.cs" />
     <Compile Include="lua_CFunction.cs" />

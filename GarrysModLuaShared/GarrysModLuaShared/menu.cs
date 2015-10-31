@@ -9,7 +9,7 @@ namespace GarrysModLuaShared
     {
         /// <summary>Used by "Demo to Video" to record the frame.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
-        public static void RecordFrame(IntPtr luaState)
+        public static void RecordFrame(LuaState luaState)
         {
             lock (SyncRoot)
             {

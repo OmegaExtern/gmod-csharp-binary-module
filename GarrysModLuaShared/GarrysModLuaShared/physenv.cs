@@ -9,7 +9,7 @@ namespace GarrysModLuaShared
         /// <summary>Loads the given surface properties as a string, follows the file format.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="properties">The properties to add.</param>
-        public static void AddSurfaceData(IntPtr luaState, string properties)
+        public static void AddSurfaceData(LuaState luaState, string properties)
         {
             lock (SyncRoot)
             {
@@ -23,7 +23,7 @@ namespace GarrysModLuaShared
         /// <summary>Returns the air density.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <returns>The air density.</returns>
-        public static double GetAirDensity(IntPtr luaState)
+        public static double GetAirDensity(LuaState luaState)
         {
             lock (SyncRoot)
             {
@@ -41,7 +41,7 @@ namespace GarrysModLuaShared
         /// <summary>Sets the air density.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="airDensity">The new air density.</param>
-        public static void SetAirDensity(IntPtr luaState, double airDensity)
+        public static void SetAirDensity(LuaState luaState, double airDensity)
         {
             lock (SyncRoot)
             {

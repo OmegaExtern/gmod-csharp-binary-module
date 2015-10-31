@@ -11,7 +11,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="networkString">The string to add to the table.</param>
         /// <returns>The ID of the string that was added to the string table.<para/>Same as calling <see cref="NetworkStringToID"/>.</returns>
-        public static uint AddNetworkString(IntPtr luaState, string networkString)
+        public static uint AddNetworkString(LuaState luaState, string networkString)
         {
             lock (SyncRoot)
             {
@@ -30,7 +30,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="stringToEncode">String to encode.</param>
         /// <returns>Base 64 encoded string (or nil for a zero-length string).</returns>
-        public static string Base64Encode(IntPtr luaState, string stringToEncode)
+        public static string Base64Encode(LuaState luaState, string stringToEncode)
         {
             lock (SyncRoot)
             {
@@ -52,7 +52,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="stringToCompress">String to compress.</param>
         /// <returns>The compressed string (or nil for a zero-length string).</returns>
-        public static string Compress(IntPtr luaState, string stringToCompress)
+        public static string Compress(LuaState luaState, string stringToCompress)
         {
             lock (SyncRoot)
             {
@@ -68,7 +68,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="stringToHash">The string to calculate the checksum of.</param>
         /// <returns>The unsigned 32 bit checksum.</returns>
-        public static string CRC(IntPtr luaState, string stringToHash)
+        public static string CRC(LuaState luaState, string stringToHash)
         {
             lock (SyncRoot)
             {
@@ -83,7 +83,7 @@ namespace GarrysModLuaShared
         /// <summary>Returns the current date formatted like '2015-10-27 20-04-59'.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <returns>The current date formatted like '2015-10-27 20-04-59'.</returns>
-        public static string DateStamp(IntPtr luaState)
+        public static string DateStamp(LuaState luaState)
         {
             lock (SyncRoot)
             {
@@ -104,7 +104,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="decalName">Name of the decal.</param>
         /// <returns>The full material path by the decal name.</returns>
-        public static string DecalMaterial(IntPtr luaState, string decalName)
+        public static string DecalMaterial(LuaState luaState, string decalName)
         {
             lock (SyncRoot)
             {
@@ -120,7 +120,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="compressedString">String to decompress.</param>
         /// <returns>Uncompressed <paramref name="compressedString"/>.</returns>
-        public static string Decompress(IntPtr luaState, string compressedString)
+        public static string Decompress(LuaState luaState, string compressedString)
         {
             lock (SyncRoot)
             {
@@ -144,7 +144,7 @@ namespace GarrysModLuaShared
         /// <param name="name">Variable name to get the value of.</param>
         /// <param name="default">The default value, in case there's nothing stored.</param>
         /// <returns>The stored value.</returns>
-        public static string GetPData(IntPtr luaState, string steamId, string name, string @default)
+        public static string GetPData(LuaState luaState, string steamId, string name, string @default)
         {
             lock (SyncRoot)
             {
@@ -172,7 +172,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="surfaceName">The name of the surface.</param>
         /// <returns>The matching surface index for the <paramref name="surfaceName"/>.</returns>
-        public static uint GetSurfaceIndex(IntPtr luaState, string surfaceName)
+        public static uint GetSurfaceIndex(LuaState luaState, string surfaceName)
         {
             lock (SyncRoot)
             {
@@ -188,7 +188,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="id">Surface properties ID. You can get it from <see cref="Structs.TraceResult"/> structure.</param>
         /// <returns>The name of surfaceproperties ID.</returns>
-        public static string GetSurfacePropName(IntPtr luaState, uint id)
+        public static string GetSurfacePropName(LuaState luaState, uint id)
         {
             lock (SyncRoot)
             {
@@ -216,7 +216,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="modelName">Name or path of the model to check.</param>
         /// <returns>True if the model is loaded in the game; otherwise false.</returns>
-        public static bool IsModelLoaded(IntPtr luaState, string modelName)
+        public static bool IsModelLoaded(LuaState luaState, string modelName)
         {
             lock (SyncRoot)
             {
@@ -236,7 +236,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="modelName">Name or path of the model to check.</param>
         /// <returns>True if the specified model is valid; otherwise false.</returns>
-        public static bool IsValidModel(IntPtr luaState, string modelName)
+        public static bool IsValidModel(LuaState luaState, string modelName)
         {
             lock (SyncRoot)
             {
@@ -254,7 +254,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="modelName">Name or path of the model to check.</param>
         /// <returns>True if the specified prop is valid; otherwise false.</returns>
-        public static bool IsValidProp(IntPtr luaState, string modelName)
+        public static bool IsValidProp(LuaState luaState, string modelName)
         {
             lock (SyncRoot)
             {
@@ -270,7 +270,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="ragdollName">Name or path of the model to check.</param>
         /// <returns>True if the specified model name points to a valid ragdoll; otherwise false.</returns>
-        public static bool IsValidRagdoll(IntPtr luaState, string ragdollName)
+        public static bool IsValidRagdoll(LuaState luaState, string ragdollName)
         {
             lock (SyncRoot)
             {
@@ -294,7 +294,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="stringTableId">ID to get the associated string from.</param>
         /// <returns>The networked string (or nil if it wasn't found).</returns>
-        public static string NetworkIDToString(IntPtr luaState, uint stringTableId)
+        public static string NetworkIDToString(LuaState luaState, uint stringTableId)
         {
             lock (SyncRoot)
             {
@@ -310,7 +310,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="networkString">String to get the associated networked ID from.</param>
         /// <returns>The networked ID of the string, or 0 if it hasn't been networked with <see cref="AddNetworkString"/>.</returns>
-        public static uint NetworkStringToID(IntPtr luaState, string networkString)
+        public static uint NetworkStringToID(LuaState luaState, string networkString)
         {
             lock (SyncRoot)
             {
@@ -326,7 +326,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="float">The float to format.</param>
         /// <returns>Formatted <paramref name="float"/>.</returns>
-        public static string NiceFloat(IntPtr luaState, double @float)
+        public static string NiceFloat(LuaState luaState, double @float)
         {
             lock (SyncRoot)
             {
@@ -351,7 +351,7 @@ namespace GarrysModLuaShared
         /// <summary>Precaches a model for later use. Model is cached after being loaded once.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="modelName">The model to precache.</param>
-        public static void PrecacheModel(IntPtr luaState, string modelName)
+        public static void PrecacheModel(LuaState luaState, string modelName)
         {
             lock (SyncRoot)
             {
@@ -365,7 +365,7 @@ namespace GarrysModLuaShared
         /// <summary>Precaches a sound for later use. Sound is cached after being loaded once.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="soundName">The sound to precache.</param>
-        public static void PrecacheSound(IntPtr luaState, string soundName)
+        public static void PrecacheSound(LuaState luaState, string soundName)
         {
             lock (SyncRoot)
             {
@@ -382,7 +382,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="file">The file to get the absolute path of.</param>
         /// <returns>The absolute system path to <paramref name="file"/> relative to /garrysmod/ folder.</returns>
-        public static string RelativePathToFull(IntPtr luaState, string file)
+        public static string RelativePathToFull(LuaState luaState, string file)
         {
             lock (SyncRoot)
             {
@@ -398,7 +398,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="steamId">Steam ID of the player.</param>
         /// <param name="name">Variable name to remove.</param>
-        public static void RemovePData(IntPtr luaState, string steamId, string name)
+        public static void RemovePData(LuaState luaState, string steamId, string name)
         {
             lock (SyncRoot)
             {
@@ -417,7 +417,7 @@ namespace GarrysModLuaShared
         /// <param name="steamId">Steam ID of the player.</param>
         /// <param name="name">Variable name to store the value in.</param>
         /// <param name="value">The value to store.</param>
-        public static void SetPData(IntPtr luaState, string steamId, string name, object value)
+        public static void SetPData(LuaState luaState, string steamId, string name, object value)
         {
             lock (SyncRoot)
             {
@@ -437,7 +437,7 @@ namespace GarrysModLuaShared
         /// <param name="max">The maximum value of the random range.</param>
         /// <param name="additionalSeed">The additional seed.</param>
         /// <returns>The random float value.</returns>
-        public static double SharedRandom(IntPtr luaState, string uniqueName, double min, double max, double additionalSeed = 0.0D)
+        public static double SharedRandom(LuaState luaState, string uniqueName, double min, double max, double additionalSeed = 0.0D)
         {
             lock (SyncRoot)
             {
@@ -462,7 +462,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="steam64Id">The 64 bit Steam ID.</param>
         /// <returns>STEAM_0 style Steam ID.</returns>
-        public static string SteamIDFrom64(IntPtr luaState, string steam64Id)
+        public static string SteamIDFrom64(LuaState luaState, string steam64Id)
         {
             lock (SyncRoot)
             {
@@ -478,7 +478,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="steamId">The STEAM_0 style ID.</param>
         /// <returns>64bit Steam ID.</returns>
-        public static string SteamIDTo64(IntPtr luaState, string steamId)
+        public static string SteamIDTo64(LuaState luaState, string steamId)
         {
             lock (SyncRoot)
             {
@@ -496,7 +496,7 @@ namespace GarrysModLuaShared
         /// <param name="input">The string to convert.</param>
         /// <param name="typeName">The type to attempt to convert the string to. This can be vector, angle, float, int, bool, or string (case insensitive).</param>
         /// <returns>The result of the conversion, or nil if a bad type is specified.</returns>
-        public static object StringToType(IntPtr luaState, string input, string typeName)
+        public static object StringToType(LuaState luaState, string input, string typeName)
         {
             lock (SyncRoot)
             {
@@ -519,7 +519,7 @@ namespace GarrysModLuaShared
         /// <summary>Returns the time since this function has been last called in milliseconds.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <returns>Time since this function has been last called in milliseconds.</returns>
-        public static double TimerCycle(IntPtr luaState)
+        public static double TimerCycle(LuaState luaState)
         {
             lock (SyncRoot)
             {
@@ -540,7 +540,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="input">What to convert.</param>
         /// <returns>Converted string.</returns>
-        public static string TypeToString(IntPtr luaState, object input)
+        public static string TypeToString(LuaState luaState, object input)
         {
             lock (SyncRoot)
             {

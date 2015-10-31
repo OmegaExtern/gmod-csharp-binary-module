@@ -13,7 +13,7 @@ namespace GarrysModLuaShared
         /// <param name="repetitions">Repetitions. Use 0 for infinite.</param>
         /// <param name="function">The new function.</param>
         /// <returns>True if succeeded; otherwise false.</returns>
-        public static bool Adjust(IntPtr luaState, object identifier, double delay, uint repetitions, lua_CFunction function)
+        public static bool Adjust(LuaState luaState, object identifier, double delay, uint repetitions, lua_CFunction function)
         {
             lock (SyncRoot)
             {
@@ -34,7 +34,7 @@ namespace GarrysModLuaShared
         /// <param name="delay">The delay interval in seconds.</param>
         /// <param name="repetitions">The number of times to repeat the timer (use 0 for infinite repetitions).</param>
         /// <param name="function">Function to call when timer has finished the countdown.</param>
-        public static void Create(IntPtr luaState, object identifier, double delay, uint repetitions, lua_CFunction function)
+        public static void Create(LuaState luaState, object identifier, double delay, uint repetitions, lua_CFunction function)
         {
             lock (SyncRoot)
             {
@@ -52,7 +52,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="identifier">Identifier of the timer.</param>
         /// <returns>True if the timer exists; otherwise false.</returns>
-        public static bool Exists(IntPtr luaState, object identifier)
+        public static bool Exists(LuaState luaState, object identifier)
         {
             lock (SyncRoot)
             {
@@ -68,7 +68,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="identifier">Identifier of the timer.</param>
         /// <returns>False if the timer doesn't exist or is already paused; otherwise true.</returns>
-        public static bool Pause(IntPtr luaState, object identifier)
+        public static bool Pause(LuaState luaState, object identifier)
         {
             lock (SyncRoot)
             {
@@ -83,7 +83,7 @@ namespace GarrysModLuaShared
         /// <summary>Stops and removes the timer.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="identifier">Identifier of the timer to remove.</param>
-        public static void Remove(IntPtr luaState, object identifier)
+        public static void Remove(LuaState luaState, object identifier)
         {
             lock (SyncRoot)
             {
@@ -98,7 +98,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="identifier">Identifier of the timer.</param>
         /// <returns>The amount of executions left.</returns>
-        public static uint RepsLeft(IntPtr luaState, object identifier)
+        public static uint RepsLeft(LuaState luaState, object identifier)
         {
             lock (SyncRoot)
             {
@@ -114,7 +114,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="delay">How long until the function should be ran (in seconds).</param>
         /// <param name="function">The function to run after the specified delay.</param>
-        public static void Simple(IntPtr luaState, double delay, lua_CFunction function)
+        public static void Simple(LuaState luaState, double delay, lua_CFunction function)
         {
             lock (SyncRoot)
             {
@@ -130,7 +130,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="identifier">Identifier of the timer.</param>
         /// <returns>True if the timer exists; otherwise false.</returns>
-        public static bool Start(IntPtr luaState, object identifier)
+        public static bool Start(LuaState luaState, object identifier)
         {
             lock (SyncRoot)
             {
@@ -146,7 +146,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="identifier">Identifier of the timer.</param>
         /// <returns>False if the timer doesn't exist or is already stopped; otherwise true.</returns>
-        public static bool Stop(IntPtr luaState, object identifier)
+        public static bool Stop(LuaState luaState, object identifier)
         {
             lock (SyncRoot)
             {
@@ -162,7 +162,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="identifier">Identifier of the timer.</param>
         /// <returns>The amount of time left.</returns>
-        public static double TimeLeft(IntPtr luaState, object identifier)
+        public static double TimeLeft(LuaState luaState, object identifier)
         {
             lock (SyncRoot)
             {
@@ -178,7 +178,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="identifier">Identifier of the timer.</param>
         /// <returns>Status of the timer.</returns>
-        public static bool Toggle(IntPtr luaState, object identifier)
+        public static bool Toggle(LuaState luaState, object identifier)
         {
             lock (SyncRoot)
             {
@@ -194,7 +194,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="identifier">Identifier of the timer.</param>
         /// <returns>False if the timer doesn't exist or is already running; otherwise true.</returns>
-        public static bool UnPause(IntPtr luaState, object identifier)
+        public static bool UnPause(LuaState luaState, object identifier)
         {
             lock (SyncRoot)
             {

@@ -14,7 +14,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="x">The number to get the absolute value of.</param>
         /// <returns>Absolute value of <paramref name="x"/>.</returns>
-        public static double abs(IntPtr luaState, double x)
+        public static double abs(LuaState luaState, double x)
         {
             lock (SyncRoot)
             {
@@ -30,7 +30,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="x">Value in range from -1 to +1.</param>
         /// <returns>Arc cosine of <paramref name="x"/>.</returns>
-        public static double acos(IntPtr luaState, double x)
+        public static double acos(LuaState luaState, double x)
         {
             lock (SyncRoot)
             {
@@ -47,7 +47,7 @@ namespace GarrysModLuaShared
         /// <param name="a">The first angle.</param>
         /// <param name="b">The second angle.</param>
         /// <returns>The difference between the angles.</returns>
-        public static double AngleDifference(IntPtr luaState, double a, double b)
+        public static double AngleDifference(LuaState luaState, double a, double b)
         {
             lock (SyncRoot)
             {
@@ -66,7 +66,7 @@ namespace GarrysModLuaShared
         /// <param name="end">The max value, this function will never return a number greater than this.</param>
         /// <param name="amount">The amount to increment the starting number by.</param>
         /// <returns>New value.</returns>
-        public static double Approach(IntPtr luaState, double start, double end, double amount)
+        public static double Approach(LuaState luaState, double start, double end, double amount)
         {
             lock (SyncRoot)
             {
@@ -86,7 +86,7 @@ namespace GarrysModLuaShared
         /// <param name="targetAngle">The angle to increase towards.</param>
         /// <param name="rate">The amount to approach the target angle by.</param>
         /// <returns>Modified angle.</returns>
-        public static double ApproachAngle(IntPtr luaState, double currentAngle, double targetAngle, double rate)
+        public static double ApproachAngle(LuaState luaState, double currentAngle, double targetAngle, double rate)
         {
             lock (SyncRoot)
             {
@@ -104,7 +104,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="x">Value in range from -1 to +1.</param>
         /// <returns>Arc sine of <paramref name="x"/>.</returns>
-        public static double asin(IntPtr luaState, double x)
+        public static double asin(LuaState luaState, double x)
         {
             lock (SyncRoot)
             {
@@ -120,7 +120,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="x">Value in range from -1 to +1.</param>
         /// <returns>Arc tangent of <paramref name="x"/>.</returns>
-        public static double atan(IntPtr luaState, double x)
+        public static double atan(LuaState luaState, double x)
         {
             lock (SyncRoot)
             {
@@ -137,7 +137,7 @@ namespace GarrysModLuaShared
         /// <param name="y">Y coordinate.</param>
         /// <param name="x">X coordinate.</param>
         /// <returns>atan(<paramref name="y"/> / <paramref name="x"/>) in radians.</returns>
-        public static double atan2(IntPtr luaState, double y, double x)
+        public static double atan2(LuaState luaState, double y, double x)
         {
             lock (SyncRoot)
             {
@@ -154,7 +154,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="string">Binary string to convert.</param>
         /// <returns>Base 10 number.</returns>
-        public static double BinToInt(IntPtr luaState, string @string)
+        public static double BinToInt(LuaState luaState, string @string)
         {
             lock (SyncRoot)
             {
@@ -175,7 +175,7 @@ namespace GarrysModLuaShared
         /// <param name="t"></param>
         /// <param name="tInc"></param>
         /// <returns></returns>
-        public static double calcBSplineN(IntPtr luaState, double i, double k, double t, double tInc)
+        public static double calcBSplineN(LuaState luaState, double i, double k, double t, double tInc)
         {
             lock (SyncRoot)
             {
@@ -194,7 +194,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="number">The number to be rounded up.</param>
         /// <returns>Ceiled <paramref name="number"/>.</returns>
-        public static double ceil(IntPtr luaState, double number)
+        public static double ceil(LuaState luaState, double number)
         {
             lock (SyncRoot)
             {
@@ -212,7 +212,7 @@ namespace GarrysModLuaShared
         /// <param name="min">The minimum value, this function will never return a number less than this.</param>
         /// <param name="max">The maximum value, this function will never return a number greater than this.</param>
         /// <returns>The clamped <paramref name="input"/>.</returns>
-        public static double Clamp(IntPtr luaState, double input, double min, double max)
+        public static double Clamp(LuaState luaState, double input, double min, double max)
         {
             lock (SyncRoot)
             {
@@ -230,7 +230,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="angle">Angle in radians.</param>
         /// <returns>Cosine of <paramref name="angle"/>.</returns>
-        public static double cos(IntPtr luaState, double angle)
+        public static double cos(LuaState luaState, double angle)
         {
             lock (SyncRoot)
             {
@@ -246,7 +246,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="number">Value in radians.</param>
         /// <returns>Hyperbolic cosine of <paramref name="number"/>.</returns>
-        public static double cosh(IntPtr luaState, double number)
+        public static double cosh(LuaState luaState, double number)
         {
             lock (SyncRoot)
             {
@@ -262,7 +262,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="radians">Value to be converted to degrees.</param>
         /// <returns>Degrees from radians.</returns>
-        public static double deg(IntPtr luaState, double radians)
+        public static double deg(LuaState luaState, double radians)
         {
             lock (SyncRoot)
             {
@@ -281,7 +281,7 @@ namespace GarrysModLuaShared
         /// <param name="x2">X position of second point.</param>
         /// <param name="y2">Y position of second point.</param>
         /// <returns>Distance between the two points.</returns>
-        public static double Distance(IntPtr luaState, double x1, double y1, double x2, double y2)
+        public static double Distance(LuaState luaState, double x1, double y1, double x2, double y2)
         {
             lock (SyncRoot)
             {
@@ -302,7 +302,7 @@ namespace GarrysModLuaShared
         /// <param name="easeIn">Fraction of how much easing to begin with.</param>
         /// <param name="easeOut">Fraction of how much easing to end with.</param>
         /// <returns>Eased value.</returns>
-        public static double EaseInOut(IntPtr luaState, double progress, double easeIn, double easeOut)
+        public static double EaseInOut(LuaState luaState, double progress, double easeIn, double easeOut)
         {
             lock (SyncRoot)
             {
@@ -320,7 +320,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="exponent">The exponent for the function.</param>
         /// <returns>Result.</returns>
-        public static double exp(IntPtr luaState, double exponent)
+        public static double exp(LuaState luaState, double exponent)
         {
             lock (SyncRoot)
             {
@@ -336,7 +336,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="number">The number to be rounded down.</param>
         /// <returns>Floored <paramref name="number"/>.</returns>
-        public static double floor(IntPtr luaState, double number)
+        public static double floor(LuaState luaState, double number)
         {
             lock (SyncRoot)
             {
@@ -353,7 +353,7 @@ namespace GarrysModLuaShared
         /// <param name="base">The base value.</param>
         /// <param name="modulator">The modulator.</param>
         /// <returns>The calculated modulus.</returns>
-        public static double fmod(IntPtr luaState, double @base, double modulator)
+        public static double fmod(LuaState luaState, double @base, double modulator)
         {
             lock (SyncRoot)
             {
@@ -370,7 +370,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="inputValue">The value to get the normalized fraction and the exponent from.</param>
         /// <returns>First value is (normalized fraction) always in the range 1/2 (inclusive) to 1 (exclusive). Second value is an exponent.</returns>
-        public static Tuple<double, double> frexp(IntPtr luaState, double inputValue)
+        public static Tuple<double, double> frexp(LuaState luaState, double inputValue)
         {
             lock (SyncRoot)
             {
@@ -387,7 +387,7 @@ namespace GarrysModLuaShared
         /// <param name="inputValue">The value to get the normalized fraction and the exponent from.</param>
         /// <param name="normalizedFraction">Always in the range 1/2 (inclusive) to 1 (exclusive).</param>
         /// <param name="exponent">An exponent.</param>
-        public static void frexp(IntPtr luaState, double inputValue, out double normalizedFraction, out double exponent)
+        public static void frexp(LuaState luaState, double inputValue, out double normalizedFraction, out double exponent)
         {
             lock (SyncRoot)
             {
@@ -404,7 +404,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="number">Number to be converted.</param>
         /// <returns>Binary number string.</returns>
-        public static string IntToBin(IntPtr luaState, double number)
+        public static string IntToBin(LuaState luaState, double number)
         {
             lock (SyncRoot)
             {
@@ -421,7 +421,7 @@ namespace GarrysModLuaShared
         /// <param name="normalizedFraction">The value to get the normalized fraction and the exponent from.</param>
         /// <param name="exponent">The value to get the normalized fraction and the exponent from.</param>
         /// <returns>Result.</returns>
-        public static double ldexp(IntPtr luaState, double normalizedFraction, double exponent)
+        public static double ldexp(LuaState luaState, double normalizedFraction, double exponent)
         {
             lock (SyncRoot)
             {
@@ -439,7 +439,7 @@ namespace GarrysModLuaShared
         /// <param name="x">The value to get the base from exponent from.</param>
         /// <param name="base">The base.</param>
         /// <returns>Result.</returns>
-        public static double log(IntPtr luaState, double x, double @base = e)
+        public static double log(LuaState luaState, double x, double @base = e)
         {
             lock (SyncRoot)
             {
@@ -456,7 +456,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="x">The value to get the base from exponent from.</param>
         /// <returns>The base-10 logarithm of <paramref name="x"/>.</returns>
-        public static double log10(IntPtr luaState, double x)
+        public static double log10(LuaState luaState, double x)
         {
             lock (SyncRoot)
             {
@@ -472,7 +472,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="numbers">Numbers to get the largest from.</param>
         /// <returns>The largest number.</returns>
-        public static double max(IntPtr luaState, params double[] numbers)
+        public static double max(LuaState luaState, params double[] numbers)
         {
             lock (SyncRoot)
             {
@@ -493,7 +493,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="numbers">Numbers to get the smallest from.</param>
         /// <returns>The smallest number.</returns>
-        public static double min(IntPtr luaState, params double[] numbers)
+        public static double min(LuaState luaState, params double[] numbers)
         {
             lock (SyncRoot)
             {
@@ -515,7 +515,7 @@ namespace GarrysModLuaShared
         /// <param name="base">The base value.</param>
         /// <param name="modulator">The modulator.</param>
         /// <returns>First result is the integral component. Second result is the fractional component.</returns>
-        public static Tuple<double, double> modf(IntPtr luaState, double @base, double modulator)
+        public static Tuple<double, double> modf(LuaState luaState, double @base, double modulator)
         {
             lock (SyncRoot)
             {
@@ -534,7 +534,7 @@ namespace GarrysModLuaShared
         /// <param name="modulator">The modulator.</param>
         /// <param name="integral">The integral component.</param>
         /// <param name="fractional">The fractional component.</param>
-        public static void modf(IntPtr luaState, double @base, double modulator, out double integral, out double fractional)
+        public static void modf(LuaState luaState, double @base, double modulator, out double integral, out double fractional)
         {
             lock (SyncRoot)
             {
@@ -552,7 +552,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="angle">The angle to normalize, in degrees.</param>
         /// <returns>The normalized <paramref name="angle"/>, in the range of -180 to 180 degrees.</returns>
-        public static double NormalizeAngle(IntPtr luaState, double angle)
+        public static double NormalizeAngle(LuaState luaState, double angle)
         {
             lock (SyncRoot)
             {
@@ -569,7 +569,7 @@ namespace GarrysModLuaShared
         /// <param name="x">Base.</param>
         /// <param name="y">Exponent.</param>
         /// <returns>Returns <paramref name="x"/> raised to the power <paramref name="y"/>.</returns>
-        public static double pow(IntPtr luaState, double x, double y)
+        public static double pow(LuaState luaState, double x, double y)
         {
             lock (SyncRoot)
             {
@@ -586,7 +586,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="degrees">The angle measured in degrees.</param>
         /// <returns>Radians from degrees.</returns>
-        public static double rad(IntPtr luaState, double degrees)
+        public static double rad(LuaState luaState, double degrees)
         {
             lock (SyncRoot)
             {
@@ -603,7 +603,7 @@ namespace GarrysModLuaShared
         /// <param name="min">The minimum value.</param>
         /// <param name="max">The maximum value.</param>
         /// <returns>Random float between <paramref name="min"/> and <paramref name="max"/>.</returns>
-        public static double Rand(IntPtr luaState, double min, double max)
+        public static double Rand(LuaState luaState, double min, double max)
         {
             lock (SyncRoot)
             {
@@ -621,7 +621,7 @@ namespace GarrysModLuaShared
         /// <param name="min">The minimum value.</param>
         /// <param name="max">The maximum value.</param>
         /// <returns>Random integer between <paramref name="min"/> and <paramref name="max"/>.</returns>
-        public static int random(IntPtr luaState, int min, int max)
+        public static int random(LuaState luaState, int min, int max)
         {
             lock (SyncRoot)
             {
@@ -637,7 +637,7 @@ namespace GarrysModLuaShared
         /// <summary>Seeds the <paramref name="seed"/> for the random generator, which will cause <see cref="random"/> to return the same sequence of numbers.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="seed">The new seed.</param>
-        public static void randomseed(IntPtr luaState, double seed)
+        public static void randomseed(LuaState luaState, double seed)
         {
             lock (SyncRoot)
             {
@@ -656,7 +656,7 @@ namespace GarrysModLuaShared
         /// <param name="outMin">The minimum of new range.</param>
         /// <param name="outMax">The maximum of new range.</param>
         /// <returns>The number in the new range.</returns>
-        public static double Remap(IntPtr luaState, double value, double inMin, double inMax, double outMin, double outMax)
+        public static double Remap(LuaState luaState, double value, double inMin, double inMax, double outMin, double outMax)
         {
             lock (SyncRoot)
             {
@@ -677,7 +677,7 @@ namespace GarrysModLuaShared
         /// <param name="value">The value to round.</param>
         /// <param name="decimals">The decimal places to round to.</param>
         /// <returns>The rounded <paramref name="value"/>.</returns>
-        public static double Round(IntPtr luaState, double value, double decimals = 0.0D)
+        public static double Round(LuaState luaState, double value, double decimals = 0.0D)
         {
             lock (SyncRoot)
             {
@@ -694,7 +694,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="angle">Angle in radians.</param>
         /// <returns>Sine of the given <paramref name="angle"/>.</returns>
-        public static double sin(IntPtr luaState, double angle)
+        public static double sin(LuaState luaState, double angle)
         {
             lock (SyncRoot)
             {
@@ -710,7 +710,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="number">Value in radians.</param>
         /// <returns>Hyperbolic sine of the given <paramref name="number"/>.</returns>
-        public static double sinh(IntPtr luaState, double number)
+        public static double sinh(LuaState luaState, double number)
         {
             lock (SyncRoot)
             {
@@ -726,7 +726,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="number">Value to get the square root of.</param>
         /// <returns>Square root of the given <paramref name="number"/>.</returns>
-        public static double sqrt(IntPtr luaState, double number)
+        public static double sqrt(LuaState luaState, double number)
         {
             lock (SyncRoot)
             {
@@ -742,7 +742,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="angle">Angle in radians.</param>
         /// <returns>Tangent of the given <paramref name="angle"/>.</returns>
-        public static double tan(IntPtr luaState, double angle)
+        public static double tan(LuaState luaState, double angle)
         {
             lock (SyncRoot)
             {
@@ -758,7 +758,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="number">Value in radians.</param>
         /// <returns>Hyperbolic tangent of the given <paramref name="number"/>.</returns>
-        public static double tanh(IntPtr luaState, double number)
+        public static double tanh(LuaState luaState, double number)
         {
             lock (SyncRoot)
             {
@@ -776,7 +776,7 @@ namespace GarrysModLuaShared
         /// <param name="end">End time in seconds.</param>
         /// <param name="current">Current time in seconds.</param>
         /// <returns>The fraction of where the current time is relative to the <paramref name="start"/> and <paramref name="end"/> times.</returns>
-        public static double TimeFraction(IntPtr luaState, double start, double end, double current)
+        public static double TimeFraction(LuaState luaState, double start, double end, double current)
         {
             lock (SyncRoot)
             {
@@ -795,7 +795,7 @@ namespace GarrysModLuaShared
         /// <param name="number">The number to truncate.</param>
         /// <param name="digits">The amount of digits to keep after the point.</param>
         /// <returns>Truncated <paramref name="number"/>.</returns>
-        public static double Truncate(IntPtr luaState, double number, double digits)
+        public static double Truncate(LuaState luaState, double number, double digits)
         {
             lock (SyncRoot)
             {

@@ -12,7 +12,7 @@ namespace GarrysModLuaShared
         /// <summary>Enables or disables the clipping used by the VGUI that limits the drawing operations to a panels bounds.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="disable">True to disable, false to enable the clipping.</param>
-        public static void DisableClipping(IntPtr luaState, bool disable)
+        public static void DisableClipping(LuaState luaState, bool disable)
         {
             lock (SyncRoot)
             {
@@ -31,7 +31,7 @@ namespace GarrysModLuaShared
         /// <param name="startY">The start Y coordinate.</param>
         /// <param name="endX">The end X coordinate.</param>
         /// <param name="endY">The end Y coordinate.</param>
-        public static void DrawLine(IntPtr luaState, uint startX, uint startY, uint endX, uint endY)
+        public static void DrawLine(LuaState luaState, uint startX, uint startY, uint endX, uint endY)
         {
             lock (SyncRoot)
             {
@@ -51,7 +51,7 @@ namespace GarrysModLuaShared
         /// <param name="y">The start Y coordinate.</param>
         /// <param name="width">The width.</param>
         /// <param name="height">The height.</param>
-        public static void DrawOutlinedRect(IntPtr luaState, uint x, uint y, uint width, uint height)
+        public static void DrawOutlinedRect(LuaState luaState, uint x, uint y, uint width, uint height)
         {
             lock (SyncRoot)
             {
@@ -73,7 +73,7 @@ namespace GarrysModLuaShared
         /// <param name="y">The Y co-ordinate.</param>
         /// <param name="width">The width of the rectangle.</param>
         /// <param name="height">The height of the rectangle.</param>
-        public static void DrawRect(IntPtr luaState, uint x, uint y, uint width, uint height)
+        public static void DrawRect(LuaState luaState, uint x, uint y, uint width, uint height)
         {
             lock (SyncRoot)
             {
@@ -90,7 +90,7 @@ namespace GarrysModLuaShared
         /// <summary>Draw the specified text on the screen, using the previously set position, font and color.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="text">The text to be rendered.</param>
-        public static void DrawText(IntPtr luaState, string text)
+        public static void DrawText(LuaState luaState, string text)
         {
             lock (SyncRoot)
             {
@@ -107,7 +107,7 @@ namespace GarrysModLuaShared
         /// <param name="y">The Y co-ordinate.</param>
         /// <param name="width">The width of the rectangle.</param>
         /// <param name="height">The height of the rectangle.</param>
-        public static void DrawTexturedRect(IntPtr luaState, uint x, uint y, uint width, uint height)
+        public static void DrawTexturedRect(LuaState luaState, uint x, uint y, uint width, uint height)
         {
             lock (SyncRoot)
             {
@@ -128,7 +128,7 @@ namespace GarrysModLuaShared
         /// <param name="width">The width of the rectangle.</param>
         /// <param name="height">The height of the rectangle.</param>
         /// <param name="rotation">The rotation of the rectangle, in degrees.</param>
-        public static void DrawTexturedRectRotated(IntPtr luaState, uint x, uint y, uint width, uint height, double rotation)
+        public static void DrawTexturedRectRotated(LuaState luaState, uint x, uint y, uint width, uint height, double rotation)
         {
             lock (SyncRoot)
             {
@@ -153,7 +153,7 @@ namespace GarrysModLuaShared
         /// <param name="startV">The V texture mapping of the rect origin.</param>
         /// <param name="endU">The U texture mapping of the rect end.</param>
         /// <param name="endV">The V texture mapping of the rect end.</param>
-        public static void DrawTexturedRectUV(IntPtr luaState, uint x, uint y, uint width, uint height, double startU, double startV, double endU, double endV)
+        public static void DrawTexturedRectUV(LuaState luaState, uint x, uint y, uint width, uint height, double startU, double startV, double endU, double endV)
         {
             lock (SyncRoot)
             {
@@ -177,7 +177,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="text">The string to check the size of.</param>
         /// <returns>First result is width of <paramref name="text"/> in pixels. Second result is height of <paramref name="text"/> in pixels.</returns>
-        public static Tuple<int, int> GetTextSize(IntPtr luaState, string text)
+        public static Tuple<int, int> GetTextSize(LuaState luaState, string text)
         {
             lock (SyncRoot)
             {
@@ -194,7 +194,7 @@ namespace GarrysModLuaShared
         /// <param name="text">The string to check the size of.</param>
         /// <param name="width">Width of <paramref name="text"/> in pixels.</param>
         /// <param name="height">Height of <paramref name="text"/> in pixels.</param>
-        public static void GetTextSize(IntPtr luaState, string text, out int width, out int height)
+        public static void GetTextSize(LuaState luaState, string text, out int width, out int height)
         {
             lock (SyncRoot)
             {
@@ -211,7 +211,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="nameOrPath">Name or path of the texture.</param>
         /// <returns>Texture ID of the texture with the given <paramref name="nameOrPath"/>.</returns>
-        public static uint GetTextureID(IntPtr luaState, string nameOrPath)
+        public static uint GetTextureID(LuaState luaState, string nameOrPath)
         {
             lock (SyncRoot)
             {
@@ -227,7 +227,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="textureId">The texture ID.</param>
         /// <returns>First result is the width of texture. Second result is the height of texture.</returns>
-        public static Tuple<int, int> GetTextureSize(IntPtr luaState, uint textureId)
+        public static Tuple<int, int> GetTextureSize(LuaState luaState, uint textureId)
         {
             lock (SyncRoot)
             {
@@ -244,7 +244,7 @@ namespace GarrysModLuaShared
         /// <param name="textureId">The texture ID.</param>
         /// <param name="width">The width of texture.</param>
         /// <param name="height">The height of texture.</param>
-        public static void GetTextureSize(IntPtr luaState, uint textureId, out int width, out int height)
+        public static void GetTextureSize(LuaState luaState, uint textureId, out int width, out int height)
         {
             lock (SyncRoot)
             {
@@ -260,7 +260,7 @@ namespace GarrysModLuaShared
         /// <summary>Play a sound file directly on the client (such as UI sounds, etc).</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="soundFile">The path to the sound file.</param>
-        public static void PlaySound(IntPtr luaState, string soundFile)
+        public static void PlaySound(LuaState luaState, string soundFile)
         {
             lock (SyncRoot)
             {
@@ -274,7 +274,7 @@ namespace GarrysModLuaShared
         /// <summary>Sets a multiplier that will influence all upcoming drawing operations.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="multiplier">The multiplier ranging from 0 to 1.</param>
-        public static void SetAlphaMultiplier(IntPtr luaState, double multiplier)
+        public static void SetAlphaMultiplier(LuaState luaState, double multiplier)
         {
             lock (SyncRoot)
             {
@@ -291,7 +291,7 @@ namespace GarrysModLuaShared
         /// <param name="g">The green value of color.</param>
         /// <param name="b">The blue value of color.</param>
         /// <param name="a">The alpha value of color.</param>
-        public static void SetDrawColor(IntPtr luaState, byte r, byte g, byte b, byte a = byte.MaxValue) // TODO: Add Color structure overload after implementing tables.
+        public static void SetDrawColor(LuaState luaState, byte r, byte g, byte b, byte a = byte.MaxValue) // TODO: Add Color structure overload after implementing tables.
         {
             lock (SyncRoot)
             {
@@ -308,7 +308,7 @@ namespace GarrysModLuaShared
         /// <summary>Set the current font to be used for text operations later.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="fontName">The name of the font to use.</param>
-        public static void SetFont(IntPtr luaState, string fontName)
+        public static void SetFont(LuaState luaState, string fontName)
         {
             lock (SyncRoot)
             {
@@ -327,7 +327,7 @@ namespace GarrysModLuaShared
         /// <param name="g">The green value of color.</param>
         /// <param name="b">The blue value of color.</param>
         /// <param name="a">The alpha value of color.</param>
-        public static void SetTextColor(IntPtr luaState, byte r, byte g, byte b, byte a = byte.MaxValue) // TODO: Add Color structure overload after implementing tables.
+        public static void SetTextColor(LuaState luaState, byte r, byte g, byte b, byte a = byte.MaxValue) // TODO: Add Color structure overload after implementing tables.
         {
             lock (SyncRoot)
             {
@@ -345,7 +345,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="x">The X co-ordinate.</param>
         /// <param name="y">The Y co-ordinate.</param>
-        public static void SetTextPos(IntPtr luaState, uint x, uint y)
+        public static void SetTextPos(LuaState luaState, uint x, uint y)
         {
             lock (SyncRoot)
             {
@@ -360,7 +360,7 @@ namespace GarrysModLuaShared
         /// <summary>Sets the texture to be used in all upcoming surface draw operations.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="textureId">The ID of the texture to draw with.</param>
-        public static void SetTexture(IntPtr luaState, uint textureId)
+        public static void SetTexture(LuaState luaState, uint textureId)
         {
             lock (SyncRoot)
             {

@@ -11,7 +11,7 @@ namespace GarrysModLuaShared
     {
         /// <summary>Opens the game menu overlay.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
-        public static void ActivateGameUI(IntPtr luaState)
+        public static void ActivateGameUI(LuaState luaState)
         {
             lock (SyncRoot)
             {
@@ -24,7 +24,7 @@ namespace GarrysModLuaShared
         /// <summary>Enables the mouse cursor without restricting player movement, like using Sandbox's Context Menu.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="enabled">Whether the cursor should be enabled or not (true = enable, false = disable).</param>
-        public static void EnableScreenClicker(IntPtr luaState, bool enabled)
+        public static void EnableScreenClicker(LuaState luaState, bool enabled)
         {
             lock (SyncRoot)
             {
@@ -37,7 +37,7 @@ namespace GarrysModLuaShared
 
         /// <summary>Hides the game menu overlay.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
-        public static void HideGameUI(IntPtr luaState)
+        public static void HideGameUI(LuaState luaState)
         {
             lock (SyncRoot)
             {
@@ -51,7 +51,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="deltaX">The movement delta on the x axis.</param>
         /// <param name="deltaY">The movement delta on the y axis.</param>
-        public static void InternalCursorMoved(IntPtr luaState, double deltaX, double deltaY)
+        public static void InternalCursorMoved(LuaState luaState, double deltaX, double deltaY)
         {
             lock (SyncRoot)
             {
@@ -66,7 +66,7 @@ namespace GarrysModLuaShared
         /// <summary>Simulates a key press for the given key.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="key">The key.</param>
-        public static void InternalKeyCodePressed(IntPtr luaState, KEY key)
+        public static void InternalKeyCodePressed(LuaState luaState, KEY key)
         {
             lock (SyncRoot)
             {
@@ -80,7 +80,7 @@ namespace GarrysModLuaShared
         /// <summary>Simulates a key release for the given key.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="key">The key.</param>
-        public static void InternalKeyCodeReleased(IntPtr luaState, KEY key)
+        public static void InternalKeyCodeReleased(LuaState luaState, KEY key)
         {
             lock (SyncRoot)
             {
@@ -94,7 +94,7 @@ namespace GarrysModLuaShared
         /// <summary>Simulates a key type typing to the specified key.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="key">The key.</param>
-        public static void InternalKeyCodeTyped(IntPtr luaState, KEY key)
+        public static void InternalKeyCodeTyped(LuaState luaState, KEY key)
         {
             lock (SyncRoot)
             {
@@ -108,7 +108,7 @@ namespace GarrysModLuaShared
         /// <summary>Simulates a ASCII symbol writing. Use for write text in chat or VGUI. Don't work while console open!</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="code">ASCII code of symbol, see <see cref="Resources.ASCII_table"/>.</param>
-        public static void InternalKeyTyped(IntPtr luaState, double code)
+        public static void InternalKeyTyped(LuaState luaState, double code)
         {
             lock (SyncRoot)
             {
@@ -122,7 +122,7 @@ namespace GarrysModLuaShared
         /// <summary>Simulates a double mouse key press for the given mouse key.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="key">The key.</param>
-        public static void InternalMouseDoublePressed(IntPtr luaState, MOUSE key)
+        public static void InternalMouseDoublePressed(LuaState luaState, MOUSE key)
         {
             lock (SyncRoot)
             {
@@ -136,7 +136,7 @@ namespace GarrysModLuaShared
         /// <summary>Simulates a mouse key press for the given mouse key.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="key">The key.</param>
-        public static void InternalMousePressed(IntPtr luaState, MOUSE key)
+        public static void InternalMousePressed(LuaState luaState, MOUSE key)
         {
             lock (SyncRoot)
             {
@@ -150,7 +150,7 @@ namespace GarrysModLuaShared
         /// <summary>Simulates a mouse key release for the given mouse key.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="key">The key.</param>
-        public static void InternalMouseReleased(IntPtr luaState, MOUSE key)
+        public static void InternalMouseReleased(LuaState luaState, MOUSE key)
         {
             lock (SyncRoot)
             {
@@ -164,7 +164,7 @@ namespace GarrysModLuaShared
         /// <summary>Simulates a mouse wheel scroll with the given delta.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="delta">The amount of scrolling to simulate.</param>
-        public static void InternalMouseWheeled(IntPtr luaState, double delta)
+        public static void InternalMouseWheeled(LuaState luaState, double delta)
         {
             lock (SyncRoot)
             {
@@ -178,7 +178,7 @@ namespace GarrysModLuaShared
         /// <summary>Returns whenever the console is visible.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <returns>Is console visible?</returns>
-        public static bool IsConsoleVisible(IntPtr luaState)
+        public static bool IsConsoleVisible(LuaState luaState)
         {
             lock (SyncRoot)
             {
@@ -192,7 +192,7 @@ namespace GarrysModLuaShared
         /// <summary>Returns whenever the game menu overlay ( main menu ) is open or not.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <returns>Whenever the game menu overlay ( main menu ) is open or not</returns>
-        public static bool IsGameUIVisible(IntPtr luaState)
+        public static bool IsGameUIVisible(LuaState luaState)
         {
             lock (SyncRoot)
             {
@@ -206,7 +206,7 @@ namespace GarrysModLuaShared
         /// <summary>Returns the cursor's position on the screen.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <returns>First result is mouse X coordinate. Second result is mouse Y coordinate.</returns>
-        public static Tuple<double, double> MousePos(IntPtr luaState)
+        public static Tuple<double, double> MousePos(LuaState luaState)
         {
             lock (SyncRoot)
             {
@@ -221,7 +221,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="mouseX">Mouse X coordinate.</param>
         /// <param name="mouseY">Mouse Y coordinate.</param>
-        public static void MousePos(IntPtr luaState, out double mouseX, out double mouseY)
+        public static void MousePos(LuaState luaState, out double mouseX, out double mouseY)
         {
             lock (SyncRoot)
             {
@@ -236,7 +236,7 @@ namespace GarrysModLuaShared
         /// <summary>Returns X component of the mouse position.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <returns>Mouse X coordinate.</returns>
-        public static double MouseX(IntPtr luaState)
+        public static double MouseX(LuaState luaState)
         {
             lock (SyncRoot)
             {
@@ -250,7 +250,7 @@ namespace GarrysModLuaShared
         /// <summary>Returns Y component of the mouse position.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <returns>Mouse Y coordinate.</returns>
-        public static double MouseY(IntPtr luaState)
+        public static double MouseY(LuaState luaState)
         {
             lock (SyncRoot)
             {
@@ -264,7 +264,7 @@ namespace GarrysModLuaShared
         /// <summary>Opens specified URL in the steam overlay browser. The URL has to start with either "http://" or "https://".</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="url">URL to open.</param>
-        public static void OpenURL(IntPtr luaState, string url)
+        public static void OpenURL(LuaState luaState, string url)
         {
             lock (SyncRoot)
             {
@@ -281,7 +281,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="mouseX">The X coordinate to move the cursor to.</param>
         /// <param name="mouseY">The Y coordinate to move the cursor to.</param>
-        public static void SetMousePos(IntPtr luaState, double mouseX, double mouseY)
+        public static void SetMousePos(LuaState luaState, double mouseX, double mouseY)
         {
             lock (SyncRoot)
             {

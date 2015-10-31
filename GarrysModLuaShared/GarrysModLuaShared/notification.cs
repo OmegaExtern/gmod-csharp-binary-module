@@ -13,7 +13,7 @@ namespace GarrysModLuaShared
         /// <param name="text">The string to display.</param>
         /// <param name="notifyType">Determines the method for displaying the notification.</param>
         /// <param name="length">The number of seconds to display the notification for.</param>
-        public static void AddLegacy(IntPtr luaState, string text, NOTIFY notifyType, double length)
+        public static void AddLegacy(LuaState luaState, string text, NOTIFY notifyType, double length)
         {
             lock (SyncRoot)
             {
@@ -30,7 +30,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="uniqueId">Can be any type. It's used as an index.</param>
         /// <param name="text">The text to show.</param>
-        public static void AddProgress(IntPtr luaState, object uniqueId, string text)
+        public static void AddProgress(LuaState luaState, object uniqueId, string text)
         {
             lock (SyncRoot)
             {
@@ -45,7 +45,7 @@ namespace GarrysModLuaShared
         /// <summary>Removes the notification after 0.8 seconds.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="uniqueId">The unique ID of the notification.</param>
-        public static void Kill(IntPtr luaState, object uniqueId)
+        public static void Kill(LuaState luaState, object uniqueId)
         {
             lock (SyncRoot)
             {

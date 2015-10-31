@@ -1,5 +1,4 @@
-﻿using System;
-using GarrysModLuaShared.Classes;
+﻿using GarrysModLuaShared.Classes;
 using static GarrysModLuaShared.Lua;
 
 namespace GarrysModLuaShared
@@ -11,7 +10,7 @@ namespace GarrysModLuaShared
 
         public static LuaTable Color(byte red = default(byte), byte green = default(byte), byte blue = default(byte), byte alpha = byte.MaxValue) => new LuaTable(LuaTable._G.InvokeObject(nameof(Color), red, green, blue, alpha).GetIndex());
 
-        public static lua_CFunction CompileFile(IntPtr luaState, string path)
+        public static lua_CFunction CompileFile(LuaState luaState, string path)
         {
             lock (SyncRoot)
             {
@@ -22,7 +21,7 @@ namespace GarrysModLuaShared
             }
         }
 
-        public static lua_CFunction CompileString(IntPtr luaState, string code, string identifier, bool handleError = true)
+        public static lua_CFunction CompileString(LuaState luaState, string code, string identifier, bool handleError = true)
         {
             lock (SyncRoot)
             {
@@ -35,7 +34,7 @@ namespace GarrysModLuaShared
             }
         }
 
-        public static double CurTime(IntPtr luaState)
+        public static double CurTime(LuaState luaState)
         {
             lock (SyncRoot)
             {
@@ -47,7 +46,7 @@ namespace GarrysModLuaShared
 
         public static Entity Entity(uint entityId) => new Entity(entityId);
 
-        public static double FrameTime(IntPtr luaState)
+        public static double FrameTime(LuaState luaState)
         {
             lock (SyncRoot)
             {
@@ -59,7 +58,7 @@ namespace GarrysModLuaShared
 
         public static ConVar GetConVar(string name) => new ConVar(name);
 
-        public static void include(IntPtr luaState, string fileName)
+        public static void include(LuaState luaState, string fileName)
         {
             lock (SyncRoot)
             {
@@ -69,7 +68,7 @@ namespace GarrysModLuaShared
             }
         }
 
-        public static bool isangle(IntPtr luaState, object variable)
+        public static bool isangle(LuaState luaState, object variable)
         {
             lock (SyncRoot)
             {
@@ -80,7 +79,7 @@ namespace GarrysModLuaShared
             }
         }
 
-        public static bool isbool(IntPtr luaState, object variable)
+        public static bool isbool(LuaState luaState, object variable)
         {
             lock (SyncRoot)
             {
@@ -91,7 +90,7 @@ namespace GarrysModLuaShared
             }
         }
 
-        public static bool IsColor(IntPtr luaState, object variable)
+        public static bool IsColor(LuaState luaState, object variable)
         {
             lock (SyncRoot)
             {
@@ -102,7 +101,7 @@ namespace GarrysModLuaShared
             }
         }
 
-        public static bool isentity(IntPtr luaState, object variable)
+        public static bool isentity(LuaState luaState, object variable)
         {
             lock (SyncRoot)
             {
@@ -113,7 +112,7 @@ namespace GarrysModLuaShared
             }
         }
 
-        public static bool isfunction(IntPtr luaState, object variable)
+        public static bool isfunction(LuaState luaState, object variable)
         {
             lock (SyncRoot)
             {
@@ -124,7 +123,7 @@ namespace GarrysModLuaShared
             }
         }
 
-        public static bool isnumber(IntPtr luaState, object variable)
+        public static bool isnumber(LuaState luaState, object variable)
         {
             lock (SyncRoot)
             {
@@ -135,7 +134,7 @@ namespace GarrysModLuaShared
             }
         }
 
-        public static bool ispanel(IntPtr luaState, object variable)
+        public static bool ispanel(LuaState luaState, object variable)
         {
             lock (SyncRoot)
             {
@@ -146,7 +145,7 @@ namespace GarrysModLuaShared
             }
         }
 
-        public static bool isstring(IntPtr luaState, object variable)
+        public static bool isstring(LuaState luaState, object variable)
         {
             lock (SyncRoot)
             {
@@ -157,7 +156,7 @@ namespace GarrysModLuaShared
             }
         }
 
-        public static bool istable(IntPtr luaState, object variable)
+        public static bool istable(LuaState luaState, object variable)
         {
             lock (SyncRoot)
             {
@@ -168,7 +167,7 @@ namespace GarrysModLuaShared
             }
         }
 
-        public static bool IsValid(IntPtr luaState, object toBeValidated)
+        public static bool IsValid(LuaState luaState, object toBeValidated)
         {
             lock (SyncRoot)
             {
@@ -179,7 +178,7 @@ namespace GarrysModLuaShared
             }
         }
 
-        public static bool isvector(IntPtr luaState, object variable)
+        public static bool isvector(LuaState luaState, object variable)
         {
             lock (SyncRoot)
             {
@@ -190,7 +189,7 @@ namespace GarrysModLuaShared
             }
         }
 
-        public static double Lerp(IntPtr luaState, double t, double from, double to)
+        public static double Lerp(LuaState luaState, double t, double from, double to)
         {
             lock (SyncRoot)
             {
@@ -207,7 +206,7 @@ namespace GarrysModLuaShared
 
         public static VMatrix Matrix(LuaTable data) => new VMatrix(data);
 
-        public static void Msg(IntPtr luaState, params object[] args)
+        public static void Msg(LuaState luaState, params object[] args)
         {
             lock (SyncRoot)
             {
@@ -222,7 +221,7 @@ namespace GarrysModLuaShared
             }
         }
 
-        public static void MsgN(IntPtr luaState, params object[] args)
+        public static void MsgN(LuaState luaState, params object[] args)
         {
             lock (SyncRoot)
             {
@@ -240,7 +239,7 @@ namespace GarrysModLuaShared
 
         public static Player Player(uint userId) => new Player(userId);
 
-        public static void print(IntPtr luaState, params object[] args)
+        public static void print(LuaState luaState, params object[] args)
         {
             lock (SyncRoot)
             {
@@ -255,7 +254,7 @@ namespace GarrysModLuaShared
             }
         }
 
-        public static void PrintTable(IntPtr luaState, LuaTable tableToPrint, double indent = default(double), LuaTable done = null)
+        public static void PrintTable(LuaState luaState, LuaTable tableToPrint, double indent = default(double), LuaTable done = null)
         {
             lock (SyncRoot)
             {
@@ -267,7 +266,7 @@ namespace GarrysModLuaShared
             }
         }
 
-        public static bool ProtectedCall(IntPtr luaState, lua_CFunction function)
+        public static bool ProtectedCall(LuaState luaState, lua_CFunction function)
         {
             lock (SyncRoot)
             {
@@ -278,7 +277,7 @@ namespace GarrysModLuaShared
             }
         }
 
-        public static double RealFrameTime(IntPtr luaState)
+        public static double RealFrameTime(LuaState luaState)
         {
             lock (SyncRoot)
             {
@@ -288,7 +287,7 @@ namespace GarrysModLuaShared
             }
         }
 
-        public static double RealTime(IntPtr luaState)
+        public static double RealTime(LuaState luaState)
         {
             lock (SyncRoot)
             {
@@ -298,7 +297,7 @@ namespace GarrysModLuaShared
             }
         }
 
-        public static void require(IntPtr luaState, string name)
+        public static void require(LuaState luaState, string name)
         {
             lock (SyncRoot)
             {
@@ -308,7 +307,7 @@ namespace GarrysModLuaShared
             }
         }
 
-        public static void RunConsoleCommand(IntPtr luaState, string command, params string[] arguments)
+        public static void RunConsoleCommand(LuaState luaState, string command, params string[] arguments)
         {
             lock (SyncRoot)
             {
@@ -324,7 +323,7 @@ namespace GarrysModLuaShared
             }
         }
 
-        public static void RunString(IntPtr luaState, string code)
+        public static void RunString(LuaState luaState, string code)
         {
             lock (SyncRoot)
             {
@@ -334,7 +333,7 @@ namespace GarrysModLuaShared
             }
         }
 
-        public static void RunStringEx(IntPtr luaState, string code, string identifier = "RunString")
+        public static void RunStringEx(LuaState luaState, string code, string identifier = "RunString")
         {
             lock (SyncRoot)
             {
@@ -346,7 +345,7 @@ namespace GarrysModLuaShared
         }
 
 #if CLIENT
-        public static uint ScrH(IntPtr luaState)
+        public static uint ScrH(LuaState luaState)
         {
             lock (SyncRoot)
             {
@@ -356,7 +355,7 @@ namespace GarrysModLuaShared
             }
         }
 
-        public static uint ScrW(IntPtr luaState)
+        public static uint ScrW(LuaState luaState)
         {
             lock (SyncRoot)
             {
@@ -367,7 +366,7 @@ namespace GarrysModLuaShared
         }
 #endif
 
-        public static double SysTime(IntPtr luaState)
+        public static double SysTime(LuaState luaState)
         {
             lock (SyncRoot)
             {

@@ -9,7 +9,7 @@ namespace GarrysModLuaShared
         /// <summary>Deletes a cookie on the client.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="name">The name of the cookie that you want to delete.</param>
-        public static void Delete(IntPtr luaState, string name)
+        public static void Delete(LuaState luaState, string name)
         {
             lock (SyncRoot)
             {
@@ -25,7 +25,7 @@ namespace GarrysModLuaShared
         /// <param name="name">The name of the cookie that you want to get.</param>
         /// <param name="default">Value to return if the cookie does not exist.</param>
         /// <returns>The cookie value.</returns>
-        public static double GetNumber(IntPtr luaState, string name, object @default = null)
+        public static double GetNumber(LuaState luaState, string name, object @default = null)
         {
             lock (SyncRoot)
             {
@@ -43,7 +43,7 @@ namespace GarrysModLuaShared
         /// <param name="name">The name of the cookie that you want to get.</param>
         /// <param name="default">Value to return if the cookie does not exist.</param>
         /// <returns>The cookie value.</returns>
-        public static string GetString(IntPtr luaState, string name, object @default = null)
+        public static string GetString(LuaState luaState, string name, object @default = null)
         {
             lock (SyncRoot)
             {
@@ -60,7 +60,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="name">The name of the cookie that you want to set.</param>
         /// <param name="value">Value to store in the cookie.</param>
-        public static void Set(IntPtr luaState, string name, string value)
+        public static void Set(LuaState luaState, string name, string value)
         {
             lock (SyncRoot)
             {

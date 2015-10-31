@@ -11,7 +11,7 @@ namespace GarrysModLuaShared
         /// <summary>Returns the last key captured by key trapping.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <returns>The key.</returns>
-        public static KEY CheckKeyTrapping(IntPtr luaState)
+        public static KEY CheckKeyTrapping(LuaState luaState)
         {
             lock (SyncRoot)
             {
@@ -25,7 +25,7 @@ namespace GarrysModLuaShared
         /// <summary>Returns the cursor's position on the screen.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <returns>First result is mouse X coordinate. Second result is mouse Y coordinate.</returns>
-        public static Tuple<double, double> GetCursorPos(IntPtr luaState)
+        public static Tuple<double, double> GetCursorPos(LuaState luaState)
         {
             lock (SyncRoot)
             {
@@ -40,7 +40,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="mouseX">Mouse X coordinate.</param>
         /// <param name="mouseY">Mouse Y coordinate.</param>
-        public static void GetCursorPos(IntPtr luaState, out double mouseX, out double mouseY)
+        public static void GetCursorPos(LuaState luaState, out double mouseX, out double mouseY)
         {
             lock (SyncRoot)
             {
@@ -56,7 +56,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="button">The button.</param>
         /// <returns>Button name.</returns>
-        public static string GetKeyName(IntPtr luaState, BUTTON button)
+        public static string GetKeyName(LuaState luaState, BUTTON button)
         {
             lock (SyncRoot)
             {
@@ -72,7 +72,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="button">The button, valid values are in the range of <see cref="BUTTON"/> enum.</param>
         /// <returns>Is the button down?</returns>
-        public static bool IsButtonDown(IntPtr luaState, BUTTON button)
+        public static bool IsButtonDown(LuaState luaState, BUTTON button)
         {
             lock (SyncRoot)
             {
@@ -87,7 +87,7 @@ namespace GarrysModLuaShared
         /// <summary>Returns whether a control key is being pressed.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <returns>Is CTRL key down or not?</returns>
-        public static bool IsControlDown(IntPtr luaState)
+        public static bool IsControlDown(LuaState luaState)
         {
             lock (SyncRoot)
             {
@@ -102,7 +102,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="key">The key.</param>
         /// <returns>Is the key down?</returns>
-        public static bool IsKeyDown(IntPtr luaState, KEY key)
+        public static bool IsKeyDown(LuaState luaState, KEY key)
         {
             lock (SyncRoot)
             {
@@ -117,7 +117,7 @@ namespace GarrysModLuaShared
         /// <summary>Returns whether key trapping is activate and the next key press will be captured.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <returns>Whether key trapping active or not.</returns>
-        public static bool IsKeyTrapping(IntPtr luaState)
+        public static bool IsKeyTrapping(LuaState luaState)
         {
             lock (SyncRoot)
             {
@@ -132,7 +132,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="mouseKey">The mouse key.</param>
         /// <returns>Is the mouse key down?</returns>
-        public static bool IsMouseDown(IntPtr luaState, MOUSE mouseKey)
+        public static bool IsMouseDown(LuaState luaState, MOUSE mouseKey)
         {
             lock (SyncRoot)
             {
@@ -147,7 +147,7 @@ namespace GarrysModLuaShared
         /// <summary>Gets whether a shift key is being pressed.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <returns>Is shift key down or not?</returns>
-        public static bool IsShiftDown(IntPtr luaState)
+        public static bool IsShiftDown(LuaState luaState)
         {
             lock (SyncRoot)
             {
@@ -163,7 +163,7 @@ namespace GarrysModLuaShared
         /// <param name="binding">The binding name.</param>
         /// <param name="exact">True if the binding should match exactly.</param>
         /// <returns>The first key found with that binding.</returns>
-        public static string LookupBinding(IntPtr luaState, string binding, bool exact = false)
+        public static string LookupBinding(LuaState luaState, string binding, bool exact = false)
         {
             lock (SyncRoot)
             {
@@ -180,7 +180,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="key">The key.</param>
         /// <returns>The bind string of the given key.</returns>
-        public static string LookupKeyBinding(IntPtr luaState, KEY key)
+        public static string LookupKeyBinding(LuaState luaState, KEY key)
         {
             lock (SyncRoot)
             {
@@ -196,7 +196,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="mouseX">X coordinate for mouse position.</param>
         /// <param name="mouseY">Y coordinate for mouse position.</param>
-        public static void SetCursorPos(IntPtr luaState, double mouseX, double mouseY)
+        public static void SetCursorPos(LuaState luaState, double mouseX, double mouseY)
         {
             lock (SyncRoot)
             {
@@ -210,7 +210,7 @@ namespace GarrysModLuaShared
 
         /// <summary>Starts key trap.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
-        public static void StartKeyTrapping(IntPtr luaState)
+        public static void StartKeyTrapping(LuaState luaState)
         {
             lock (SyncRoot)
             {
@@ -224,7 +224,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="key">The key.</param>
         /// <returns>Returns true if the key was initially pressed the same frame that this function was called; otherwise false.</returns>
-        public static bool WasKeyPressed(IntPtr luaState, KEY key)
+        public static bool WasKeyPressed(LuaState luaState, KEY key)
         {
             lock (SyncRoot)
             {
@@ -240,7 +240,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="key">The key.</param>
         /// <returns>Returns true if the key was initially released the same frame that this function was called; otherwise false.</returns>
-        public static bool WasKeyReleased(IntPtr luaState, KEY key)
+        public static bool WasKeyReleased(LuaState luaState, KEY key)
         {
             lock (SyncRoot)
             {
@@ -256,7 +256,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="key">The key.</param>
         /// <returns>Whether the key is being held down or not.</returns>
-        public static bool WasKeyTyped(IntPtr luaState, KEY key)
+        public static bool WasKeyTyped(LuaState luaState, KEY key)
         {
             lock (SyncRoot)
             {
@@ -272,7 +272,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="button">The mouse button to test.</param>
         /// <returns>Whether the mouse key was double pressed or not.</returns>
-        public static bool WasMouseDoublePressed(IntPtr luaState, MOUSE button)
+        public static bool WasMouseDoublePressed(LuaState luaState, MOUSE button)
         {
             lock (SyncRoot)
             {
@@ -288,7 +288,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="button">The mouse button to test.</param>
         /// <returns>Returns true if the mouse key was initially pressed the same frame that this function was called; otherwise false.</returns>
-        public static bool WasMousePressed(IntPtr luaState, MOUSE button)
+        public static bool WasMousePressed(LuaState luaState, MOUSE button)
         {
             lock (SyncRoot)
             {
