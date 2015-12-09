@@ -810,6 +810,6 @@ namespace GarrysModLuaShared
             }
         }
 
-        public static IntPtr LuaState() => _state;
+        public static LuaState LuaState() => _state;
     }
 }

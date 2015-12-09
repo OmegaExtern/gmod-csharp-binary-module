@@ -1,5 +1,3 @@
-using System;
-
 namespace GarrysModLuaShared
 {
     unsafe struct luaL_Buffer
@@ -10,7 +8,7 @@ namespace GarrysModLuaShared
         /// <summary>Number of strings in the stack (level)</summary>
         public int lvl;
 
-        public IntPtr luaState;
+        public LuaState luaState;
         public fixed char buffer [LuaConfig.LUAL_BUFFERSIZE];
     }
 }

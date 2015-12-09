@@ -4,5 +4,5 @@ using System.Runtime.InteropServices;
 namespace GarrysModLuaShared
 {
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-    public delegate IntPtr lua_Reader(IntPtr L, IntPtr data, IntPtr size);
+    public delegate IntPtr lua_Reader(LuaState luaState, IntPtr data, IntPtr size);
 }
