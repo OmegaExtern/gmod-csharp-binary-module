@@ -1,10 +1,14 @@
 ﻿#if CLIENT
-using System;
 using static GarrysModLuaShared.Lua;
 
 namespace GarrysModLuaShared
 {
-    /// <summary>This library is used internally by Garry's Mod to help keep track of achievement progress and unlock the appropriate achievements once a certain number is reached.<para/>However, this library can also be used by anyone else to forcefully unlock certain achievements.</summary>
+    /// <summary>
+    ///     This library is used internally by Garry's Mod to help keep track of achievement progress and unlock the
+    ///     appropriate achievements once a certain number is reached.
+    ///     <para />
+    ///     However, this library can also be used by anyone else to forcefully unlock certain achievements.
+    /// </summary>
     static class achievements
     {
         /// <summary>Tells the client that balloon has popped. This counts towards the Balloon Popper achievement.</summary>
@@ -148,7 +152,7 @@ namespace GarrysModLuaShared
         /// <summary>Used in GMod 12 in the achievements menu to show the user if they have unlocked certain achievements.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="achievementId">Internal Achievement ID number.</param>
-        /// <returns>Returns true if the given <paramref name="achievementId"/> is achieved; otherwise false.</returns>
+        /// <returns>Returns true if the given <paramref name="achievementId" /> is achieved; otherwise false.</returns>
         public static bool IsAchieved(LuaState luaState, double achievementId)
         {
             lock (SyncRoot)
@@ -209,7 +213,10 @@ namespace GarrysModLuaShared
             }
         }
 
-        /// <summary>An automatically called function that adds one to a count of how many times the spawnmenu has been opened. It's purpose is to track progress of 'Menu User' achievement.</summary>
+        /// <summary>
+        ///     An automatically called function that adds one to a count of how many times the spawnmenu has been opened.
+        ///     It's purpose is to track progress of 'Menu User' achievement.
+        /// </summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         public static void SpawnMenuOpen(LuaState luaState)
         {
@@ -222,4 +229,5 @@ namespace GarrysModLuaShared
         }
     }
 }
+
 #endif

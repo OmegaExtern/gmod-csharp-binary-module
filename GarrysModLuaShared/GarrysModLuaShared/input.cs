@@ -5,7 +5,10 @@ using static GarrysModLuaShared.Lua;
 
 namespace GarrysModLuaShared
 {
-    /// <summary>The input library allows you to gather information about the clients input devices (mouse & keyboard), such as the cursor position and whether a key is pressed or not.</summary>
+    /// <summary>
+    ///     The input library allows you to gather information about the clients input devices (mouse & keyboard), such as
+    ///     the cursor position and whether a key is pressed or not.
+    /// </summary>
     static class input
     {
         /// <summary>Returns the last key captured by key trapping.</summary>
@@ -68,9 +71,12 @@ namespace GarrysModLuaShared
             }
         }
 
-        /// <summary>Gets whether the specified button code is down.<para/>Unlike <see cref="input.IsKeyDown"/> this can also detect joystick presses from <see cref="JOYSTICK"/> enum.</summary>
+        /// <summary>Gets whether the specified button code is down.
+        ///     <para />
+        ///     Unlike <see cref="input.IsKeyDown" /> this can also detect joystick presses from <see cref="JOYSTICK" /> enum.
+        /// </summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
-        /// <param name="button">The button, valid values are in the range of <see cref="BUTTON"/> enum.</param>
+        /// <param name="button">The button, valid values are in the range of <see cref="BUTTON" /> enum.</param>
         /// <returns>Is the button down?</returns>
         public static bool IsButtonDown(LuaState luaState, BUTTON button)
         {
@@ -220,7 +226,12 @@ namespace GarrysModLuaShared
             }
         }
 
-        /// <summary>Returns whether a key was initially pressed in the same frame this function was called.<para/>This function only works in Move hooks, and will detect key presses even in main menu or when a typing in a text field.</summary>
+        /// <summary>
+        ///     Returns whether a key was initially pressed in the same frame this function was called.
+        ///     <para />
+        ///     This function only works in Move hooks, and will detect key presses even in main menu or when a typing in a text
+        ///     field.
+        /// </summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="key">The key.</param>
         /// <returns>Returns true if the key was initially pressed the same frame that this function was called; otherwise false.</returns>
@@ -236,7 +247,12 @@ namespace GarrysModLuaShared
             }
         }
 
-        /// <summary>Returns whether a key was released in the same frame this function was called.<para/>This function only works in Move hooks, and will detect key releases even in main menu or when a typing in a text field.</summary>
+        /// <summary>
+        ///     Returns whether a key was released in the same frame this function was called.
+        ///     <para />
+        ///     This function only works in Move hooks, and will detect key releases even in main menu or when a typing in a text
+        ///     field.
+        /// </summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="key">The key.</param>
         /// <returns>Returns true if the key was initially released the same frame that this function was called; otherwise false.</returns>
@@ -252,7 +268,12 @@ namespace GarrysModLuaShared
             }
         }
 
-        /// <summary>Returns whether the key is being held down or not.<para/>This function only works in Move hooks, and will detect key events even in main menu or when a typing in a text field.</summary>
+        /// <summary>
+        ///     Returns whether the key is being held down or not.
+        ///     <para />
+        ///     This function only works in Move hooks, and will detect key events even in main menu or when a typing in a text
+        ///     field.
+        /// </summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="key">The key.</param>
         /// <returns>Whether the key is being held down or not.</returns>
@@ -268,7 +289,14 @@ namespace GarrysModLuaShared
             }
         }
 
-        /// <summary>Returns whether a mouse key was double pressed in the same frame this function was called.<para/>If this function returns true, <see cref="WasMousePressed"/> will return false.<para/>This function only works in Move hooks, and will detect mouse events even in main menu or when a typing in a text field.</summary>
+        /// <summary>
+        ///     Returns whether a mouse key was double pressed in the same frame this function was called.
+        ///     <para />
+        ///     If this function returns true, <see cref="WasMousePressed" /> will return false.
+        ///     <para />
+        ///     This function only works in Move hooks, and will detect mouse events even in main menu or when a typing in a text
+        ///     field.
+        /// </summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="button">The mouse button to test.</param>
         /// <returns>Whether the mouse key was double pressed or not.</returns>
@@ -284,10 +312,20 @@ namespace GarrysModLuaShared
             }
         }
 
-        /// <summary>Returns whether a mouse key was initially pressed in the same frame this function was called.<para/>If <see cref="WasMouseDoublePressed"/> returns true, this function will return false.<para/>This function only works in Move hooks, and will detect mouse events even in main menu or when a typing in a text field.</summary>
+        /// <summary>
+        ///     Returns whether a mouse key was initially pressed in the same frame this function was called.
+        ///     <para />
+        ///     If <see cref="WasMouseDoublePressed" /> returns true, this function will return false.
+        ///     <para />
+        ///     This function only works in Move hooks, and will detect mouse events even in main menu or when a typing in a text
+        ///     field.
+        /// </summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="button">The mouse button to test.</param>
-        /// <returns>Returns true if the mouse key was initially pressed the same frame that this function was called; otherwise false.</returns>
+        /// <returns>
+        ///     Returns true if the mouse key was initially pressed the same frame that this function was called; otherwise
+        ///     false.
+        /// </returns>
         public static bool WasMousePressed(LuaState luaState, MOUSE button)
         {
             lock (SyncRoot)
@@ -301,4 +339,5 @@ namespace GarrysModLuaShared
         }
     }
 }
+
 #endif

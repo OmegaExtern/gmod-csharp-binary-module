@@ -2,7 +2,6 @@ namespace GarrysModLuaShared.Classes
 {
     public sealed class Vehicle : Entity
     {
-        public Vehicle(int index) : base(index)
-        {}
+        public Vehicle(int index) : base(index) { }
     }
 }

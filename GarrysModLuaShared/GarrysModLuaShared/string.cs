@@ -3,7 +3,12 @@ using static GarrysModLuaShared.Lua;
 
 namespace GarrysModLuaShared
 {
-    /// <summary>The string type is a sequence of characters.<para/>The string library is a standard Lua library which provides functions for the manipulation of strings.<para/>In Garry's Mod there are several extra useful functions added to this library.</summary>
+    /// <summary>The string type is a sequence of characters.
+    ///     <para />
+    ///     The string library is a standard Lua library which provides functions for the manipulation of strings.
+    ///     <para />
+    ///     In Garry's Mod there are several extra useful functions added to this library.
+    /// </summary>
     static class @string
     {
         /// <summary>Returns the given string's characters in their numeric ASCII representation.</summary>
@@ -38,7 +43,7 @@ namespace GarrysModLuaShared
                 byte[] numericalBytes = new byte[length];
                 for (int i = 0; i < length; ++i)
                 {
-                    numericalBytes[i] = (byte)lua_tointeger(luaState, (-1) - i);
+                    numericalBytes[i] = (byte)lua_tointeger(luaState, -1 - i);
                 }
                 return numericalBytes;
             }
@@ -87,7 +92,10 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="inputString">The string whose end is to be checked.</param>
         /// <param name="endString">The string to be matched with the end of the first.</param>
-        /// <returns>True if the <paramref name="inputString"/> ends with <paramref name="endString"/>, or when <paramref name="endString"/> is empty; otherwise false.</returns>
+        /// <returns>
+        ///     True if the <paramref name="inputString" /> ends with <paramref name="endString" />, or when
+        ///     <paramref name="endString" /> is empty; otherwise false.
+        /// </returns>
         public static bool EndsWith(LuaState luaState, string inputString, string endString)
         {
             lock (SyncRoot)
@@ -103,11 +111,17 @@ namespace GarrysModLuaShared
 
         // TODO: string.Explode (returns a table).
 
-        /// <summary>Attempts to find the specified substring in a string, uses <see cref="http://wiki.garrysmod.com/page/Patterns">patterns</see> by default.</summary>
+        /// <summary>
+        ///     Attempts to find the specified substring in a string, uses
+        ///     <see cref="http://wiki.garrysmod.com/page/Patterns">patterns</see> by default.
+        /// </summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="hayStack">The string to search in.</param>
         /// <param name="needle">The string to find, can contain patterns if enabled.</param>
-        /// <param name="startPos">The position to start the search from, can be negative start position will be relative to the end position.</param>
+        /// <param name="startPos">
+        ///     The position to start the search from, can be negative start position will be relative to the
+        ///     end position.
+        /// </param>
         /// <param name="noPatterns">Set to true to disable patterns.</param>
         /// <returns>First result is the starting position of the found text. Second result is the ending position of found text.</returns>
         public static Tuple<int, int> find(LuaState luaState, string hayStack, string needle, int startPos = 1, bool noPatterns = false)
@@ -125,13 +139,19 @@ namespace GarrysModLuaShared
             }
         }
 
-        /// <summary>Attempts to find the specified substring in a string, uses <see cref="http://wiki.garrysmod.com/page/Patterns">patterns</see> by default.</summary>
+        /// <summary>
+        ///     Attempts to find the specified substring in a string, uses
+        ///     <see cref="http://wiki.garrysmod.com/page/Patterns">patterns</see> by default.
+        /// </summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="start">Starting position of the found text.</param>
         /// <param name="end">Ending position of found text.</param>
         /// <param name="hayStack">The string to search in.</param>
         /// <param name="needle">The string to find, can contain patterns if enabled.</param>
-        /// <param name="startPos">The position to start the search from, can be negative start position will be relative to the end position.</param>
+        /// <param name="startPos">
+        ///     The position to start the search from, can be negative start position will be relative to the
+        ///     end position.
+        /// </param>
         /// <param name="noPatterns">Set to true to disable patterns.</param>
         public static void find(LuaState luaState, out int start, out int end, string hayStack, string needle, int startPos = 1, bool noPatterns = false)
         {
@@ -151,7 +171,10 @@ namespace GarrysModLuaShared
 
         /// <summary>Formats the specified values into the string given.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
-        /// <param name="inputString">The string to be formatted.<para/>Follows <see cref="http://www.cplusplus.com/reference/cstdio/printf/">this format</see>.</param>
+        /// <param name="inputString">The string to be formatted.
+        ///     <para />
+        ///     Follows <see cref="http://www.cplusplus.com/reference/cstdio/printf/">this format</see>.
+        /// </param>
         /// <param name="formatParameters">Values to be formatted into the string.</param>
         /// <returns>Formatted string.</returns>
         public static string format(LuaState luaState, string inputString, params object[] formatParameters)
@@ -176,7 +199,18 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="float">The time in seconds to format.</param>
         /// <param name="format">An optional formatting to use. If no format it specified, a table will be returned instead.</param>
-        /// <returns>Returns the time as a formatted string only if a <paramref name="format"/> was specified.<para/>Returns a table only if no <paramref name="format"/> was specified. The table will contain these fields:<para/>number ms - milliseconds<para/>number s - seconds<para/>number m - minutes<para/>number h - hours</returns>
+        /// <returns>Returns the time as a formatted string only if a <paramref name="format" /> was specified.
+        ///     <para />
+        ///     Returns a table only if no <paramref name="format" /> was specified. The table will contain these fields:
+        ///     <para />
+        ///     number ms - milliseconds
+        ///     <para />
+        ///     number s - seconds
+        ///     <para />
+        ///     number m - minutes
+        ///     <para />
+        ///     number h - hours
+        /// </returns>
         public static string FormattedTime(LuaState luaState, double @float, string format)
         {
             lock (SyncRoot)
@@ -249,11 +283,22 @@ namespace GarrysModLuaShared
 
         // TODO: string.gmatch (returns a function).
 
-        /// <summary>This functions main purpose is to replace certain character sequences in a string using <see cref="http://wiki.garrysmod.com/page/Patterns">patterns</see>.</summary>
+        /// <summary>
+        ///     This functions main purpose is to replace certain character sequences in a string using
+        ///     <see cref="http://wiki.garrysmod.com/page/Patterns">patterns</see>.
+        /// </summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="input">String which should be modified.</param>
         /// <param name="pattern">The pattern that defines what should be matched and eventually be replaced.</param>
-        /// <param name="replacement">In case of a string the matches sequence will be replaced with it.<para/>In case of a table, the matched sequence will be used as key and the table will tested for the key, if a value exists it will be used as replacement.<para/>In case of a function all matches will be passed as parameters to the function, the return value(s) of the function will then be used as replacement.</param>
+        /// <param name="replacement">
+        ///     In case of a string the matches sequence will be replaced with it.
+        ///     <para />
+        ///     In case of a table, the matched sequence will be used as key and the table will tested for the key, if a value
+        ///     exists it will be used as replacement.
+        ///     <para />
+        ///     In case of a function all matches will be passed as parameters to the function, the return value(s) of the function
+        ///     will then be used as replacement.
+        /// </param>
         /// <param name="maxReplaces">Maximum number of replacements to be made.</param>
         /// <returns>First result is replaced string. Second result is number of replaces.</returns>
         public static Tuple<string, uint> gsub(LuaState luaState, string input, string pattern, string replacement, uint maxReplaces = default(uint))
@@ -278,13 +323,24 @@ namespace GarrysModLuaShared
             }
         }
 
-        /// <summary>This functions main purpose is to replace certain character sequences in a string using <see cref="http://wiki.garrysmod.com/page/Patterns">patterns</see>.</summary>
+        /// <summary>
+        ///     This functions main purpose is to replace certain character sequences in a string using
+        ///     <see cref="http://wiki.garrysmod.com/page/Patterns">patterns</see>.
+        /// </summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="replaceResult">Replaced string.</param>
         /// <param name="replaceCount">Number of replaces.</param>
         /// <param name="input">String which should be modified.</param>
         /// <param name="pattern">The pattern that defines what should be matched and eventually be replaced.</param>
-        /// <param name="replacement">In case of a string the matches sequence will be replaced with it.<para/>In case of a table, the matched sequence will be used as key and the table will tested for the key, if a value exists it will be used as replacement.<para/>In case of a function all matches will be passed as parameters to the function, the return value(s) of the function will then be used as replacement.</param>
+        /// <param name="replacement">
+        ///     In case of a string the matches sequence will be replaced with it.
+        ///     <para />
+        ///     In case of a table, the matched sequence will be used as key and the table will tested for the key, if a value
+        ///     exists it will be used as replacement.
+        ///     <para />
+        ///     In case of a function all matches will be passed as parameters to the function, the return value(s) of the function
+        ///     will then be used as replacement.
+        /// </param>
         /// <param name="maxReplaces">Maximum number of replacements to be made.</param>
         public static void gsub(LuaState luaState, out string replaceResult, out uint replaceCount, string input, string pattern, string replacement, uint maxReplaces = default(uint))
         {
@@ -311,7 +367,10 @@ namespace GarrysModLuaShared
 
         // TODO: string.Implode (takes table as argument).
 
-        /// <summary>Escapes special characters for JavaScript in a string, making the string safe for inclusion in to JavaScript strings.</summary>
+        /// <summary>
+        ///     Escapes special characters for JavaScript in a string, making the string safe for inclusion in to JavaScript
+        ///     strings.
+        /// </summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="inputString">The string that should be escaped.</param>
         /// <returns>The escaped string.</returns>
@@ -327,7 +386,7 @@ namespace GarrysModLuaShared
             }
         }
 
-        /// <summary>Returns everything left of supplied place of <paramref name="inputString"/>.</summary>
+        /// <summary>Returns everything left of supplied place of <paramref name="inputString" />.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="inputString">The string to extract from.</param>
         /// <param name="num">Amount of chars relative to the beginning (starting from 1).</param>
@@ -348,7 +407,7 @@ namespace GarrysModLuaShared
         /// <summary>Counts the number of characters in the string (length).</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="inputString">The string to find the length of.</param>
-        /// <returns>Length of the <paramref name="inputString"/>.</returns>
+        /// <returns>Length of the <paramref name="inputString" />.</returns>
         public static uint len(LuaState luaState, string inputString)
         {
             lock (SyncRoot)
@@ -361,10 +420,10 @@ namespace GarrysModLuaShared
             }
         }
 
-        /// <summary>Changes any upper-case letters in a <paramref name="inputString"/> to lower-case letters.</summary>
+        /// <summary>Changes any upper-case letters in a <paramref name="inputString" /> to lower-case letters.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="inputString">The string to convert.</param>
-        /// <returns>A string representing the value of a <paramref name="inputString"/> converted to lower-case.</returns>
+        /// <returns>A string representing the value of a <paramref name="inputString" /> converted to lower-case.</returns>
         public static string lower(LuaState luaState, string inputString)
         {
             lock (SyncRoot)
@@ -377,11 +436,17 @@ namespace GarrysModLuaShared
             }
         }
 
-        /// <summary>Finds a <see cref="http://wiki.garrysmod.com/page/Patterns">pattern</see> in a <paramref name="inputString"/>.</summary>
+        /// <summary>
+        ///     Finds a <see cref="http://wiki.garrysmod.com/page/Patterns">pattern</see> in a <paramref name="inputString" />
+        ///     .
+        /// </summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="inputString">String which should be searched in for matches.</param>
         /// <param name="pattern">The pattern that defines what should be matched.</param>
-        /// <param name="startPosition">The start index to start the matching from, can be negative to start the match from a position relative to the end.</param>
+        /// <param name="startPosition">
+        ///     The start index to start the matching from, can be negative to start the match from a
+        ///     position relative to the end.
+        /// </param>
         /// <returns>Matched text.</returns>
         public static string match(LuaState luaState, string inputString, string pattern, int startPosition)
         {
@@ -449,7 +514,7 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="inputString">The string to repeat.</param>
         /// <param name="repetitions">How many times to repeat.</param>
-        /// <returns>Repeated <paramref name="inputString"/>.</returns>
+        /// <returns>Repeated <paramref name="inputString" />.</returns>
         public static string rep(LuaState luaState, string inputString, uint repetitions)
         {
             lock (SyncRoot)
@@ -468,7 +533,7 @@ namespace GarrysModLuaShared
         /// <param name="input">The string we are seeking to replace an occurrence(s).</param>
         /// <param name="find">What we are seeking to replace.</param>
         /// <param name="replace">What to replace find with.</param>
-        /// <returns>Replaced <paramref name="input"/>.</returns>
+        /// <returns>Replaced <paramref name="input" />.</returns>
         public static string Replace(LuaState luaState, string input, string find, string replace)
         {
             lock (SyncRoot)
@@ -486,7 +551,7 @@ namespace GarrysModLuaShared
         /// <summary>Reverses a string.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="inputString">The string to be reversed.</param>
-        /// <returns>Reversed <paramref name="input"/>.</returns>
+        /// <returns>Reversed <paramref name="input" />.</returns>
         public static string reverse(LuaState luaState, string inputString)
         {
             lock (SyncRoot)
@@ -543,7 +608,10 @@ namespace GarrysModLuaShared
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="inputString">String to check.</param>
         /// <param name="startString">String to check with.</param>
-        /// <returns>True if <paramref name="inputString"/> starts with the <paramref name="startString"/>, or <paramref name="startString"/> is empty; otherwise false.</returns>
+        /// <returns>
+        ///     True if <paramref name="inputString" /> starts with the <paramref name="startString" />, or
+        ///     <paramref name="startString" /> is empty; otherwise false.
+        /// </returns>
         public static bool StartWith(LuaState luaState, string inputString, string startString)
         {
             lock (SyncRoot)
@@ -573,7 +641,11 @@ namespace GarrysModLuaShared
             }
         }
 
-        /// <summary>Returns a sub-string, starting from the character at position <paramref name="startPos"/> of the string (inclusive), and optionally ending at the character at position <paramref name="endPos"/> of the string (also inclusive). If <paramref name="endPos"/> is not given, the rest of the string is returned.</summary>
+        /// <summary>
+        ///     Returns a sub-string, starting from the character at position <paramref name="startPos" /> of the string
+        ///     (inclusive), and optionally ending at the character at position <paramref name="endPos" /> of the string (also
+        ///     inclusive). If <paramref name="endPos" /> is not given, the rest of the string is returned.
+        /// </summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="inputString">The string you'll take a sub-string out of.</param>
         /// <param name="startPos">The position of the first character that will be included in the sub-string.</param>
@@ -602,10 +674,10 @@ namespace GarrysModLuaShared
 
         // TODO: string.ToColor (returns Color structure).
 
-        /// <summary>Returns the given <paramref name="time"/> in "MM:SS" format.</summary>
+        /// <summary>Returns the given <paramref name="time" /> in "MM:SS" format.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="time">Time in seconds.</param>
-        /// <returns>Formatted <paramref name="time"/>.</returns>
+        /// <returns>Formatted <paramref name="time" />.</returns>
         public static string ToMinutesSeconds(LuaState luaState, uint time)
         {
             lock (SyncRoot)
@@ -618,10 +690,10 @@ namespace GarrysModLuaShared
             }
         }
 
-        /// <summary>Returns the given <paramref name="time"/> in "MM:SS:MS" format.</summary>
+        /// <summary>Returns the given <paramref name="time" /> in "MM:SS:MS" format.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="time">Time in seconds.</param>
-        /// <returns>Formatted <paramref name="time"/>.</returns>
+        /// <returns>Formatted <paramref name="time" />.</returns>
         public static string ToMinutesSecondsMilliseconds(LuaState luaState, double time)
         {
             lock (SyncRoot)

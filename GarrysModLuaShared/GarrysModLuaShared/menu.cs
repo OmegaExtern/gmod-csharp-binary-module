@@ -1,5 +1,4 @@
 ﻿#if CLIENT
-using System;
 using static GarrysModLuaShared.Lua;
 
 namespace GarrysModLuaShared
@@ -20,4 +19,5 @@ namespace GarrysModLuaShared
         }
     }
 }
+
 #endif

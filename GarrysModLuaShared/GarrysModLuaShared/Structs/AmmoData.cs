@@ -4,7 +4,7 @@ using GarrysModLuaShared.Enums;
 
 namespace GarrysModLuaShared.Structs
 {
-    /// <summary>Structure used for bullets, see <see cref="game.AddAmmoType"/>.</summary>
+    /// <summary>Structure used for bullets, see <see cref="game.AddAmmoType" />.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct AmmoData
     {
@@ -40,7 +40,10 @@ namespace GarrysModLuaShared.Structs
         [DefaultValue(TRACER.TRACER_NONE)]
         public TRACER tracer;
 
-        /// <summary>Maximum amount of ammo of this type the player should be able to carry in reserve.<para/>NOTE: Currently only affects <see cref="game.GetAmmoMax"/>.</summary>
+        /// <summary>Maximum amount of ammo of this type the player should be able to carry in reserve.
+        ///     <para />
+        ///     NOTE: Currently only affects <see cref="game.GetAmmoMax" />.
+        /// </summary>
         [DefaultValue(9999.0D)]
         public double maxcarry;
 

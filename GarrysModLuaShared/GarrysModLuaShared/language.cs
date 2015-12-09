@@ -1,5 +1,4 @@
 ﻿#if CLIENT
-using System;
 using static GarrysModLuaShared.Lua;
 
 namespace GarrysModLuaShared
@@ -7,7 +6,10 @@ namespace GarrysModLuaShared
     /// <summary>The language library is used for translation.</summary>
     static class language
     {
-        /// <summary>Adds a language item. Language placeholders are replaced with full text in Garry's Mod once registered with this function.</summary>
+        /// <summary>
+        ///     Adds a language item. Language placeholders are replaced with full text in Garry's Mod once registered with
+        ///     this function.
+        /// </summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="placeholder">The key for this phrase.</param>
         /// <param name="fullText">The phrase that should be displayed whenever this key is used.</param>
@@ -26,7 +28,7 @@ namespace GarrysModLuaShared
         /// <summary>Retrieves the translated version of inputted string. Useful for concentrating multiple translated strings.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="phrase">The untranslated phrase.</param>
-        /// <returns>The translated version of inputted <paramref name="phrase"/>.</returns>
+        /// <returns>The translated version of inputted <paramref name="phrase" />.</returns>
         public static string GetPhrase(LuaState luaState, string phrase)
         {
             lock (SyncRoot)
@@ -40,4 +42,5 @@ namespace GarrysModLuaShared
         }
     }
 }
+
 #endif

@@ -6,10 +6,7 @@ namespace GarrysModLuaShared
     {
         readonly IntPtr _state;
 
-        LuaState(IntPtr ptr) : this()
-        {
-            _state = ptr;
-        }
+        LuaState(IntPtr ptr) : this() { _state = ptr; }
 
         public static implicit operator IntPtr(LuaState luaState) => luaState._state;
 

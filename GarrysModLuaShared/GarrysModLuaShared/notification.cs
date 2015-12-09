@@ -1,5 +1,4 @@
 ﻿#if CLIENT
-using System;
 using GarrysModLuaShared.Enums;
 using static GarrysModLuaShared.Lua;
 
@@ -57,4 +56,5 @@ namespace GarrysModLuaShared
         }
     }
 }
+
 #endif

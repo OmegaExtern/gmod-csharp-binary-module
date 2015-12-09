@@ -2,14 +2,16 @@
 
 namespace GarrysModLuaShared.Classes
 {
-    /// <summary>Representation of a line with direction and length. Use <see cref="Global.Vector"/> function to create an instance of this object.</summary>
+    /// <summary>
+    ///     Representation of a line with direction and length. Use <see cref="Global.Vector" /> function to create an
+    ///     instance of this object.
+    /// </summary>
     public sealed class Vector : LuaObject, IEquatable<Vector>
     {
         static readonly int VectorId = Random.Generator.Next((int)Type.Vector, int.MaxValue);
         double _x, _y, _z;
 
-        public Vector(int index) : base(index)
-        {}
+        public Vector(int index) : base(index) { }
 
         /// <summary>Creates a new instance of this object.</summary>
         /// <param name="x">The x value for new vector.</param>
@@ -25,40 +27,22 @@ namespace GarrysModLuaShared.Classes
         /// <summary>The X component of the vector (+forward/-backward; East/West).</summary>
         public double x
         {
-            get
-            {
-                return _x = GetFieldNumber(nameof(x));
-            }
-            set
-            {
-                SetField(nameof(x), _x = value);
-            }
+            get { return _x = GetFieldNumber(nameof(x)); }
+            set { SetField(nameof(x), _x = value); }
         }
 
         /// <summary>The Y component of the vector (+left/-right; North/South).</summary>
         public double y
         {
-            get
-            {
-                return _y = GetFieldNumber(nameof(y));
-            }
-            set
-            {
-                SetField(nameof(y), _y = value);
-            }
+            get { return _y = GetFieldNumber(nameof(y)); }
+            set { SetField(nameof(y), _y = value); }
         }
 
         /// <summary>The Z component of the vector (+up/-down).</summary>
         public double z
         {
-            get
-            {
-                return _z = GetFieldNumber(nameof(z));
-            }
-            set
-            {
-                SetField(nameof(z), _z = value);
-            }
+            get { return _z = GetFieldNumber(nameof(z)); }
+            set { SetField(nameof(z), _z = value); }
         }
 
         public double this[int index]
@@ -160,7 +144,23 @@ namespace GarrysModLuaShared.Classes
             }
         }
 
-        /// <summary>Adds the values of the second vector to the orignal vector, this function can be used to avoid garbage collection.</summary>
+        public bool Equals(Vector other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+            return _x.Equals(other._x) && _y.Equals(other._y) && _z.Equals(other._z);
+        }
+
+        /// <summary>
+        ///     Adds the values of the second vector to the orignal vector, this function can be used to avoid garbage
+        ///     collection.
+        /// </summary>
         /// <param name="vector">The other vector.</param>
         public void Add(Vector vector) => CallVoid(nameof(Add), vector);
 
@@ -168,12 +168,26 @@ namespace GarrysModLuaShared.Classes
         /// <returns>The angle/direction of the vector.</returns>
         public Angle Angle() => CallObject(nameof(Angle)).ToAngle();
 
-        /// <summary>Returns the angle of the vector, but instead of assuming that up is Vector( 0, 0, 1 ) (like <see cref="Angle"/> does) you can specify which direction is 'up' for the angle.</summary>
+        /// <summary>
+        ///     Returns the angle of the vector, but instead of assuming that up is Vector( 0, 0, 1 ) (like
+        ///     <see cref="Angle" /> does) you can specify which direction is 'up' for the angle.
+        /// </summary>
         /// <param name="up">The up direction vector.</param>
         /// <returns>The angle of the vector.</returns>
         public Angle AngleEx(Vector up) => CallObject(nameof(AngleEx), up).ToAngle();
 
-        /// <summary>Calculates the cross product of this vector and the passed one.<para/>The cross product of two vectors is a 3-dimensional vector with a direction perpendicular(at right angles) to both of them(according to the right-hand rule), and magnitude equal to the area of parallelogram they span.This is defined as the product of the magnitudes, the sine of the angle between them, and unit (normal) vector n defined by the right-hand rule:<para/>a × b = |a| |b| sin(θ) n̂<para/>where a and b are vectors, and n̂ is a unit vector(magnitude of 1) perpendicular to both.</summary>
+        /// <summary>
+        ///     Calculates the cross product of this vector and the passed one.
+        ///     <para />
+        ///     The cross product of two vectors is a 3-dimensional vector with a direction perpendicular(at right angles) to both
+        ///     of them(according to the right-hand rule), and magnitude equal to the area of parallelogram they span.This is
+        ///     defined as the product of the magnitudes, the sine of the angle between them, and unit (normal) vector n defined by
+        ///     the right-hand rule:
+        ///     <para />
+        ///     a × b = |a| |b| sin(θ) n̂
+        ///     <para />
+        ///     where a and b are vectors, and n̂ is a unit vector(magnitude of 1) perpendicular to both.
+        /// </summary>
         /// <param name="otherVector">Vector to calculate the cross product with.</param>
         /// <returns>The cross product of the two vectors.</returns>
         public Vector Cross(Vector otherVector) => CallObject(nameof(Cross), otherVector).ToVector();
@@ -183,17 +197,35 @@ namespace GarrysModLuaShared.Classes
         /// <returns>Distance between the vectors.</returns>
         public double Distance(Vector otherVector) => CallNumber(nameof(Distance), otherVector);
 
-        /// <summary>Returns the squared distance of 2 vectors, this is faster than <see cref="Distance"/> as calculating the square root is an expensive process.</summary>
+        /// <summary>
+        ///     Returns the squared distance of 2 vectors, this is faster than <see cref="Distance" /> as calculating the
+        ///     square root is an expensive process.
+        /// </summary>
         /// <param name="otherVector">The vector to calculate the distance to.</param>
         /// <returns>Squared distance to the vector.</returns>
         public double DistToSqr(Vector otherVector) => CallNumber(nameof(DistToSqr), otherVector);
 
-        /// <summary>Returns the dot product of this vector and the passed one.<para/>The dot product of two vectors is the product of their magnitudes(lengths), and the cosine of the angle between them:<para/>a · b = |a| |b| cos(θ)<para/>where a and b are vectors.See Vector:Length for obtaining magnitudes.<para/>A dot product returns just the cosine of the angle if both vectors are normalized, and zero if the vectors are at right angles to each other.</summary>
+        /// <summary>
+        ///     Returns the dot product of this vector and the passed one.
+        ///     <para />
+        ///     The dot product of two vectors is the product of their magnitudes(lengths), and the cosine of the angle between
+        ///     them:
+        ///     <para />
+        ///     a · b = |a| |b| cos(θ)
+        ///     <para />
+        ///     where a and b are vectors.See Vector:Length for obtaining magnitudes.
+        ///     <para />
+        ///     A dot product returns just the cosine of the angle if both vectors are normalized, and zero if the vectors are at
+        ///     right angles to each other.
+        /// </summary>
         /// <param name="otherVector">The vector to calculate the dot product with.</param>
         /// <returns>The dot product between the two vectors.</returns>
         public double Dot(Vector otherVector) => CallNumber(nameof(Dot), otherVector);
 
-        /// <summary>Returns a normalized version of the vector. Normalized means vector with same direction but with length of 1.<para/>This does not affect the vector you call it on; to do this, use <see cref="Normalize"/>.</summary>
+        /// <summary>Returns a normalized version of the vector. Normalized means vector with same direction but with length of 1.
+        ///     <para />
+        ///     This does not affect the vector you call it on; to do this, use <see cref="Normalize" />.
+        /// </summary>
         /// <returns>Normalized version of the vector.</returns>
         public Vector GetNormalized() => CallObject(nameof(GetNormalized)).ToVector();
 
@@ -215,11 +247,17 @@ namespace GarrysModLuaShared.Classes
         /// <returns>Length of the vector in two dimensions, √ x² + y².</returns>
         public double Length2D() => CallNumber(nameof(Length2D));
 
-        /// <summary>Returns the squared length of the vectors x and y value, x² + y².<para/>This is faster than <see cref="Length2D"/> as calculating the square root is an expensive process.</summary>
+        /// <summary>Returns the squared length of the vectors x and y value, x² + y².
+        ///     <para />
+        ///     This is faster than <see cref="Length2D" /> as calculating the square root is an expensive process.
+        /// </summary>
         /// <returns>Squared length of the vector in two dimensions.</returns>
         public double Length2DSqr() => CallNumber(nameof(Length2DSqr));
 
-        /// <summary>Returns the squared length of the vector, x² + y² + z².<para/>This is faster than <see cref="Length"/> as calculating the square root is an expensive process.</summary>
+        /// <summary>Returns the squared length of the vector, x² + y² + z².
+        ///     <para />
+        ///     This is faster than <see cref="Length" /> as calculating the square root is an expensive process.
+        /// </summary>
         /// <returns>Squared length of the vector.</returns>
         public double LengthSqr() => CallNumber(nameof(LengthSqr));
 
@@ -227,7 +265,10 @@ namespace GarrysModLuaShared.Classes
         /// <param name="multiplier">The value to scale the vector with.</param>
         public void Mul(double multiplier) => CallVoid(nameof(Mul), multiplier);
 
-        /// <summary>Normalizes the given vector. This changes the vector you call it on, if you want to return a normalized copy without affecting the original, use <see cref="GetNormalized"/>.</summary>
+        /// <summary>
+        ///     Normalizes the given vector. This changes the vector you call it on, if you want to return a normalized copy
+        ///     without affecting the original, use <see cref="GetNormalized" />.
+        /// </summary>
         public void Normalize() => CallVoid(nameof(Normalize));
 
         /// <summary>Rotates a vector by the given angle. Doesn't return anything, but rather changes the original vector.</summary>
@@ -238,7 +279,10 @@ namespace GarrysModLuaShared.Classes
         /// <param name="vector">The vector to copy from.</param>
         public void Set(Vector vector) => CallVoid(nameof(Set), vector);
 
-        /// <summary>Substracts the values of the second vector from the orignal vector, this function can be used to avoid garbage collection.</summary>
+        /// <summary>
+        ///     Substracts the values of the second vector from the orignal vector, this function can be used to avoid garbage
+        ///     collection.
+        /// </summary>
         /// <param name="vector">The other vector.</param>
         public void Sub(Vector vector) => CallVoid(nameof(Sub), vector);
 
@@ -257,11 +301,11 @@ namespace GarrysModLuaShared.Classes
         /// <summary>Sets x, y and z to 0. This function is faster than doing it manually.</summary>
         public void Zero() => CallVoid(nameof(Zero));
 
-        public static Vector operator +(Vector a) => new Vector(+(a.x), +(a.y), +(a.z));
+        public static Vector operator +(Vector a) => new Vector(+a.x, +a.y, +a.z);
 
-        public static Vector operator -(Vector a) => new Vector(-(a.x), -(a.y), -(a.z));
+        public static Vector operator -(Vector a) => new Vector(-a.x, -a.y, -a.z);
 
-        public static Vector operator ~(Vector a) => new Vector(~((long)a.x), ~((long)a.y), ~((long)a.z));
+        public static Vector operator ~(Vector a) => new Vector(~(long)a.x, ~(long)a.y, ~(long)a.z);
 
         public static Vector operator ++(Vector a) => new Vector(a.x + 1, a.y + 1, a.z + 1);
 
@@ -307,35 +351,35 @@ namespace GarrysModLuaShared.Classes
 
         public static Vector operator >>(Vector a, int b) => new Vector((long)a.x >> b, (long)a.y >> b, (long)a.z >> b);
 
-        public static bool operator <(Vector a, Vector b) => a != null && b != null && a.x < b.x && a.y < b.y && a.z < b.z;
+        public static bool operator <(Vector a, Vector b) => (a != null) && (b != null) && (a.x < b.x) && (a.y < b.y) && (a.z < b.z);
 
-        public static bool operator <(Vector a, double b) => a != null && a.x < b && a.y < b && a.z < b;
+        public static bool operator <(Vector a, double b) => (a != null) && (a.x < b) && (a.y < b) && (a.z < b);
 
-        public static bool operator <(double b, Vector a) => a != null && b < a.x && b < a.y && b < a.z;
+        public static bool operator <(double b, Vector a) => (a != null) && (b < a.x) && (b < a.y) && (b < a.z);
 
-        public static bool operator >(Vector a, Vector b) => a != null && b != null && a.x > b.x && a.y > b.y && a.z > b.z;
+        public static bool operator >(Vector a, Vector b) => (a != null) && (b != null) && (a.x > b.x) && (a.y > b.y) && (a.z > b.z);
 
-        public static bool operator >(Vector a, double b) => a != null && a.x > b && a.y > b && a.z > b;
+        public static bool operator >(Vector a, double b) => (a != null) && (a.x > b) && (a.y > b) && (a.z > b);
 
-        public static bool operator >(double b, Vector a) => a != null && b > a.x && b > a.y && b > a.z;
+        public static bool operator >(double b, Vector a) => (a != null) && (b > a.x) && (b > a.y) && (b > a.z);
 
-        public static bool operator <=(Vector a, Vector b) => a != null && b != null && a.x <= b.x && a.y <= b.y && a.z <= b.z;
+        public static bool operator <=(Vector a, Vector b) => (a != null) && (b != null) && (a.x <= b.x) && (a.y <= b.y) && (a.z <= b.z);
 
-        public static bool operator <=(Vector a, double b) => a != null && a.x <= b && a.y <= b && a.z <= b;
+        public static bool operator <=(Vector a, double b) => (a != null) && (a.x <= b) && (a.y <= b) && (a.z <= b);
 
-        public static bool operator <=(double b, Vector a) => a != null && b <= a.x && b <= a.y && b <= a.z;
+        public static bool operator <=(double b, Vector a) => (a != null) && (b <= a.x) && (b <= a.y) && (b <= a.z);
 
-        public static bool operator >=(Vector a, Vector b) => a != null && b != null && a.x >= b.x && a.y >= b.y && a.z >= b.z;
+        public static bool operator >=(Vector a, Vector b) => (a != null) && (b != null) && (a.x >= b.x) && (a.y >= b.y) && (a.z >= b.z);
 
-        public static bool operator >=(Vector a, double b) => a != null && a.x >= b && a.y >= b && a.z >= b;
+        public static bool operator >=(Vector a, double b) => (a != null) && (a.x >= b) && (a.y >= b) && (a.z >= b);
 
-        public static bool operator >=(double b, Vector a) => a != null && b >= a.x && b >= a.y && b >= a.z;
+        public static bool operator >=(double b, Vector a) => (a != null) && (b >= a.x) && (b >= a.y) && (b >= a.z);
 
-        public static bool operator ==(Vector a, Vector b) => a != null && b != null && Math.Abs(a.x - b.x) < double.Epsilon && Math.Abs(a.y - b.y) < double.Epsilon && Math.Abs(a.z - b.z) < double.Epsilon;
+        public static bool operator ==(Vector a, Vector b) => (a != null) && (b != null) && (Math.Abs(a.x - b.x) < double.Epsilon) && (Math.Abs(a.y - b.y) < double.Epsilon) && (Math.Abs(a.z - b.z) < double.Epsilon);
 
-        public static bool operator ==(Vector a, double b) => a != null && Math.Abs(a.x - b) < double.Epsilon && Math.Abs(a.y - b) < double.Epsilon && Math.Abs(a.z - b) < double.Epsilon;
+        public static bool operator ==(Vector a, double b) => (a != null) && (Math.Abs(a.x - b) < double.Epsilon) && (Math.Abs(a.y - b) < double.Epsilon) && (Math.Abs(a.z - b) < double.Epsilon);
 
-        public static bool operator ==(double b, Vector a) => a != null && Math.Abs(b - a.x) < double.Epsilon && Math.Abs(b - a.y) < double.Epsilon && Math.Abs(b - a.z) < double.Epsilon;
+        public static bool operator ==(double b, Vector a) => (a != null) && (Math.Abs(b - a.x) < double.Epsilon) && (Math.Abs(b - a.y) < double.Epsilon) && (Math.Abs(b - a.z) < double.Epsilon);
 
         public static bool operator !=(Vector a, Vector b) => !(a == b);
 
@@ -361,22 +405,9 @@ namespace GarrysModLuaShared.Classes
 
         public static Vector operator |(long b, Vector a) => new Vector(b | (long)a.x, b | (long)a.y, b | (long)a.z);
 
-        public bool Equals(Vector other)
-        {
-            if (ReferenceEquals(null, other))
-            {
-                return false;
-            }
-            if (ReferenceEquals(this, other))
-            {
-                return true;
-            }
-            return _x.Equals(other._x) && _y.Equals(other._y) && _z.Equals(other._z);
-        }
-
         public override bool Equals(object obj)
         {
-            if (ReferenceEquals(null, obj) || GetType() != obj.GetType())
+            if (ReferenceEquals(null, obj) || (GetType() != obj.GetType()))
             {
                 return false;
             }

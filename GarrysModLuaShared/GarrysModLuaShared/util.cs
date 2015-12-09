@@ -1,5 +1,4 @@
-﻿using System;
-using static GarrysModLuaShared.Lua;
+﻿using static GarrysModLuaShared.Lua;
 
 namespace GarrysModLuaShared
 {
@@ -7,10 +6,26 @@ namespace GarrysModLuaShared
     static class util
     {
 #if SERVER
-        /// <summary>Adds the specified string to a string table, which will cache it and network it to all clients automatically.<para/>Whenever you want to create a net message with <see cref="net.Start"/>, you must add the name of that message as a networked string via this function.<para/>If the passed string already exists, nothing will happen and the ID of the existing item will be returned.<para/>NOTE: Due to the way string tables work, it's preferable to call this function as soon as the server starts up, such as in Initialize hook.<para/>The string table used for this function does not interfere with the engine string tables and has 2048 slots.</summary>
+        /// <summary>
+        ///     Adds the specified string to a string table, which will cache it and network it to all clients automatically.
+        ///     <para />
+        ///     Whenever you want to create a net message with <see cref="net.Start" />, you must add the name of that message as a
+        ///     networked string via this function.
+        ///     <para />
+        ///     If the passed string already exists, nothing will happen and the ID of the existing item will be returned.
+        ///     <para />
+        ///     NOTE: Due to the way string tables work, it's preferable to call this function as soon as the server starts up,
+        ///     such as in Initialize hook.
+        ///     <para />
+        ///     The string table used for this function does not interfere with the engine string tables and has 2048 slots.
+        /// </summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="networkString">The string to add to the table.</param>
-        /// <returns>The ID of the string that was added to the string table.<para/>Same as calling <see cref="NetworkStringToID"/>.</returns>
+        /// <returns>
+        ///     The ID of the string that was added to the string table.
+        ///     <para />
+        ///     Same as calling <see cref="NetworkStringToID" />.
+        /// </returns>
         public static uint AddNetworkString(LuaState luaState, string networkString)
         {
             lock (SyncRoot)
@@ -48,7 +63,10 @@ namespace GarrysModLuaShared
         // TODO: util.BlastDamageInfo (takes CTakeDamageInfo object and Vector structure as argument).
         //#endif
 
-        /// <summary>Compresses the given string using <see cref="http://fastlz.org/">FastLZ</see>. Use with <see cref="net.WriteData"/> and <see cref="net.ReadData"/> for networking.</summary>
+        /// <summary>
+        ///     Compresses the given string using <see cref="http://fastlz.org/">FastLZ</see>. Use with
+        ///     <see cref="net.WriteData" /> and <see cref="net.ReadData" /> for networking.
+        /// </summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="stringToCompress">String to compress.</param>
         /// <returns>The compressed string (or nil for a zero-length string).</returns>
@@ -119,7 +137,7 @@ namespace GarrysModLuaShared
         /// <summary>Decompresses the given string using <see cref="http://fastlz.org/">FastLZ</see>.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="compressedString">String to decompress.</param>
-        /// <returns>Uncompressed <paramref name="compressedString"/>.</returns>
+        /// <returns>Uncompressed <paramref name="compressedString" />.</returns>
         public static string Decompress(LuaState luaState, string compressedString)
         {
             lock (SyncRoot)
@@ -171,7 +189,7 @@ namespace GarrysModLuaShared
         /// <summary>Returns the matching surface index for the surface name.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="surfaceName">The name of the surface.</param>
-        /// <returns>The matching surface index for the <paramref name="surfaceName"/>.</returns>
+        /// <returns>The matching surface index for the <paramref name="surfaceName" />.</returns>
         public static uint GetSurfaceIndex(LuaState luaState, string surfaceName)
         {
             lock (SyncRoot)
@@ -186,7 +204,7 @@ namespace GarrysModLuaShared
 
         /// <summary>Returns a name of surfaceproperties ID.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
-        /// <param name="id">Surface properties ID. You can get it from <see cref="Structs.TraceResult"/> structure.</param>
+        /// <param name="id">Surface properties ID. You can get it from <see cref="Structs.TraceResult" /> structure.</param>
         /// <returns>The name of surfaceproperties ID.</returns>
         public static string GetSurfacePropName(LuaState luaState, uint id)
         {
@@ -309,7 +327,7 @@ namespace GarrysModLuaShared
         /// <summary>Returns the networked ID associated with the given string from the string table.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="networkString">String to get the associated networked ID from.</param>
-        /// <returns>The networked ID of the string, or 0 if it hasn't been networked with <see cref="AddNetworkString"/>.</returns>
+        /// <returns>The networked ID of the string, or 0 if it hasn't been networked with <see cref="AddNetworkString" />.</returns>
         public static uint NetworkStringToID(LuaState luaState, string networkString)
         {
             lock (SyncRoot)
@@ -325,7 +343,7 @@ namespace GarrysModLuaShared
         /// <summary>Formats a float by stripping off extra zeros and dots.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="float">The float to format.</param>
-        /// <returns>Formatted <paramref name="float"/>.</returns>
+        /// <returns>Formatted <paramref name="float" />.</returns>
         public static string NiceFloat(LuaState luaState, double @float)
         {
             lock (SyncRoot)
@@ -381,7 +399,7 @@ namespace GarrysModLuaShared
         /// <summary>Returns the absolute system path to the file relative to /garrysmod/ folder.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="file">The file to get the absolute path of.</param>
-        /// <returns>The absolute system path to <paramref name="file"/> relative to /garrysmod/ folder.</returns>
+        /// <returns>The absolute system path to <paramref name="file" /> relative to /garrysmod/ folder.</returns>
         public static string RelativePathToFull(LuaState luaState, string file)
         {
             lock (SyncRoot)
@@ -430,7 +448,12 @@ namespace GarrysModLuaShared
             }
         }
 
-        /// <summary>Generates a random float value that should be the same on client and server.<para/>NOTE: This function is best used in a <see cref="http://wiki.garrysmod.com/page/Category:Predicted_Hooks">predicted hook</see>.</summary>
+        /// <summary>
+        ///     Generates a random float value that should be the same on client and server.
+        ///     <para />
+        ///     NOTE: This function is best used in a
+        ///     <see cref="http://wiki.garrysmod.com/page/Category:Predicted_Hooks">predicted hook</see>.
+        /// </summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="uniqueName">The seed for the random value.</param>
         /// <param name="min">The minimum value of the random range.</param>

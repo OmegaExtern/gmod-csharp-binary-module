@@ -1,9 +1,11 @@
-﻿using System;
-using static GarrysModLuaShared.Lua;
+﻿using static GarrysModLuaShared.Lua;
 
 namespace GarrysModLuaShared
 {
-    /// <summary>The game library provides functions to access various features in the game's engine, most of it's functions are related to controlling the map.</summary>
+    /// <summary>
+    ///     The game library provides functions to access various features in the game's engine, most of it's functions
+    ///     are related to controlling the map.
+    /// </summary>
     static class game
     {
         // TODO: game.AddAmmoType (takes a table argument; AmmoData structure).
@@ -11,7 +13,10 @@ namespace GarrysModLuaShared
         /// <summary>Registers a new decal.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="decalName">The name of the decal.</param>
-        /// <param name="materialName">The material to be used for the decal. May also be a list of material names, in which case a random material from that list will be chosen every time the decal is placed.</param>
+        /// <param name="materialName">
+        ///     The material to be used for the decal. May also be a list of material names, in which case a
+        ///     random material from that list will be chosen every time the decal is placed.
+        /// </param>
         public static void AddDecal(LuaState luaState, string decalName, string materialName)
         {
             lock (SyncRoot)
@@ -60,7 +65,7 @@ namespace GarrysModLuaShared
         }
 #endif
 
-        /// <summary>Returns the ammo type ID for given ammo type name. See <see cref="GetAmmoName"/> for reverse.</summary>
+        /// <summary>Returns the ammo type ID for given ammo type name. See <see cref="GetAmmoName" /> for reverse.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="name">Name of the ammo type to look up ID of.</param>
         /// <returns>The ammo type ID of the given ammo type name, or -1 if not found.</returns>
@@ -76,7 +81,10 @@ namespace GarrysModLuaShared
             }
         }
 
-        /// <summary>Returns the real maximum amount of ammo of the given ammo ID.<para/>Note: Currently all ammo types have overridden maximum value of reserve ammo set to 9999.</summary>
+        /// <summary>Returns the real maximum amount of ammo of the given ammo ID.
+        ///     <para />
+        ///     Note: Currently all ammo types have overridden maximum value of reserve ammo set to 9999.
+        /// </summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="id">Ammo type ID.</param>
         /// <returns>The maximum amount of reserve ammo a player can hold of this ammo type.</returns>
@@ -92,7 +100,7 @@ namespace GarrysModLuaShared
             }
         }
 
-        /// <summary>Returns the ammo name for given ammo type ID. See <see cref="GetAmmoID"/> for reverse.</summary>
+        /// <summary>Returns the ammo name for given ammo type ID. See <see cref="GetAmmoID" /> for reverse.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="id">Ammo ID to retrieve the name of. Starts from 1.</param>
         /// <returns>The name of the given ammo type ID or nil if ammo type ID is invalid.</returns>
@@ -152,7 +160,12 @@ namespace GarrysModLuaShared
             }
         }
 
-        /// <summary>Returns the difficulty level of the game.<para/>TIP: You can use this function in your scripted NPCs or Nextbots to make them harder, however, it is a good idea to lock powerful attacks behind the highest difficulty instead of just increasing the health.</summary>
+        /// <summary>
+        ///     Returns the difficulty level of the game.
+        ///     <para />
+        ///     TIP: You can use this function in your scripted NPCs or Nextbots to make them harder, however, it is a good idea to
+        ///     lock powerful attacks behind the highest difficulty instead of just increasing the health.
+        /// </summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <returns>The difficulty level, Easy( 1 ), Normal( 2 ), Hard( 3 ).</returns>
         public static double GetSkillLevel(LuaState luaState)
@@ -196,6 +209,46 @@ namespace GarrysModLuaShared
             }
         }
 
+        /// <summary>Returns the maximum number of players for this server.</summary>
+        /// <param name="luaState">Pointer to lua_State struct.</param>
+        /// <returns>Max players.</returns>
+        public static double MaxPlayers(LuaState luaState)
+        {
+            lock (SyncRoot)
+            {
+                lua_getglobal(luaState, nameof(game));
+                lua_getfield(luaState, -1, nameof(MaxPlayers));
+                lua_pcall(luaState, 0, 1);
+                return lua_tonumber(luaState);
+            }
+        }
+
+        /// <summary>Removes all the clientside ragdolls.</summary>
+        /// <param name="luaState">Pointer to lua_State struct.</param>
+        public static void RemoveRagdolls(LuaState luaState)
+        {
+            lock (SyncRoot)
+            {
+                lua_getglobal(luaState, nameof(game));
+                lua_getfield(luaState, -1, nameof(RemoveRagdolls));
+                lua_pcall(luaState);
+            }
+        }
+
+        /// <summary>Returns whenever the current session is a single player game.</summary>
+        /// <param name="luaState">Pointer to lua_State struct.</param>
+        /// <returns>Is single player?</returns>
+        public static bool SinglePlayer(LuaState luaState)
+        {
+            lock (SyncRoot)
+            {
+                lua_getglobal(luaState, nameof(game));
+                lua_getfield(luaState, -1, nameof(SinglePlayer));
+                lua_pcall(luaState, 0, 1);
+                return lua_toboolean(luaState) == 1;
+            }
+        }
+
 #if SERVER
         /// <summary>Loads the next map according to the file that is set by the mapcyclefile convar.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
@@ -224,34 +277,11 @@ namespace GarrysModLuaShared
         }
 #endif
 
-        /// <summary>Returns the maximum number of players for this server.</summary>
-        /// <param name="luaState">Pointer to lua_State struct.</param>
-        /// <returns>Max players.</returns>
-        public static double MaxPlayers(LuaState luaState)
-        {
-            lock (SyncRoot)
-            {
-                lua_getglobal(luaState, nameof(game));
-                lua_getfield(luaState, -1, nameof(MaxPlayers));
-                lua_pcall(luaState, 0, 1);
-                return lua_tonumber(luaState);
-            }
-        }
-
-        /// <summary>Removes all the clientside ragdolls.</summary>
-        /// <param name="luaState">Pointer to lua_State struct.</param>
-        public static void RemoveRagdolls(LuaState luaState)
-        {
-            lock (SyncRoot)
-            {
-                lua_getglobal(luaState, nameof(game));
-                lua_getfield(luaState, -1, nameof(RemoveRagdolls));
-                lua_pcall(luaState);
-            }
-        }
-
 #if SERVER
-        /// <summary>Sets the difficulty level of the game, can be retrieved with game.GetSkillLevel.<para/>This will automatically change whenever the "skill" convar is modified serverside.</summary>
+        /// <summary>Sets the difficulty level of the game, can be retrieved with game.GetSkillLevel.
+        ///     <para />
+        ///     This will automatically change whenever the "skill" convar is modified serverside.
+        /// </summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="level">The difficulty level, Easy( 1 ), Normal( 2 ), Hard( 3 ).</param>
         public static void SetSkillLevel(LuaState luaState, double level)
@@ -265,7 +295,17 @@ namespace GarrysModLuaShared
             }
         }
 
-        /// <summary>Sets the time scale of the game.<para/>This function is supposed to remove the need of using the host_timescale convar, which is cheat protected.<para/>To slow down or speed up the movement of a specific player, use <see cref="Player.SetLaggedMovementValue"/> instead.<para/>NOTE: Like host_timescale, this method does not affect sounds, if you wish to change that, look into EntityEmitSound hook.</summary>
+        /// <summary>
+        ///     Sets the time scale of the game.
+        ///     <para />
+        ///     This function is supposed to remove the need of using the host_timescale convar, which is cheat protected.
+        ///     <para />
+        ///     To slow down or speed up the movement of a specific player, use <see cref="Player.SetLaggedMovementValue" />
+        ///     instead.
+        ///     <para />
+        ///     NOTE: Like host_timescale, this method does not affect sounds, if you wish to change that, look into
+        ///     EntityEmitSound hook.
+        /// </summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="timeScale">The new timescale, minimum value is 0.001 and maximum is 5.</param>
         public static void SetTimeScale(LuaState luaState, double timeScale)
@@ -279,20 +319,6 @@ namespace GarrysModLuaShared
             }
         }
 #endif
-
-        /// <summary>Returns whenever the current session is a single player game.</summary>
-        /// <param name="luaState">Pointer to lua_State struct.</param>
-        /// <returns>Is single player?</returns>
-        public static bool SinglePlayer(LuaState luaState)
-        {
-            lock (SyncRoot)
-            {
-                lua_getglobal(luaState, nameof(game));
-                lua_getfield(luaState, -1, nameof(SinglePlayer));
-                lua_pcall(luaState, 0, 1);
-                return lua_toboolean(luaState) == 1;
-            }
-        }
 
         // TODO: game.StartSpot (returns a Vector type).
     }

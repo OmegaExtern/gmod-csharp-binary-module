@@ -4,5 +4,6 @@ namespace GarrysModLuaShared.Structs
 {
     [StructLayout(LayoutKind.Sequential)]
     public struct PolygonVertex
-    {}
+    {
+    }
 }

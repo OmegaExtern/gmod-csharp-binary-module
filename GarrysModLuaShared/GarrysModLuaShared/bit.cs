@@ -1,5 +1,4 @@
-﻿using System;
-using static GarrysModLuaShared.Lua;
+﻿using static GarrysModLuaShared.Lua;
 
 namespace GarrysModLuaShared
 {
@@ -47,7 +46,7 @@ namespace GarrysModLuaShared
             }
         }
 
-        /// <summary>Returns the bitwise not of the <paramref name="value"/>.</summary>
+        /// <summary>Returns the bitwise not of the <paramref name="value" />.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="value">The value to be inverted.</param>
         /// <returns>Bitwise Not.</returns>
@@ -89,7 +88,7 @@ namespace GarrysModLuaShared
         /// <summary>Swaps the byte order.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="value">The value to be byte swapped.</param>
-        /// <returns>Number with swapped byte order of the given <paramref name="value"/>.</returns>
+        /// <returns>Number with swapped byte order of the given <paramref name="value" />.</returns>
         public static double bswap(LuaState luaState, double value)
         {
             lock (SyncRoot)

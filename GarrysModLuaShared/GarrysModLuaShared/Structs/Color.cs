@@ -2,7 +2,7 @@ using System.Runtime.InteropServices;
 
 namespace GarrysModLuaShared.Structs
 {
-    /// <summary>Object returned by the <see cref="Global.Color"/> function and used in various situations.</summary>
+    /// <summary>Object returned by the <see cref="Global.Color" /> function and used in various situations.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct Color
     {

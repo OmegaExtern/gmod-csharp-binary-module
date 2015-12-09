@@ -4,7 +4,6 @@
     {
         public static readonly LuaTable _G = new LuaTable((int)TableIndex.SpecialGlob);
 
-        public LuaTable(int index) : base(index)
-        {}
+        public LuaTable(int index) : base(index) { }
     }
 }

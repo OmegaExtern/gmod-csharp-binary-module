@@ -8,10 +8,7 @@ namespace GarrysModLuaShared
     {
         int _index;
 
-        public LuaObject(int index)
-        {
-            _index = index;
-        }
+        public LuaObject(int index) { _index = index; }
 
         public int Call(int results, string name, params object[] args)
         {

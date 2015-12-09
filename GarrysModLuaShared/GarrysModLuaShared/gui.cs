@@ -6,7 +6,10 @@ using static GarrysModLuaShared.Lua;
 
 namespace GarrysModLuaShared
 {
-    /// <summary>The gui library is similar to the <see cref="input"/> library but features functions that are more focused on the mouse's interaction with GUI panels.</summary>
+    /// <summary>
+    ///     The gui library is similar to the <see cref="input" /> library but features functions that are more focused on
+    ///     the mouse's interaction with GUI panels.
+    /// </summary>
     static class gui
     {
         /// <summary>Opens the game menu overlay.</summary>
@@ -107,7 +110,7 @@ namespace GarrysModLuaShared
 
         /// <summary>Simulates a ASCII symbol writing. Use for write text in chat or VGUI. Don't work while console open!</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
-        /// <param name="code">ASCII code of symbol, see <see cref="Resources.ASCII_table"/>.</param>
+        /// <param name="code">ASCII code of symbol, see <see cref="Resources.ASCII_table" />.</param>
         public static void InternalKeyTyped(LuaState luaState, double code)
         {
             lock (SyncRoot)
@@ -294,4 +297,5 @@ namespace GarrysModLuaShared
         }
     }
 }
+
 #endif

@@ -2,21 +2,30 @@ using GarrysModLuaShared.Enums;
 
 namespace GarrysModLuaShared.Classes
 {
-    /// <summary>A class used to store the player inputs, such as mouse movement, view angles, <see cref="IN"/> buttons pressed and analog movement, the data from this class is then transfered to a <see cref="CMoveData"/> during actual movement simulation.<para/>Can be modified during CreateMove, StartCommand hook and used in read only with SetupMove hook and <see cref="Player.GetCurrentCommand"/>.</summary>
+    /// <summary>
+    ///     A class used to store the player inputs, such as mouse movement, view angles, <see cref="IN" /> buttons
+    ///     pressed and analog movement, the data from this class is then transfered to a <see cref="CMoveData" /> during
+    ///     actual movement simulation.
+    ///     <para />
+    ///     Can be modified during CreateMove, StartCommand hook and used in read only with SetupMove hook and
+    ///     <see cref="Player.GetCurrentCommand" />.
+    /// </summary>
     public sealed class CUserCmd : LuaObject
     {
         static readonly int CUserCmdId = Random.Generator.Next((int)Type.UserCmd, int.MaxValue);
 
-        public CUserCmd(int index) : base(index)
-        {}
+        public CUserCmd(int index) : base(index) { }
 
-        /// <summary>Removes all keys from the command. Doesn't prevent movement, see <see cref="ClearMovement"/> for this.</summary>
+        /// <summary>Removes all keys from the command. Doesn't prevent movement, see <see cref="ClearMovement" /> for this.</summary>
         public void ClearButtons() => CallVoid(nameof(ClearButtons));
 
         /// <summary>Clears the movement from the command.</summary>
         public void ClearMovement() => CallVoid(nameof(ClearMovement));
 
-        /// <summary>Returns an increasing number representing the index of the user cmd. The value returned is occasionally 0 inside CreateMove hook, so it's advised to check for a non-zero value if you wish to get the correct number.</summary>
+        /// <summary>
+        ///     Returns an increasing number representing the index of the user cmd. The value returned is occasionally 0
+        ///     inside CreateMove hook, so it's advised to check for a non-zero value if you wish to get the correct number.
+        /// </summary>
         /// <returns>The command number.</returns>
         public double CommandNumber() => CallNumber(nameof(CommandNumber));
 
@@ -44,7 +53,10 @@ namespace GarrysModLuaShared.Classes
         /// <returns>Mouse Y delta.</returns>
         public int GetMouseY() => CallInteger(nameof(GetMouseY));
 
-        /// <summary>The speed the client wishes to move sideways with, positive if it wants to move right, negative if it wants to move left.</summary>
+        /// <summary>
+        ///     The speed the client wishes to move sideways with, positive if it wants to move right, negative if it wants to
+        ///     move left.
+        /// </summary>
         /// <returns>Request speed.</returns>
         public double GetSideMove() => CallNumber(nameof(GetSideMove));
 
@@ -65,7 +77,17 @@ namespace GarrysModLuaShared.Classes
         /// <param name="button">Bitflag to be removed from the key bitflag.</param>
         public void RemoveKey(IN button) => CallVoid(nameof(RemoveKey), (int)button);
 
-        /// <summary>Forces the associated player to select a weapon.<para/>This is used internally in the default HL2 weapon selection HUD.<para/>NOTE: Due to a bug, you will have to force this function to run until <see cref="Player.GetActiveWeapon"/> returns the chosen weapon, although it is also advised to add a time limit in case the switch fails for any reason.<para/>NOTE 2: This is the ideal function to use to create a custom weapon selection HUD, as it allows prediction to run properly for WEAPON.Deploy hook and PlayerSwitchWeapon hook.</summary>
+        /// <summary>
+        ///     Forces the associated player to select a weapon.
+        ///     <para />
+        ///     This is used internally in the default HL2 weapon selection HUD.
+        ///     <para />
+        ///     NOTE: Due to a bug, you will have to force this function to run until <see cref="Player.GetActiveWeapon" /> returns
+        ///     the chosen weapon, although it is also advised to add a time limit in case the switch fails for any reason.
+        ///     <para />
+        ///     NOTE 2: This is the ideal function to use to create a custom weapon selection HUD, as it allows prediction to run
+        ///     properly for WEAPON.Deploy hook and PlayerSwitchWeapon hook.
+        /// </summary>
         /// <param name="weapon">The weapon entity to select.</param>
         public void SelectWeapon(Weapon weapon) => CallVoid(nameof(SelectWeapon), weapon);
 

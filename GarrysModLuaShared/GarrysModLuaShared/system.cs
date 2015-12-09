@@ -1,12 +1,17 @@
-﻿using System;
-using static GarrysModLuaShared.Lua;
+﻿using static GarrysModLuaShared.Lua;
 
 namespace GarrysModLuaShared
 {
-    /// <summary>The system library provides functions that allow you to gather information about the system running the game, such as operating system, uptime and battery level.</summary>
+    /// <summary>
+    ///     The system library provides functions that allow you to gather information about the system running the game,
+    ///     such as operating system, uptime and battery level.
+    /// </summary>
     static class system
     {
-        /// <summary>Returns the total uptime of the current application.<para/>This will return a similar value to <see cref="Global.SysTime"/>.</summary>
+        /// <summary>Returns the total uptime of the current application.
+        ///     <para />
+        ///     This will return a similar value to <see cref="Global.SysTime" />.
+        /// </summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <returns>Seconds of game uptime as an integer.</returns>
         public static uint AppTime(LuaState luaState)
@@ -22,7 +27,10 @@ namespace GarrysModLuaShared
 
         /// <summary>Returns the current battery power.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
-        /// <returns>0-100 if on battery power.<para/>If plugged in, the value will be 255 regardless of charging state.</returns>
+        /// <returns>0-100 if on battery power.
+        ///     <para />
+        ///     If plugged in, the value will be 255 regardless of charging state.
+        /// </returns>
         public static byte BatteryPower(LuaState luaState)
         {
             lock (SyncRoot)
@@ -50,7 +58,10 @@ namespace GarrysModLuaShared
 
         /// <summary>Returns the country code of this computer, determined by the localisation settings of the OS.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
-        /// <returns>Two-letter country code, using <see cref="http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO 3166-1</see> standard.</returns>
+        /// <returns>
+        ///     Two-letter country code, using <see cref="http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO 3166-1</see>
+        ///     standard.
+        /// </returns>
         public static string GetCountry(LuaState luaState)
         {
             lock (SyncRoot)
@@ -62,7 +73,12 @@ namespace GarrysModLuaShared
             }
         }
 
-        /// <summary>Returns whether or not the game window has focus.<para/>This does nothing on dedicated servers.<para/>Returns true 100% of the time on OS X and returns nil on Linux platform.</summary>
+        /// <summary>Returns whether or not the game window has focus.
+        ///     <para />
+        ///     This does nothing on dedicated servers.
+        ///     <para />
+        ///     Returns true 100% of the time on OS X and returns nil on Linux platform.
+        /// </summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <returns>Whether or not the game window has focus.</returns>
         public static bool HasFocus(LuaState luaState)
@@ -134,7 +150,10 @@ namespace GarrysModLuaShared
             }
         }
 
-        /// <summary>Returns the synchronized steam time. This is the number of seconds since the <see cref="http://en.wikipedia.org/wiki/Unix_time">Unix epoch</see>.</summary>
+        /// <summary>
+        ///     Returns the synchronized steam time. This is the number of seconds since the
+        ///     <see cref="http://en.wikipedia.org/wiki/Unix_time">Unix epoch</see>.
+        /// </summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <returns>Current steam-synchronized Unix time.</returns>
         public static uint SteamTime(LuaState luaState)

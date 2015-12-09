@@ -14,6 +14,6 @@ namespace GarrysModLuaShared
         public byte nparams;
         public char isvararg;
         public char istailcall;
-        public fixed char short_src[LuaConfig.LUA_IDSIZE];
+        public fixed char short_src [LuaConfig.LUA_IDSIZE];
     }
 }

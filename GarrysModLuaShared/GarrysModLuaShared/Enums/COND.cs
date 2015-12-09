@@ -45,8 +45,10 @@ namespace GarrysModLuaShared.Enums
         COND_NO_WEAPON = 6,
         COND_NONE = 0,
         COND_NOT_FACING_ATTACK = 40,
+
         /// <summary>Freezes NPC movement</summary>
         COND_NPC_FREEZE = 67,
+
         /// <summary>Unfreezes NPC movement</summary>
         COND_NPC_UNFREEZE = 68,
         COND_PHYSICS_DAMAGE = 19,

@@ -1,9 +1,11 @@
-﻿using System;
-using static GarrysModLuaShared.Lua;
+﻿using static GarrysModLuaShared.Lua;
 
 namespace GarrysModLuaShared
 {
-    /// <summary>The physenv library allows you to control the physics environment created by the engine, and lets you modify constants such as gravity and maximum velocity.</summary>
+    /// <summary>
+    ///     The physenv library allows you to control the physics environment created by the engine, and lets you modify
+    ///     constants such as gravity and maximum velocity.
+    /// </summary>
     static class physenv
     {
         /// <summary>Loads the given surface properties as a string, follows the file format.</summary>
@@ -52,8 +54,8 @@ namespace GarrysModLuaShared
             }
         }
 
-        // TODO: physenv.SetGravity (takes Vector structure as argument).
-
         // TODO: physenv.SetPerformanceSettings (takes PhysEnvPerformanceSettings structure as argument).
+
+        // TODO: physenv.SetGravity (takes Vector structure as argument).
     }
 }

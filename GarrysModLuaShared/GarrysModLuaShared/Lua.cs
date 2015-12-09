@@ -418,7 +418,7 @@ namespace GarrysModLuaShared
         [DllImport(ExternDll.LuaShared, CallingConvention = CallingConvention.Cdecl, SetLastError = true)]
         public static extern int lua_yield(LuaState luaState, int nresults);
 
-        public static void lua_pop(LuaState luaState, int num = 1) => lua_settop(luaState, -(num) - 1);
+        public static void lua_pop(LuaState luaState, int num = 1) => lua_settop(luaState, -num - 1);
 
         public static void lua_pushobject(LuaState luaState, object value)
         {
@@ -504,7 +504,7 @@ namespace GarrysModLuaShared
 
         public static int UpvalueIndex(int index) => (int)TableIndex.SpecialGlob - index;
 
-        public static int AbsIndex(LuaState luaState, int index) => (index > 0 || index <= (int)TableIndex.SpecialReg) ? index : lua_gettop(luaState) + index + 1;
+        public static int AbsIndex(LuaState luaState, int index) => (index > 0) || (index <= (int)TableIndex.SpecialReg) ? index : lua_gettop(luaState) + index + 1;
 
         public static string CheckManagedString(LuaState luaState, int index) => Marshal.PtrToStringAnsi(luaL_checklstring(luaState, index, IntPtr.Zero));
 
@@ -802,6 +802,14 @@ namespace GarrysModLuaShared
 
         public static void RegisterCFunction(string tableName, string funcName, lua_CFunction function) => RegisterCFunction(_state, tableName, funcName, function);
 
-        public static void Init(LuaState luaState) => _state = luaState;
+        public static void InitializeLua(LuaState luaState)
+        {
+            if (_state == IntPtr.Zero)
+            {
+                _state = luaState;
+            }
+        }
+
+        public static IntPtr LuaState() => _state;
     }
 }

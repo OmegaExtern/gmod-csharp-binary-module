@@ -1,13 +1,17 @@
+
 #if CLIENT
+
 namespace GarrysModLuaShared.Classes
 {
-    /// <summary>This is the object passed to <see cref="usermessage.Hook"/> when a message is received. It contains each value stored in the message in sequential order. You should read values from it in the order you wrote them.</summary>
+    /// <summary>
+    ///     This is the object passed to <see cref="usermessage.Hook" /> when a message is received. It contains each
+    ///     value stored in the message in sequential order. You should read values from it in the order you wrote them.
+    /// </summary>
     public sealed class bf_read : LuaObject
     {
         static readonly int bf_readId = Random.Generator.Next((int)Type.UserMsg, int.MaxValue);
 
-        public bf_read(int index) : base(index)
-        {}
+        public bf_read(int index) : base(index) { }
 
         /// <summary>Reads an returns an angle object from the bitstream.</summary>
         /// <returns>The read angle.</returns>
@@ -41,11 +45,17 @@ namespace GarrysModLuaShared.Classes
         /// <returns>The read string.</returns>
         public string ReadString() => CallString(nameof(ReadString));
 
-        /// <summary>Reads a special encoded vector from the bitstream and returns it, this function is not suitable to send normals.</summary>
+        /// <summary>
+        ///     Reads a special encoded vector from the bitstream and returns it, this function is not suitable to send
+        ///     normals.
+        /// </summary>
         /// <returns>The read vector.</returns>
         public Vector ReadVector() => CallObject(nameof(ReadVector)).ToVector();
 
-        /// <summary>Reads a special encoded vector normal from the bitstream and returns it, this function is not suitable to send vectors that represent a position.</summary>
+        /// <summary>
+        ///     Reads a special encoded vector normal from the bitstream and returns it, this function is not suitable to send
+        ///     vectors that represent a position.
+        /// </summary>
         /// <returns>The read normal vector.</returns>
         public Vector ReadVectorNormal() => CallObject(nameof(ReadVectorNormal)).ToVector();
 
@@ -53,4 +63,5 @@ namespace GarrysModLuaShared.Classes
         public void Reset() => CallVoid(nameof(Reset));
     }
 }
+
 #endif

@@ -4,7 +4,10 @@ using static GarrysModLuaShared.Lua;
 
 namespace GarrysModLuaShared
 {
-    /// <summary>The surface library allows you to draw text and shapes on the screen. Primarily used for making HUDs & custom GUI panels.</summary>
+    /// <summary>
+    ///     The surface library allows you to draw text and shapes on the screen. Primarily used for making HUDs & custom
+    ///     GUI panels.
+    /// </summary>
     static class surface
     {
         // TODO: surface.CreateFont (takes table as argument).
@@ -101,7 +104,10 @@ namespace GarrysModLuaShared
             }
         }
 
-        /// <summary>Draw a textured rectangle with the given position and dimensions on the screen, using the current active texture.</summary>
+        /// <summary>
+        ///     Draw a textured rectangle with the given position and dimensions on the screen, using the current active
+        ///     texture.
+        /// </summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="x">The X co-ordinate.</param>
         /// <param name="y">The Y co-ordinate.</param>
@@ -121,7 +127,10 @@ namespace GarrysModLuaShared
             }
         }
 
-        /// <summary>Draw a textured rotated rectangle with the given position and dimensions and angle on the screen, using the current active texture.</summary>
+        /// <summary>
+        ///     Draw a textured rotated rectangle with the given position and dimensions and angle on the screen, using the
+        ///     current active texture.
+        /// </summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="x">The X co-ordinate, representing the center of the rectangle.</param>
         /// <param name="y">The Y co-ordinate, representing the center of the rectangle.</param>
@@ -143,7 +152,15 @@ namespace GarrysModLuaShared
             }
         }
 
-        /// <summary>Draws a textured rectangle with a repeated or partial texture. U and V refer to texture coordinates. 0,0 is the bottom left corner of the texture, 1,0 is the bottom right, 1,1 is the top right and 0,1 is the top left.<para/>If you are using a .png image, you must supply "noclamp" as second parameter for <see cref="Global.Material"/>.<para/>Using a start point of(1,0) and an end point to(0,1), you can draw an image flipped horizontally, etc with other directions.</summary>
+        /// <summary>
+        ///     Draws a textured rectangle with a repeated or partial texture. U and V refer to texture coordinates. 0,0 is
+        ///     the bottom left corner of the texture, 1,0 is the bottom right, 1,1 is the top right and 0,1 is the top left.
+        ///     <para />
+        ///     If you are using a .png image, you must supply "noclamp" as second parameter for <see cref="Global.Material" />.
+        ///     <para />
+        ///     Using a start point of(1,0) and an end point to(0,1), you can draw an image flipped horizontally, etc with other
+        ///     directions.
+        /// </summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="x">The X coordinate.</param>
         /// <param name="y">The Y coordinate.</param>
@@ -173,10 +190,16 @@ namespace GarrysModLuaShared
 
         // TODO: surface.GetHUDTexture (returns ITexture object).
 
-        /// <summary>Returns the width and height (in pixels) of the given text, but only if the font has been set with <see cref="SetFont"/>.</summary>
+        /// <summary>
+        ///     Returns the width and height (in pixels) of the given text, but only if the font has been set with
+        ///     <see cref="SetFont" />.
+        /// </summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="text">The string to check the size of.</param>
-        /// <returns>First result is width of <paramref name="text"/> in pixels. Second result is height of <paramref name="text"/> in pixels.</returns>
+        /// <returns>
+        ///     First result is width of <paramref name="text" /> in pixels. Second result is height of
+        ///     <paramref name="text" /> in pixels.
+        /// </returns>
         public static Tuple<int, int> GetTextSize(LuaState luaState, string text)
         {
             lock (SyncRoot)
@@ -189,11 +212,14 @@ namespace GarrysModLuaShared
             }
         }
 
-        /// <summary>Returns the width and height (in pixels) of the given text, but only if the font has been set with <see cref="SetFont"/>.</summary>
+        /// <summary>
+        ///     Returns the width and height (in pixels) of the given text, but only if the font has been set with
+        ///     <see cref="SetFont" />.
+        /// </summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="text">The string to check the size of.</param>
-        /// <param name="width">Width of <paramref name="text"/> in pixels.</param>
-        /// <param name="height">Height of <paramref name="text"/> in pixels.</param>
+        /// <param name="width">Width of <paramref name="text" /> in pixels.</param>
+        /// <param name="height">Height of <paramref name="text" /> in pixels.</param>
         public static void GetTextSize(LuaState luaState, string text, out int width, out int height)
         {
             lock (SyncRoot)
@@ -210,7 +236,7 @@ namespace GarrysModLuaShared
         /// <summary>Returns the texture ID of the texture with the given name/path.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="nameOrPath">Name or path of the texture.</param>
-        /// <returns>Texture ID of the texture with the given <paramref name="nameOrPath"/>.</returns>
+        /// <returns>Texture ID of the texture with the given <paramref name="nameOrPath" />.</returns>
         public static uint GetTextureID(LuaState luaState, string nameOrPath)
         {
             lock (SyncRoot)
@@ -372,4 +398,5 @@ namespace GarrysModLuaShared
         }
     }
 }
+
 #endif

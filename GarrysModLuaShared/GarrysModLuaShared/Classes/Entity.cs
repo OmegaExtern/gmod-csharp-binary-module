@@ -2,11 +2,9 @@
 {
     public class Entity : LuaObject
     {
-        public Entity(int index) : base(index)
-        {}
+        public Entity(int index) : base(index) { }
 
-        public Entity(uint entityId) : base(LuaTable._G.InvokeObject(nameof(Global.Entity), entityId).GetIndex())
-        {}
+        public Entity(uint entityId) : base(LuaTable._G.InvokeObject(nameof(Global.Entity), entityId).GetIndex()) { }
 
         public Angle EyeAngles() => new Angle(CallObject(nameof(EyeAngles)).GetIndex());
 

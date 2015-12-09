@@ -5,10 +5,13 @@ namespace GarrysModLuaShared.Enums
         /// <summary>Default citizen</summary>
         CT_DEFAULT = 0,
         CT_DOWNTRODDEN = 1,
+
         /// <summary>Refugee</summary>
         CT_REFUGEE = 2,
+
         /// <summary>Rebel</summary>
         CT_REBEL = 3,
+
         /// <summary>Odessa?</summary>
         CT_UNIQUE = 4
     }

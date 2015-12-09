@@ -300,7 +300,7 @@ namespace GarrysModLuaShared
 
         public static bool Is(this Type type, Type otherType) => type == otherType;
 
-        public static void Init(this LuaState luaState) => Lua.Init(luaState);
+        public static void InitializeLua(this LuaState luaState) => Lua.InitializeLua(luaState);
 
         public static Angle ToAngle(this LuaObject luaObject) => new Angle(luaObject.GetIndex());
 

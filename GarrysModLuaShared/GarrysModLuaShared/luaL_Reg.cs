@@ -5,8 +5,7 @@ namespace GarrysModLuaShared
         public lua_CFunction func;
         public string name;
 
-        luaL_Reg()
-        {}
+        luaL_Reg() { }
 
         public luaL_Reg(string name, lua_CFunction func)
         {

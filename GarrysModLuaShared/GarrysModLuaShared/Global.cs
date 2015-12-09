@@ -254,6 +254,8 @@ namespace GarrysModLuaShared
             }
         }
 
+        public static void print(params object[] args) => print(LuaState(), args);
+
         public static void PrintTable(LuaState luaState, LuaTable tableToPrint, double indent = default(double), LuaTable done = null)
         {
             lock (SyncRoot)
@@ -344,6 +346,18 @@ namespace GarrysModLuaShared
             }
         }
 
+        public static double SysTime(LuaState luaState)
+        {
+            lock (SyncRoot)
+            {
+                lua_getglobal(luaState, nameof(SysTime));
+                lua_pcall(luaState, 0, 1);
+                return lua_tonumber(luaState);
+            }
+        }
+
+        public static Vector Vector(double x = default(double), double y = default(double), double z = default(double)) => new Vector(x, y, z);
+
 #if CLIENT
         public static uint ScrH(LuaState luaState)
         {
@@ -365,17 +379,5 @@ namespace GarrysModLuaShared
             }
         }
 #endif
-
-        public static double SysTime(LuaState luaState)
-        {
-            lock (SyncRoot)
-            {
-                lua_getglobal(luaState, nameof(SysTime));
-                lua_pcall(luaState, 0, 1);
-                return lua_tonumber(luaState);
-            }
-        }
-
-        public static Vector Vector(double x = default(double), double y = default(double), double z = default(double)) => new Vector(x, y, z);
     }
 }

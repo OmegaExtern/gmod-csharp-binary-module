@@ -1,9 +1,11 @@
-﻿using System;
-using static GarrysModLuaShared.Lua;
+﻿using static GarrysModLuaShared.Lua;
 
 namespace GarrysModLuaShared
 {
-    /// <summary>The timer library is a very useful set of functions which allow you to run a function periodically or after a given delay.</summary>
+    /// <summary>
+    ///     The timer library is a very useful set of functions which allow you to run a function periodically or after a
+    ///     given delay.
+    /// </summary>
     static class timer
     {
         /// <summary>Adjusts the timer if the timer with the given identifier exists.</summary>
@@ -158,7 +160,10 @@ namespace GarrysModLuaShared
             }
         }
 
-        /// <summary>Returns amount of time left before the timer executes its function.<para/>If the timer is paused, the amount will be negative.</summary>
+        /// <summary>Returns amount of time left before the timer executes its function.
+        ///     <para />
+        ///     If the timer is paused, the amount will be negative.
+        /// </summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="identifier">Identifier of the timer.</param>
         /// <returns>The amount of time left.</returns>
@@ -174,7 +179,7 @@ namespace GarrysModLuaShared
             }
         }
 
-        /// <summary>Runs either <see cref="Pause"/> or <see cref="UnPause"/> based on the timer's current status.</summary>
+        /// <summary>Runs either <see cref="Pause" /> or <see cref="UnPause" /> based on the timer's current status.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="identifier">Identifier of the timer.</param>
         /// <returns>Status of the timer.</returns>

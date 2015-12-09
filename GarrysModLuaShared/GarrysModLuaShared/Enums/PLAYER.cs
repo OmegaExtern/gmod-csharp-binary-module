@@ -7,6 +7,7 @@ namespace GarrysModLuaShared.Enums
         PLAYER_JUMP = 2,
         PLAYER_SUPERJUMP = 3,
         PLAYER_DIE = 4,
+
         /// <summary>Player attack according to current hold type, used in SWEPs</summary>
         PLAYER_ATTACK1 = 5,
         PLAYER_IN_VEHICLE = 6,

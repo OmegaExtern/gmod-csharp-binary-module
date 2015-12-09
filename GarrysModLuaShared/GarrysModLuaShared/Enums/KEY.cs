@@ -4,24 +4,34 @@ namespace GarrysModLuaShared.Enums
     {
         KEY_FIRST = 0,
         KEY_NONE = 0,
+
         /// <summary>Normal number 0 key</summary>
         KEY_0 = 1,
+
         /// <summary>Normal number 1 key</summary>
         KEY_1 = 2,
+
         /// <summary>Normal number 2 key</summary>
         KEY_2 = 3,
+
         /// <summary>Normal number 3 key</summary>
         KEY_3 = 4,
+
         /// <summary>Normal number 4 key</summary>
         KEY_4 = 5,
+
         /// <summary>Normal number 5 key</summary>
         KEY_5 = 6,
+
         /// <summary>Normal number 6 key</summary>
         KEY_6 = 7,
+
         /// <summary>Normal number 7 key</summary>
         KEY_7 = 8,
+
         /// <summary>Normal number 8 key</summary>
         KEY_8 = 9,
+
         /// <summary>Normal number 9 key</summary>
         KEY_9 = 10,
         KEY_A = 11,
@@ -50,36 +60,52 @@ namespace GarrysModLuaShared.Enums
         KEY_X = 34,
         KEY_Y = 35,
         KEY_Z = 36,
+
         /// <summary>Keypad number 0 key</summary>
         KEY_PAD_0 = 37,
+
         /// <summary>Keypad number 1 key</summary>
         KEY_PAD_1 = 38,
+
         /// <summary>Keypad number 2 key</summary>
         KEY_PAD_2 = 39,
+
         /// <summary>Keypad number 3 key</summary>
         KEY_PAD_3 = 40,
+
         /// <summary>Keypad number 4 key</summary>
         KEY_PAD_4 = 41,
+
         /// <summary>Keypad number 5 key</summary>
         KEY_PAD_5 = 42,
+
         /// <summary>Keypad number 6 key</summary>
         KEY_PAD_6 = 43,
+
         /// <summary>Keypad number 7 key</summary>
         KEY_PAD_7 = 44,
+
         /// <summary>Keypad number 8 key</summary>
         KEY_PAD_8 = 45,
+
         /// <summary>Keypad number 9 key</summary>
         KEY_PAD_9 = 46,
+
         /// <summary>Keypad division/slash key (/)</summary>
         KEY_PAD_DIVIDE = 47,
+
         /// <summary>Keypad asterisk key (*)</summary>
         KEY_PAD_MULTIPLY = 48,
+
         /// <summary>Keypad minus key</summary>
         KEY_PAD_MINUS = 49,
+
         /// <summary>Keypad plus key</summary>
         KEY_PAD_PLUS = 50,
+
         /// <summary>Keypad enter key</summary>
         KEY_PAD_ENTER = 51,
+
         /// <summary>Keypad dot key (.)</summary>
         KEY_PAD_DECIMAL = 52,
         KEY_LBRACKET = 53,
@@ -114,8 +140,10 @@ namespace GarrysModLuaShared.Enums
         KEY_RALT = 82,
         KEY_LCONTROL = 83,
         KEY_RCONTROL = 84,
+
         /// <summary>The left Windows key or the Command key on Mac OSX</summary>
         KEY_LWIN = 85,
+
         /// <summary>The right Windows key or the Command key on Mac OSX</summary>
         KEY_RWIN = 86,
         KEY_APP = 87,

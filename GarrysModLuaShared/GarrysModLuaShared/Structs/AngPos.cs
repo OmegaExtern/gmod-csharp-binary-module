@@ -3,7 +3,7 @@ using GarrysModLuaShared.Classes;
 
 namespace GarrysModLuaShared.Structs
 {
-    /// <summary>Structure used by various functions, such as <see cref="Entity.GetAttachment"/>.</summary>
+    /// <summary>Structure used by various functions, such as <see cref="Entity.GetAttachment" />.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct AngPos
     {

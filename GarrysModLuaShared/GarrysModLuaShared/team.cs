@@ -1,10 +1,12 @@
-﻿using System;
-using GarrysModLuaShared.Enums;
+﻿using GarrysModLuaShared.Enums;
 using static GarrysModLuaShared.Lua;
 
 namespace GarrysModLuaShared
 {
-    /// <summary>The team library gives you access to the team system built into the Source engine, and allows you to create custom teams and get information about them.</summary>
+    /// <summary>
+    ///     The team library gives you access to the team system built into the Source engine, and allows you to create
+    ///     custom teams and get information about them.
+    /// </summary>
     static class team
     {
         /// <summary>Increases the score of the given team.</summary>
@@ -23,7 +25,7 @@ namespace GarrysModLuaShared
             }
         }
 
-        /// <summary>Returns the team index of the team with the least players. Falls back to <see cref="TEAM.TEAM_UNASSIGNED"/>.</summary>
+        /// <summary>Returns the team index of the team with the least players. Falls back to <see cref="TEAM.TEAM_UNASSIGNED" />.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <returns>Team index.</returns>
         public static uint BestAutoJoinTeam(LuaState luaState)
@@ -81,7 +83,7 @@ namespace GarrysModLuaShared
 
         // TODO: team.GetSpawnPoints (return a table).
 
-        /// <summary>Returns if a team is joinable or not. This is set in <see cref="SetUp"/>.</summary>
+        /// <summary>Returns if a team is joinable or not. This is set in <see cref="SetUp" />.</summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="teamIndex">The index of the team.</param>
         /// <returns>True if the team is joinable; otherwise false.</returns>
@@ -113,7 +115,10 @@ namespace GarrysModLuaShared
             }
         }
 
-        /// <summary>Sets valid classes for use by a team. Classes can be created using <see cref="player_manager.RegisterClass"/>.</summary>
+        /// <summary>
+        ///     Sets valid classes for use by a team. Classes can be created using <see cref="player_manager.RegisterClass" />
+        ///     .
+        /// </summary>
         /// <param name="luaState">Pointer to lua_State struct.</param>
         /// <param name="teamIndex">Index of the team.</param>
         /// <param name="classId">A class ID or table of class IDs.</param>

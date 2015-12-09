@@ -7,7 +7,11 @@ namespace GarrysModLuaShared.Enums
         RENDERMODE_TRANSCOLOR = 1,
         RENDERMODE_TRANSTEXTURE = 2,
         RENDERMODE_GLOW = 3,
-        /// <summary>Use this to make alpha of Color work for your entity. For players, it must be set for their active weapon aswell.</summary>
+
+        /// <summary>
+        ///     Use this to make alpha of Color work for your entity. For players, it must be set for their active weapon
+        ///     aswell.
+        /// </summary>
         RENDERMODE_TRANSALPHA = 4,
         RENDERMODE_TRANSADD = 5,
         RENDERMODE_ENVIROMENTAL = 6,
